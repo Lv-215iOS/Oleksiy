@@ -89,13 +89,17 @@ class CalcModel: NSObject {
     func priorityFor(char:Character) -> Int{
         if char == "+" || char == "-" {
             return 1
+        } else if (char == "^") {
+            return 3
+        } else if char == "s" {
+            return 0
         }
         return 2
     }
     
     func isOperation (at char : Character) -> Bool{
         
-        if char=="+" || char=="/" || char=="*" || char=="-" || char == "(" || char == ")"{
+        if char=="+" || char=="/" || char=="*" || char=="-" || char == "(" || char == ")" || char == "^" || char == "s"{
             return true
         }
         return false
@@ -103,13 +107,13 @@ class CalcModel: NSObject {
     
     func isOperationDM (at char : Character) -> Bool{
         
-        if char=="+" || char=="/" || char=="*" || char=="-" {
+        if char=="+" || char=="/" || char=="*" || char=="-" || char == "^" || char == "s" {
             return true
         }
         return false
     }
-    func CalculateRPN() -> Float{
-        var stack =  [Float]()
+    func CalculateRPN() -> Double {
+        var stack =  [Double]()
         for value in outputData {
             switch value {
             case "+":
@@ -128,8 +132,15 @@ class CalcModel: NSObject {
                 let rightValue = stack.removeLast()
                 let leftValue = stack.removeLast()
                 stack.append(leftValue / rightValue)
+            case "^":
+                let rightValue = stack.removeLast()
+                let leftValue = stack.removeLast()
+                stack.append(pow(leftValue, rightValue))
+            case "s":
+                let value = stack.removeLast()
+                stack.append(sin(value))
             default:
-                stack.append(Float(value)!)
+                stack.append(Double(value)!)
             }
         }
         print(stack)

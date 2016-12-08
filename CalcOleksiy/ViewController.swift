@@ -14,13 +14,6 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let model = CalcModel(withData: "(5+20*5)/5*(5+7/2)")
-        model.calculateData()
-        model.printInputData()
-        model.printOutputData()
-        model.CalculateRPN()
-        // Do any additional setup after loading the view, typically from a nib.
-        
     }
     
     @IBAction func pressedButton(_ sender: UIButton) {
