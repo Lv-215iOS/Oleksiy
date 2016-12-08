@@ -92,7 +92,7 @@ class CalcModel: NSObject {
         } else if (char == "^") {
             return 3
         } else if char == "s" {
-            return 0
+            return 4
         }
         return 2
     }

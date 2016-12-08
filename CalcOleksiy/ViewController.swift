@@ -23,16 +23,17 @@ class ViewController: UIViewController {
             model.printInputData()
             model.printOutputData()
              label.text = String(model.CalculateRPN())
+        } else if sender.currentTitle == "C" {
+            label.text = ""
         } else {
             label.text = label.text! + sender.currentTitle!
         }
+
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
 }
 
