@@ -10,7 +10,7 @@ import UIKit
 
 class CalcModel: NSObject {
     
-    var inputData :  String
+    private var inputData :  String
     var outputData = [String]()
     
     init(withData data : String) {
@@ -38,7 +38,7 @@ class CalcModel: NSObject {
                     stack += String(symbol)
                 } else if stack == "" {
                     stack += String(symbol)
-                } else if priority(for: stack.characters.last!) < priority(for: symbol) {
+                } else if priorityFor(char: stack.characters.last!) < priorityFor(char: symbol) {
                     stack += String(symbol)
                 } else {
                     outputData.append(String(String(stack.characters.last!)))
@@ -86,7 +86,7 @@ class CalcModel: NSObject {
          print(outputData)
     }
     
-    func priority (for char:Character) -> Int{
+    func priorityFor(char:Character) -> Int{
         if char == "+" || char == "-" {
             return 1
         }
