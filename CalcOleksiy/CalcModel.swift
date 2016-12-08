@@ -11,7 +11,7 @@ import UIKit
 class CalcModel: NSObject {
     
     var inputData :  String
-    var outputData :String = ""
+    var outputData = [String]()
     
     init(withData data : String) {
         inputData = data
@@ -19,11 +19,21 @@ class CalcModel: NSObject {
 
     func calculateData(){
         var stack : String = ""
+        var token = false
         for symbol in inputData.characters {
             if !isOperation(at: symbol){
-                outputData += String(symbol)
+                if outputData.count == 0 {
+                    token = true
+                    outputData.append(String(symbol))
+                } else if token {
+                    token = true
+                    outputData[outputData.count - 1] += String(symbol)
+                } else {
+                    token = true
+                    outputData.append(String(symbol))
+                }
             } else if isOperationDM(at: symbol){
-                outputData += ","
+                token = false
                 if (stack.characters.last ==  "(") {
                     stack += String(symbol)
                 } else if stack == "" {
@@ -31,17 +41,18 @@ class CalcModel: NSObject {
                 } else if priority(for: stack.characters.last!) < priority(for: symbol) {
                     stack += String(symbol)
                 } else {
-                    outputData += String(stack.characters.last!)
+                    outputData.append(String(String(stack.characters.last!)))
                     stack  = stack.substring(to: stack.index(before: stack.endIndex))
                     stack  += String(symbol)
                 }
             } else if symbol == "(" {
+                token = false
                 stack += String(symbol)
             } else if symbol == ")" {
+                token = false
                 var temp : String = ""
                 for ch in stack.characters {
                     if ch != "(" {
-                        outputData += ","
                         temp += String(ch)
                     } else {
                         break
@@ -49,8 +60,7 @@ class CalcModel: NSObject {
                 }
                 for lc in stack.characters.reversed() {
                     if lc != "(" {
-                        outputData += ","
-                        outputData += String(lc)
+                        outputData.append(String(lc))
                     } else {
                         break
                     }
@@ -62,8 +72,7 @@ class CalcModel: NSObject {
                 
         }
         for lb in stack.characters.reversed() {
-            outputData += ","
-            outputData += String(lb)
+            outputData.append(String(lb))
         }
         //outputData += String(stack.characters.reversed() )
         
@@ -99,5 +108,31 @@ class CalcModel: NSObject {
         }
         return false
     }
-
+    func CalculateRPN() -> Float{
+        var stack =  [Float]()
+        for value in outputData {
+            switch value {
+            case "+":
+                let rightValue = stack.removeLast()
+                let leftValue = stack.removeLast()
+                stack.append(leftValue + rightValue)
+            case "-":
+                let rightValue = stack.removeLast()
+                let leftValue = stack.removeLast()
+                stack.append(leftValue - rightValue)
+            case "*":
+                let rightValue = stack.removeLast()
+                let leftValue = stack.removeLast()
+                stack.append(leftValue * rightValue)
+            case "/":
+                let rightValue = stack.removeLast()
+                let leftValue = stack.removeLast()
+                stack.append(leftValue / rightValue)
+            default:
+                stack.append(Float(value)!)
+            }
+        }
+        print(stack)
+        return stack[stack.count-1]
+    }
 }
