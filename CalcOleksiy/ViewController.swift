@@ -22,7 +22,7 @@ class ViewController: UIViewController {
             model.calculateData()
             model.printInputData()
             model.printOutputData()
-             label.text = String(model.CalculateRPN())
+            label.text = String(model.CalculateRPN())
         } else if sender.currentTitle == "C" {
             label.text = ""
         } else {

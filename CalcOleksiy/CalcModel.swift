@@ -17,6 +17,10 @@ class CalcModel: NSObject {
         inputData = data
     }
 
+    func seperateInputData(){
+        
+    }
+    
     func calculateData(){
         var stack : String = ""
         var token = false
@@ -97,7 +101,7 @@ class CalcModel: NSObject {
         return 2
     }
     
-    func isOperation (at char : Character) -> Bool{
+    func isOperation(at char: Character) -> Bool{
         
         if char=="+" || char=="/" || char=="*" || char=="-" || char == "(" || char == ")" || char == "^" || char == "s"{
             return true
@@ -105,7 +109,7 @@ class CalcModel: NSObject {
         return false
     }
     
-    func isOperationDM (at char : Character) -> Bool{
+    func isOperationDM(at char: Character) -> Bool{
         
         if char=="+" || char=="/" || char=="*" || char=="-" || char == "^" || char == "s" {
             return true
