@@ -19,9 +19,6 @@ class ViewController: UIViewController {
     @IBAction func pressedButton(_ sender: UIButton) {
         if sender.currentTitle == "=" {
             let model = CalcModel(withData: label.text!)
-            model.calculateData()
-            model.printInputData()
-            model.printOutputData()
             label.text = String(model.CalculateRPN())
         } else if sender.currentTitle == "C" {
             label.text = ""

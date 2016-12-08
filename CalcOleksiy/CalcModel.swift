@@ -11,86 +11,75 @@ import UIKit
 class CalcModel: NSObject {
     
     private var inputData :  String
-    var outputData = [String]()
+    private var inputDataArray = [String]() //seperate string into math components
+    private var outputData = [String]() //reverse polish notation in array
     
-    init(withData data : String) {
+    init(withData data : String) { //intialize with string
         inputData = data
     }
 
-    func seperateInputData(){
-        
+    private func seperateInputData(){ //function seperate inputData into math components
+        for charachter in inputData.characters {
+            if isOperation(at: String(charachter)) {
+                inputDataArray.append(String(charachter))
+            } else if isValue(at: String(charachter)){ //determine if last charachter is number, 
+                if inputDataArray.count == 0 {         // if true add next charachter to the same string
+                    inputDataArray.append(String(charachter))
+                } else if isValue(at: inputDataArray[inputDataArray.count - 1]) {
+                    inputDataArray[inputDataArray.count - 1] += String(charachter)
+                } else {
+                    inputDataArray.append(String(charachter))
+                }
+            } else if charachter == "." {
+                inputDataArray[inputDataArray.count - 1] += String(charachter)
+            } else if !isTrigonomenry(at: inputDataArray[inputDataArray.count - 1]) && !isOperation(at: inputDataArray[inputDataArray.count - 1]) {             // if element of array is not fully writed trigonometry func
+                inputDataArray[inputDataArray.count - 1] += String(charachter)
+            } else {
+                inputDataArray.append(String(charachter))
+            }
+           // print(inputDataArray)
+        }
+        print(inputDataArray)
     }
     
-    func calculateData(){
-        var stack : String = ""
-        var token = false
-        for symbol in inputData.characters {
-            if !isOperation(at: symbol){
-                if outputData.count == 0 {
-                    token = true
-                    outputData.append(String(symbol))
-                } else if token {
-                    token = true
-                    outputData[outputData.count - 1] += String(symbol)
+    private func calculateData(){  //calculate reverse polish notation
+        var stack = [String]() //stack for operators
+        for symbol in inputDataArray{
+            if !isOperation(at: symbol){ //if symbol is number
+                outputData.append(String(symbol))
+            } else if isOperationDM(at: String(symbol)){ //if symbol is math operation
+                if stack.count == 0 || symbol == "(" { //if stack empty or symbol = (, add symbol
+                    stack.append(String(symbol))
+                } else if priorityBetweenOperators(first: stack.last!, second: symbol) &&  stack.last! != "(" {
+                    outputData.append(String(stack.last!))    //if last operator has higher or same precedence,
+                    stack[stack.count - 1] = (String(symbol)) //pop element from stack to outputdata and push symbol
                 } else {
-                    token = true
-                    outputData.append(String(symbol))
+                    stack.append(String(symbol))
                 }
-            } else if isOperationDM(at: symbol){
-                token = false
-                if (stack.characters.last ==  "(") {
-                    stack += String(symbol)
-                } else if stack == "" {
-                    stack += String(symbol)
-                } else if priorityFor(char: stack.characters.last!) < priorityFor(char: symbol) {
-                    stack += String(symbol)
-                } else {
-                    outputData.append(String(String(stack.characters.last!)))
-                    stack  = stack.substring(to: stack.index(before: stack.endIndex))
-                    stack  += String(symbol)
-                }
-            } else if symbol == "(" {
-                token = false
-                stack += String(symbol)
-            } else if symbol == ")" {
-                token = false
-                var temp : String = ""
-                for ch in stack.characters {
-                    if ch != "(" {
-                        temp += String(ch)
+            } else if symbol == ")" { //pop all elements until (
+                var i = 0
+                for element in stack.reversed() {
+                    if element != "(" {
+                        i += 1
+                        outputData.append(String(element))
                     } else {
                         break
                     }
                 }
-                for lc in stack.characters.reversed() {
-                    if lc != "(" {
-                        outputData.append(String(lc))
-                    } else {
-                        break
-                    }
-                }
-                stack = temp
+                stack = Array(stack.dropLast(i+1))
+            } else {
+                stack.append(String(symbol))
             }
             print(outputData)
             print(stack)
                 
         }
-        for lb in stack.characters.reversed() {
-            outputData.append(String(lb))
+        for element in stack.reversed() {
+            outputData.append(String(element))
         }
-        //outputData += String(stack.characters.reversed() )
         
     }
-    
-    func printInputData() {
-        print(inputData)
-    }
-    
-    func printOutputData() {
-         print(outputData)
-    }
-    
-    func priorityFor(char:Character) -> Int{
+    private func priorityFor(char:String) -> Int{ //determine priority
         if char == "+" || char == "-" {
             return 1
         } else if (char == "^") {
@@ -101,22 +90,45 @@ class CalcModel: NSObject {
         return 2
     }
     
-    func isOperation(at char: Character) -> Bool{
-        
-        if char=="+" || char=="/" || char=="*" || char=="-" || char == "(" || char == ")" || char == "^" || char == "s"{
+    private func priorityBetweenOperators(first:String, second:String) -> Bool { //priority between operators
+        if priorityFor(char: first) >= priorityFor(char: second) {
             return true
         }
         return false
     }
     
-    func isOperationDM(at char: Character) -> Bool{
+    private func isValue(at char: String) -> Bool{// determine if number
+        if char >= "0" && char <= "9" {
+             return true
+        }
+        return false
+    }
+    
+    private func isOperation(at char: String) -> Bool{ //determine if math symbol
         
-        if char=="+" || char=="/" || char=="*" || char=="-" || char == "^" || char == "s" {
+        if isOperationDM(at: char) || char == "(" || char == ")" {
             return true
         }
         return false
     }
-    func CalculateRPN() -> Double {
+    
+    private func isTrigonomenry(at char: String) -> Bool{ //determine if trigonometry func
+        if char=="sin" || char=="cos" || char=="tg" || char=="ctg" {
+            return true
+        }
+        return false
+    }
+    
+    private func isOperationDM(at char: String) -> Bool{ //determine if math operator
+        
+        if char=="+" || char=="/" || char=="*" || char=="-" || char == "^" || char == "sin" || char == "cos" || char == "tg" || char == "ctg" {
+            return true
+        }
+        return false
+    }
+    func CalculateRPN() -> Double { //calculate RPN and return result of expression
+        self.seperateInputData()
+        self.calculateData()
         var stack =  [Double]()
         for value in outputData {
             switch value {
@@ -140,14 +152,23 @@ class CalcModel: NSObject {
                 let rightValue = stack.removeLast()
                 let leftValue = stack.removeLast()
                 stack.append(pow(leftValue, rightValue))
-            case "s":
+            case "sin":
                 let value = stack.removeLast()
                 stack.append(sin(value))
+            case "cos":
+                let value = stack.removeLast()
+                stack.append(cos(value))
+            case "tg":
+                let value = stack.removeLast()
+                stack.append(tan(value))
+            case "ctg":
+                let value = stack.removeLast()
+                stack.append(1/tan(value))
             default:
                 stack.append(Double(value)!)
             }
+             print(stack)
         }
-        print(stack)
         return stack[stack.count-1]
     }
 }
