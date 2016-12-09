@@ -196,6 +196,7 @@
 				TargetAttributes = {
 					25ABB7731DF811EC00DE9D0D = {
 						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = BLVN45FV99;
 						ProvisioningStyle = Automatic;
 					};
 					25ABB7871DF811ED00DE9D0D = {
@@ -416,6 +417,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = BLVN45FV99;
 				INFOPLIST_FILE = CalcOleksiy/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -429,6 +431,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = BLVN45FV99;
 				INFOPLIST_FILE = CalcOleksiy/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

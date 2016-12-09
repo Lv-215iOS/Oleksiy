@@ -27,11 +27,11 @@ class CalcModel: NSObject {
             } else if isValue(at: String(charachter)){ //determine if last charachter is number, 
                 if inputDataArray.count == 0 {         // if true add next charachter to the same string
                     inputDataArray.append(String(charachter))
-                } else if isValue(at: inputDataArray[inputDataArray.count - 1]) || inputDataArray[inputDataArray.count - 1] == "-" {
+                } else if isValue(at: inputDataArray[inputDataArray.count - 1]) /*|| inputDataArray[inputDataArray.count - 1] == "-" */ {
                     inputDataArray[inputDataArray.count - 1] += String(charachter)
-                } else if charachter == "-" && isValue(at: inputDataArray[i+1])  {
-                    inputDataArray.append(String("+"))
-                    inputDataArray.append(String(charachter))
+                //} else if charachter == "-" && isValue(at: inputDataArray[i+1])  {
+                    //inputDataArray.append(String("+"))
+                    //inputDataArray.append(String(charachter))
                 } else {
                     inputDataArray.append(String(charachter))
                 }
