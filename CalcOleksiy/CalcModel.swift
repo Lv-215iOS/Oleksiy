@@ -19,21 +19,29 @@ class CalcModel: NSObject {
     }
 
     private func seperateInputData(){ //function seperate inputData into math components
+        var i =  -1
         for charachter in inputData.characters {
+            i += 1
             if isOperation(at: String(charachter)) {
                 inputDataArray.append(String(charachter))
             } else if isValue(at: String(charachter)){ //determine if last charachter is number, 
                 if inputDataArray.count == 0 {         // if true add next charachter to the same string
                     inputDataArray.append(String(charachter))
-                } else if isValue(at: inputDataArray[inputDataArray.count - 1]) {
+                } else if isValue(at: inputDataArray[inputDataArray.count - 1]) || inputDataArray[inputDataArray.count - 1] == "-" {
                     inputDataArray[inputDataArray.count - 1] += String(charachter)
+                } else if charachter == "-" && isValue(at: inputDataArray[i+1])  {
+                    inputDataArray.append(String("+"))
+                    inputDataArray.append(String(charachter))
                 } else {
                     inputDataArray.append(String(charachter))
                 }
             } else if charachter == "." {
                 inputDataArray[inputDataArray.count - 1] += String(charachter)
-            } else if !isTrigonomenry(at: inputDataArray[inputDataArray.count - 1]) && !isOperation(at: inputDataArray[inputDataArray.count - 1]) {             // if element of array is not fully writed trigonometry func
-                inputDataArray[inputDataArray.count - 1] += String(charachter)
+            } else if inputDataArray.count != 0 {
+                if !isTrigonomenry(at: inputDataArray[inputDataArray.count - 1]) && !isOperation(at: inputDataArray[inputDataArray.count - 1]) {
+                    inputDataArray[inputDataArray.count - 1] += String(charachter)
+                }
+                // if element of array is not fully writed trigonometry func
             } else {
                 inputDataArray.append(String(charachter))
             }
