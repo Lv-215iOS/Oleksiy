@@ -33,7 +33,7 @@ class CalcModel: NSObject {
                     //inputDataArray.append(String("+"))
                     //inputDataArray.append(String(charachter))
                 } else {
-                    inputDataArray.append(String(charachter))
+                    inputDataArray.append(String(charachter)) //
                 }
             } else if charachter == "." {
                 inputDataArray[inputDataArray.count - 1] += String(charachter)
