@@ -19,35 +19,25 @@ class CalcModel: NSObject {
     }
 
     private func seperateInputData(){ //function seperate inputData into math components
-        var i =  -1
         for charachter in inputData.characters {
-            i += 1
             if isOperation(at: String(charachter)) {
                 inputDataArray.append(String(charachter))
             } else if isValue(at: String(charachter)){ //determine if last charachter is number, 
                 if inputDataArray.count == 0 {         // if true add next charachter to the same string
                     inputDataArray.append(String(charachter))
-                } else if isValue(at: inputDataArray[inputDataArray.count - 1]) /*|| inputDataArray[inputDataArray.count - 1] == "-" */ {
+                } else if isValue(at: inputDataArray[inputDataArray.count - 1])  {
                     inputDataArray[inputDataArray.count - 1] += String(charachter)
-                //} else if charachter == "-" && isValue(at: inputDataArray[i+1])  {
-                    //inputDataArray.append(String("+"))
-                    //inputDataArray.append(String(charachter))
                 } else {
                     inputDataArray.append(String(charachter)) //
                 }
             } else if charachter == "." {
                 inputDataArray[inputDataArray.count - 1] += String(charachter)
-            } else if inputDataArray.count != 0 {
-                if !isTrigonomenry(at: inputDataArray[inputDataArray.count - 1]) && !isOperation(at: inputDataArray[inputDataArray.count - 1]) {
-                    inputDataArray[inputDataArray.count - 1] += String(charachter)
-                }
-                // if element of array is not fully writed trigonometry func
+            } else if inputDataArray.count != 0 && !isTrigonomenry(at: inputDataArray[inputDataArray.count - 1]) && !isOperation(at: inputDataArray[inputDataArray.count - 1]) {
+                    inputDataArray[inputDataArray.count - 1] += String(charachter) // if element of array is not fully written trigonometry func
             } else {
                 inputDataArray.append(String(charachter))
             }
-           // print(inputDataArray)
         }
-        print(inputDataArray)
     }
     
     private func calculateData(){  //calculate reverse polish notation
@@ -59,8 +49,18 @@ class CalcModel: NSObject {
                 if stack.count == 0 || symbol == "(" { //if stack empty or symbol = (, add symbol
                     stack.append(String(symbol))
                 } else if priorityBetweenOperators(first: stack.last!, second: symbol) &&  stack.last! != "(" {
-                    outputData.append(String(stack.last!))    //if last operator has higher or same precedence,
-                    stack[stack.count - 1] = (String(symbol)) //pop element from stack to outputdata and push symbol
+                //if last operator has higher or same precedence, pop element from stack to outputdata and push symbol
+                    var i = 0
+                    for element in stack.reversed() {
+                        if priorityBetweenOperators(first: element, second: symbol) &&  element != "(" {
+                            i+=1
+                            outputData.append(String(element))
+                        } else {
+                            break
+                        }
+                    }
+                    stack = Array(stack.dropLast(i))
+                    stack.append(String(symbol))
                 } else {
                     stack.append(String(symbol))
                 }
