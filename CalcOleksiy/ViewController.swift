@@ -17,15 +17,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func pressedButton(_ sender: UIButton) {
-        if sender.currentTitle == "=" {
-            let model = CalcModel(withData: label.text!)
-            label.text = String(model.CalculateRPN())
-        } else if sender.currentTitle == "C" {
-            label.text = ""
-        } else {
-            label.text = label.text! + sender.currentTitle!
-        }
-
+        CalcModel.sharedCalcModel.binary(operation:.Minus)
     }
 
     override func didReceiveMemoryWarning() {

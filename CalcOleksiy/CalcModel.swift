@@ -8,15 +8,68 @@
 
 import UIKit
 
-class CalcModel: NSObject {
-    
-    private var inputData :  String
+enum BinaryOperation : String{
+    case Plus = "+"
+    case Minus = "-"
+    case Mul = "*"
+    case Div = "/"
+    case Power = "^"
+    case Mod = "%"
+}
+
+enum UtilityOperation : String{
+    case RightBracket = ")"
+    case LeftBracket = "("
+    case Dot = "."
+    case Equal = "="
+}
+
+enum UnaryOperation : String{
+    case Sin = "sin"
+    case Cos = "cos"
+    case Tg = "tg"
+    case Ctg = "ctg"
+    case Sqrt = "sqrt"
+}
+
+
+protocol CalcBrainInterface {
+    func digit(value: Double)
+    func binary(operation: BinaryOperation)
+    func unary(operation: UnaryOperation)
+    func utility(operation: UtilityOperation)
+    var result: ((Double?, Error?)->())? {get set}
+}
+
+
+class CalcModel: NSObject, CalcBrainInterface {
+    static let sharedCalcModel = CalcModel() //sigleton
+    private var inputData = ""
     private var inputDataArray = [String]() //seperate string into math components
     private var outputData = [String]() //reverse polish notation in array
     
-    init(withData data : String) { //intialize with string
-        inputData = data
+    func digit(value: Double){
+        inputData += String(value)
     }
+    func binary(operation: BinaryOperation){
+        if inputData == "" && operation == .Minus {
+            inputData += "0-"
+        } else {
+            inputData += operation.rawValue
+        }
+    }
+    func unary(operation: UnaryOperation){
+        inputData += operation.rawValue
+
+    }
+    func utility(operation: UtilityOperation){
+        if operation == .Equal {
+            result?(CalculateRPN(),nil)
+        } else {
+            inputData += operation.rawValue
+        }
+    }
+    var result: ((Double?, Error?)->())?
 
     private func seperateInputData(){ //function seperate inputData into math components
         for charachter in inputData.characters {
