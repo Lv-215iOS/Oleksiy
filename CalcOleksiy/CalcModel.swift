@@ -14,7 +14,7 @@ enum BinaryOperation : String{
     case Mul = "*"
     case Div = "/"
     case Power = "^"
-    case Mod = "%"
+    //case Mod = "%"
 }
 
 enum UtilityOperation : String{
@@ -29,7 +29,7 @@ enum UnaryOperation : String{
     case Cos = "cos"
     case Tg = "tg"
     case Ctg = "ctg"
-    case Sqrt = "sqrt"
+    //case Sqrt = "sqrt"
 }
 
 
@@ -44,7 +44,7 @@ protocol CalcBrainInterface {
 
 class CalcModel: NSObject, CalcBrainInterface {
     static let sharedCalcModel = CalcModel() //sigleton
-    private var inputData = ""
+    var inputData = ""
     private var inputDataArray = [String]() //seperate string into math components
     private var outputData = [String]() //reverse polish notation in array
     
@@ -65,6 +65,8 @@ class CalcModel: NSObject, CalcBrainInterface {
     func utility(operation: UtilityOperation){
         if operation == .Equal {
             result?(CalculateRPN(),nil)
+            inputDataArray = [String]()
+            outputData = [String]()
         } else {
             inputData += operation.rawValue
         }
@@ -72,6 +74,15 @@ class CalcModel: NSObject, CalcBrainInterface {
     var result: ((Double?, Error?)->())?
 
     private func seperateInputData(){ //function seperate inputData into math components
+        print(inputData)
+        var l = true
+        for ch in inputData.characters {
+            if ch == "-" && l == true{
+                inputDataArray.append("0")
+            } else {
+                l = false
+            }
+        }
         for charachter in inputData.characters {
             if isOperation(at: String(charachter)) {
                 inputDataArray.append(String(charachter))
@@ -91,6 +102,7 @@ class CalcModel: NSObject, CalcBrainInterface {
                 inputDataArray.append(String(charachter))
             }
         }
+        print(inputDataArray)
     }
     
     private func calculateData(){  //calculate reverse polish notation
@@ -138,6 +150,7 @@ class CalcModel: NSObject, CalcBrainInterface {
         for element in stack.reversed() {
             outputData.append(String(element))
         }
+        print(outputData)
         
     }
     private func priorityFor(char:String) -> Int{ //determine priority
@@ -145,7 +158,7 @@ class CalcModel: NSObject, CalcBrainInterface {
             return 1
         } else if (char == "^") {
             return 3
-        } else if char == "s" {
+        } else if isTrigonomenry(at: char) {
             return 4
         }
         return 2
@@ -230,6 +243,6 @@ class CalcModel: NSObject, CalcBrainInterface {
             }
              print(stack)
         }
-        return stack[stack.count-1]
+        return stack[stack.count-1]	
     }
 }

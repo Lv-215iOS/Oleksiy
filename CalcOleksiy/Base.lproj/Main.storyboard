@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -33,7 +33,7 @@
                                 <rect key="frame" x="0.0" y="124" width="375" height="543"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <connections>
-                                    <segue destination="GIe-9v-2Iz" kind="embed" id="0PM-5x-YMc"/>
+                                    <segue destination="GIe-9v-2Iz" kind="embed" identifier="InputControllerEmbedSegue" id="0PM-5x-YMc"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -56,10 +56,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="128"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jdW-DA-saN">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jdW-DA-saN">
                                 <rect key="frame" x="5" y="14" width="370" height="94"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -74,10 +74,10 @@
             </objects>
             <point key="canvasLocation" x="919" y="-120"/>
         </scene>
-        <!--View Controller-->
+        <!--Input View Controller-->
         <scene sceneID="tiF-me-7Mp">
             <objects>
-                <viewController id="GIe-9v-2Iz" sceneMemberID="viewController">
+                <viewController id="GIe-9v-2Iz" customClass="InputViewController" customModule="CalcOleksiy" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="uzc-hb-EeX"/>
                         <viewControllerLayoutGuide type="bottom" id="LkW-VG-XlT"/>
@@ -100,29 +100,16 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
+                                    <action selector="buttonPressed:" destination="GIe-9v-2Iz" eventType="touchUpInside" id="OR0-tq-FIi"/>
                                     <action selector="pressedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IMl-Xp-g8p"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nrq-kP-Wac">
-                                <rect key="frame" x="237" y="59" width="122" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.73611992390000003" green="0.70611158590000001" blue="0.0045163253300000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="draw graph">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="25"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </button>
                             <button opaque="NO" alpha="0.40000000596046448" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F5E-6F-quq">
-                                <rect key="frame" x="127" y="59" width="93" height="60"/>
+                                <rect key="frame" x="233" y="127" width="44" height="69"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.25469811959999999" green="0.55086323589999997" blue="0.01012658382" alpha="0.74673587330000002" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                <state key="normal" title="x">
+                                <state key="normal" title=")">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -131,58 +118,8 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
+                                    <action selector="buttonPressed:" destination="GIe-9v-2Iz" eventType="touchUpInside" id="0Sm-fh-eoZ"/>
                                     <action selector="pressedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GQS-6T-R0h"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" alpha="0.40000000596046448" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aSt-xL-70I">
-                                <rect key="frame" x="26" y="59" width="93" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.25469811959999999" green="0.55086323589999997" blue="0.01012658382" alpha="0.74673587330000002" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                <state key="normal" title="y=">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="25"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="pressedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lzL-Ez-XvQ"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" alpha="0.40000000596046448" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XlL-Hz-VJf">
-                                <rect key="frame" x="112" y="0.0" width="71" height="52"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.25469811959999999" green="0.55086323589999997" blue="0.01012658382" alpha="0.74673587330000002" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                <state key="normal" title="cos">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="25"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="pressedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cFB-Fg-kIe"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" alpha="0.40000000596046448" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qFV-ek-b5N">
-                                <rect key="frame" x="16" y="0.0" width="67" height="52"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.25469811959999999" green="0.55086323589999997" blue="0.01012658382" alpha="0.74673587330000002" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                <state key="normal" title="sin">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="25"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="pressedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1wQ-tg-sp3"/>
                                 </connections>
                             </button>
                             <button opaque="NO" alpha="0.40000000596046448" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oe3-f5-xuk">
@@ -199,28 +136,12 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
+                                    <action selector="buttonPressed:" destination="GIe-9v-2Iz" eventType="touchUpInside" id="0b8-Ht-g1X"/>
                                     <action selector="pressedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lEp-dn-Dii"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" alpha="0.40000000596046448" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bLu-S9-yNp">
-                                <rect key="frame" x="183" y="127" width="70" height="70"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.25469811959999999" green="0.55086323589999997" blue="0.01012658382" alpha="0.74673587330000002" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                <state key="normal" title="/">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="25"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="pressedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Wul-Jo-9AY"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" alpha="0.40000000596046448" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="grH-Qr-EKs">
-                                <rect key="frame" x="105" y="127" width="70" height="70"/>
+                                <rect key="frame" x="26" y="127" width="70" height="70"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.25469811959999999" green="0.55086323589999997" blue="0.01012658382" alpha="0.74673587330000002" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
@@ -233,24 +154,8 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
+                                    <action selector="buttonPressed:" destination="GIe-9v-2Iz" eventType="touchUpInside" id="Hsz-AY-WIN"/>
                                     <action selector="pressedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5ir-0h-q1G"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" alpha="0.40000000596046448" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pLL-ZU-7dY">
-                                <rect key="frame" x="26" y="127" width="70" height="70"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.25469811959999999" green="0.55086323589999997" blue="0.01012658382" alpha="0.74673587330000002" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                <state key="normal" title="ln">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="25"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="pressedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jgH-qW-MZ0"/>
                                 </connections>
                             </button>
                             <button opaque="NO" alpha="0.40000000596046448" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LFK-JY-tyM">
@@ -267,6 +172,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
+                                    <action selector="buttonPressed:" destination="GIe-9v-2Iz" eventType="touchUpInside" id="Jc6-DX-oWW"/>
                                     <action selector="pressedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yNH-HT-P4g"/>
                                 </connections>
                             </button>
@@ -284,6 +190,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
+                                    <action selector="buttonPressed:" destination="GIe-9v-2Iz" eventType="touchUpInside" id="u4z-4E-70X"/>
                                     <action selector="pressedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="niz-5c-aGN"/>
                                 </connections>
                             </button>
@@ -301,6 +208,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
+                                    <action selector="buttonPressed:" destination="GIe-9v-2Iz" eventType="touchUpInside" id="aVz-sc-WmS"/>
                                     <action selector="pressedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rRS-sg-SiT"/>
                                 </connections>
                             </button>
@@ -318,6 +226,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
+                                    <action selector="buttonPressed:" destination="GIe-9v-2Iz" eventType="touchUpInside" id="bD6-0x-lmR"/>
                                     <action selector="pressedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9Gv-Pd-Mbq"/>
                                 </connections>
                             </button>
@@ -335,6 +244,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
+                                    <action selector="buttonPressed:" destination="GIe-9v-2Iz" eventType="touchUpInside" id="fkz-Kd-Ba2"/>
                                     <action selector="pressedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rpe-DE-gh6"/>
                                 </connections>
                             </button>
@@ -352,6 +262,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
+                                    <action selector="buttonPressed:" destination="GIe-9v-2Iz" eventType="touchUpInside" id="sjn-Hz-1ST"/>
                                     <action selector="pressedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="iAE-RK-PEV"/>
                                 </connections>
                             </button>
@@ -369,6 +280,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
+                                    <action selector="buttonPressed:" destination="GIe-9v-2Iz" eventType="touchUpInside" id="mNF-M6-CAy"/>
                                     <action selector="pressedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Stw-tA-I99"/>
                                 </connections>
                             </button>
@@ -386,6 +298,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
+                                    <action selector="buttonPressed:" destination="GIe-9v-2Iz" eventType="touchUpInside" id="8Su-sK-w4K"/>
                                     <action selector="pressedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="W9e-kq-Jcc"/>
                                 </connections>
                             </button>
@@ -403,6 +316,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
+                                    <action selector="buttonPressed:" destination="GIe-9v-2Iz" eventType="touchUpInside" id="kSa-Km-K2J"/>
                                     <action selector="pressedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GdP-2e-6t9"/>
                                 </connections>
                             </button>
@@ -420,6 +334,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
+                                    <action selector="buttonPressed:" destination="GIe-9v-2Iz" eventType="touchUpInside" id="7yw-V9-xTn"/>
                                     <action selector="pressedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vbx-Wb-Da3"/>
                                 </connections>
                             </button>
@@ -437,6 +352,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
+                                    <action selector="buttonPressed:" destination="GIe-9v-2Iz" eventType="touchUpInside" id="meE-cN-d5F"/>
                                     <action selector="pressedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GT5-g0-41X"/>
                                 </connections>
                             </button>
@@ -454,6 +370,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
+                                    <action selector="buttonPressed:" destination="GIe-9v-2Iz" eventType="touchUpInside" id="oMJ-A4-egl"/>
                                     <action selector="pressedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZtY-eZ-vAr"/>
                                 </connections>
                             </button>
@@ -471,11 +388,84 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
+                                    <action selector="buttonPressed:" destination="GIe-9v-2Iz" eventType="touchUpInside" id="apA-03-wEG"/>
                                     <action selector="pressedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Tx0-Yo-Rlb"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" alpha="0.40000000596046448" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ofz-su-RX7">
-                                <rect key="frame" x="207" y="0.0" width="73" height="52"/>
+                            <button opaque="NO" alpha="0.40000000596046448" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aSt-xL-70I">
+                                <rect key="frame" x="183" y="126" width="42" height="69"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.25469811959999999" green="0.55086323589999997" blue="0.01012658382" alpha="0.74673587330000002" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <state key="normal" title="(">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="25"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="buttonPressed:" destination="GIe-9v-2Iz" eventType="touchUpInside" id="F99-B7-IvJ"/>
+                                    <action selector="pressedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lzL-Ez-XvQ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" alpha="0.40000000596046448" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uSd-mg-yKq">
+                                <rect key="frame" x="60" y="80" width="253" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.25469811959999999" green="0.55086323589999997" blue="0.01012658382" alpha="0.74673587330000002" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <state key="normal" title="C">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="25"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="buttonPressed:" destination="GIe-9v-2Iz" eventType="touchUpInside" id="zl6-xk-szY"/>
+                                    <action selector="pressedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GE4-IE-waF"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" alpha="0.40000000596046448" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qFV-ek-b5N">
+                                <rect key="frame" x="0.0" y="20" width="87" height="52"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.25469811959999999" green="0.55086323589999997" blue="0.01012658382" alpha="0.74673587330000002" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <state key="normal" title="sin">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="25"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="buttonPressed:" destination="GIe-9v-2Iz" eventType="touchUpInside" id="D2i-xS-VSp"/>
+                                    <action selector="pressedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="1wQ-tg-sp3"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" alpha="0.40000000596046448" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QkP-J4-sVH">
+                                <rect key="frame" x="97" y="16" width="87" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.25469811959999999" green="0.55086323589999997" blue="0.01012658382" alpha="0.74673587330000002" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <state key="normal" title="cos">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="25"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="buttonPressed:" destination="GIe-9v-2Iz" eventType="touchUpInside" id="2jc-83-c2g"/>
+                                    <action selector="pressedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Fei-8l-qwl"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" alpha="0.40000000596046448" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VFl-4Y-geF">
+                                <rect key="frame" x="193" y="16" width="87" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.25469811959999999" green="0.55086323589999997" blue="0.01012658382" alpha="0.74673587330000002" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
@@ -488,11 +478,12 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="pressedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eam-4n-SeK"/>
+                                    <action selector="buttonPressed:" destination="GIe-9v-2Iz" eventType="touchUpInside" id="eyw-MG-xM0"/>
+                                    <action selector="pressedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="j2h-P7-pd0"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" alpha="0.40000000596046448" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Ch-gw-JFC">
-                                <rect key="frame" x="295" y="0.0" width="64" height="51"/>
+                            <button opaque="NO" alpha="0.40000000596046448" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hbf-NJ-bxj">
+                                <rect key="frame" x="288" y="16" width="87" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.25469811959999999" green="0.55086323589999997" blue="0.01012658382" alpha="0.74673587330000002" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
@@ -505,7 +496,26 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="pressedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="EH8-eP-Q2Y"/>
+                                    <action selector="buttonPressed:" destination="GIe-9v-2Iz" eventType="touchUpInside" id="EX0-Xj-EgF"/>
+                                    <action selector="pressedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="X7q-ek-rMI"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" alpha="0.40000000596046448" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bLu-S9-yNp">
+                                <rect key="frame" x="105" y="127" width="70" height="70"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.25469811959999999" green="0.55086323589999997" blue="0.01012658382" alpha="0.74673587330000002" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <state key="normal" title="/">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="25"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="buttonPressed:" destination="GIe-9v-2Iz" eventType="touchUpInside" id="Ddg-zy-bH1"/>
+                                    <action selector="pressedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Wul-Jo-9AY"/>
                                 </connections>
                             </button>
                         </subviews>

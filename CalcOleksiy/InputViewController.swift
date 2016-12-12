@@ -1,24 +1,25 @@
 //
-//  MyViewController.swift
+//  InputViewController.swift
 //  CalcOleksiy
 //
-//  Created by Oleksiy Bilyi on 12/10/16.
+//  Created by Oleksiy Bilyi on 12/12/16.
 //  Copyright © 2016 adminaccount. All rights reserved.
 //
 
 import UIKit
 
-protocol OutputInterface {
-    func Output()
-}
-
-class OutputViewController: UIViewController {
+class InputViewController: UIViewController {
     
-    @IBOutlet weak var Label: UILabel!
     var mainViewController : ViewController? = nil
     
+    @IBAction func buttonPressed(_ sender: UIButton) {
+        mainViewController?.pressedButton(operation: sender.currentTitle!)
+    }
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
         // Do any additional setup after loading the view.
     }
 
@@ -28,7 +29,7 @@ class OutputViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "OutputControllerEmbedSegue" {
+        if segue.identifier == "InputControllerEmbedSegue" {
             mainViewController = segue.source as? ViewController
         }
     }
