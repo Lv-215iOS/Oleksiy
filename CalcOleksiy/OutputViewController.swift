@@ -8,12 +8,16 @@
 
 import UIKit
 
+protocol OutputInterface {
+    func Output()
+}
+
 class OutputViewController: UIViewController {
     
     @IBOutlet weak var Label: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-        Label.text = "lol"
+        Label.text = "___"
         
         // Do any additional setup after loading the view.
     }

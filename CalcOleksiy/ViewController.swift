@@ -12,9 +12,17 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var label: UILabel!
     
+    var outputController : OutputViewController? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "OutputControllerEmbedSegue" {
+            outputController = segue.destination as? OutputViewController
+        }
     }
     
     @IBAction func pressedButton(_ sender: UIButton) {
