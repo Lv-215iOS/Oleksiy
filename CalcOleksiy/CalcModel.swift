@@ -14,7 +14,7 @@ enum BinaryOperation : String{
     case Mul = "*"
     case Div = "/"
     case Power = "^"
-    //case Mod = "%"
+    case Mod = "%"
 }
 
 enum UtilityOperation : String{
@@ -22,6 +22,8 @@ enum UtilityOperation : String{
     case LeftBracket = "("
     case Dot = "."
     case Equal = "="
+    case Clean = "C"
+    case AClean = "AC"
 }
 
 enum UnaryOperation : String{
@@ -29,7 +31,7 @@ enum UnaryOperation : String{
     case Cos = "cos"
     case Tg = "tg"
     case Ctg = "ctg"
-    //case Sqrt = "sqrt"
+    case Sqrt = "sqrt"
 }
 
 
@@ -44,19 +46,16 @@ protocol CalcBrainInterface {
 
 class CalcModel: NSObject, CalcBrainInterface {
     static let sharedCalcModel = CalcModel() //sigleton
-    var inputData = ""
+    private var inputData = ""
     private var inputDataArray = [String]() //seperate string into math components
     private var outputData = [String]() //reverse polish notation in array
     
     func digit(value: Double){
-        inputData += String(value)
+        inputData += String(Int(value
+        ))
     }
     func binary(operation: BinaryOperation){
-        if inputData == "" && operation == .Minus {
-            inputData += "0-"
-        } else {
-            inputData += operation.rawValue
-        }
+        inputData += operation.rawValue
     }
     func unary(operation: UnaryOperation){
         inputData += operation.rawValue
@@ -64,7 +63,18 @@ class CalcModel: NSObject, CalcBrainInterface {
     }
     func utility(operation: UtilityOperation){
         if operation == .Equal {
-            result?(CalculateRPN(),nil)
+            let temp = CalculateRPN()
+            
+            result?(temp,nil)
+            inputData = "\(temp)"
+            inputDataArray = [String]()
+            outputData = [String]()
+        } else if operation == .AClean {
+            inputData = ""
+            inputDataArray = [String]()
+            outputData = [String]()
+        } else if operation == .Clean {
+            inputData.remove(at: inputData.index(before: inputData.endIndex))
             inputDataArray = [String]()
             outputData = [String]()
         } else {
@@ -75,23 +85,19 @@ class CalcModel: NSObject, CalcBrainInterface {
 
     private func seperateInputData(){ //function seperate inputData into math components
         print(inputData)
-        var l = true
-        for ch in inputData.characters {
-            if ch == "-" && l == true{
-                inputDataArray.append("0")
-            } else {
-                l = false
-            }
-        }
         for charachter in inputData.characters {
             if isOperation(at: String(charachter)) {
                 inputDataArray.append(String(charachter))
             } else if isValue(at: String(charachter)){ //determine if last charachter is number, 
                 if inputDataArray.count == 0 {         // if true add next charachter to the same string
                     inputDataArray.append(String(charachter))
-                } else if isValue(at: inputDataArray[inputDataArray.count - 1])  {
+                } else if isValue(at: inputDataArray[inputDataArray.count - 1]) {
                     inputDataArray[inputDataArray.count - 1] += String(charachter)
-                } else {
+                } else if (inputDataArray.count == 1 && inputDataArray[inputDataArray.count - 1] == "-"){
+                    inputDataArray[inputDataArray.count - 1] += String(charachter)
+                } else if (inputDataArray.count > 1) && (isOperationDM(at: inputDataArray[inputDataArray.count - 2]) || isOperation(at: inputDataArray[inputDataArray.count - 2])) && inputDataArray[inputDataArray.count - 1] == "-" {
+                    inputDataArray[inputDataArray.count - 1] += String(charachter)
+                }else {
                     inputDataArray.append(String(charachter)) //
                 }
             } else if charachter == "." {
@@ -172,7 +178,7 @@ class CalcModel: NSObject, CalcBrainInterface {
     }
     
     private func isValue(at char: String) -> Bool{// determine if number
-        if char >= "0" && char <= "9" {
+        if !isOperationDM(at: char) && !isOperation(at: char) {
              return true
         }
         return false
@@ -187,7 +193,7 @@ class CalcModel: NSObject, CalcBrainInterface {
     }
     
     private func isTrigonomenry(at char: String) -> Bool{ //determine if trigonometry func
-        if char=="sin" || char=="cos" || char=="tg" || char=="ctg" {
+        if char=="sin" || char=="cos" || char=="tg" || char=="ctg" || char=="sqrt" {
             return true
         }
         return false
@@ -195,7 +201,7 @@ class CalcModel: NSObject, CalcBrainInterface {
     
     private func isOperationDM(at char: String) -> Bool{ //determine if math operator
         
-        if char=="+" || char=="/" || char=="*" || char=="-" || char == "^" || char == "sin" || char == "cos" || char == "tg" || char == "ctg" {
+        if char=="+" || char=="/" || char=="*" || char=="-" || char == "^" || char=="%" || char == "sin" || char == "cos" || char == "tg" || char == "ctg" || char=="sqrt" {
             return true
         }
         return false
@@ -222,6 +228,10 @@ class CalcModel: NSObject, CalcBrainInterface {
                 let rightValue = stack.removeLast()
                 let leftValue = stack.removeLast()
                 stack.append(leftValue / rightValue)
+            case "%":
+                let rightValue = stack.removeLast()
+                let leftValue = stack.removeLast()
+                stack.append(leftValue.truncatingRemainder(dividingBy:rightValue))
             case "^":
                 let rightValue = stack.removeLast()
                 let leftValue = stack.removeLast()
@@ -238,6 +248,9 @@ class CalcModel: NSObject, CalcBrainInterface {
             case "ctg":
                 let value = stack.removeLast()
                 stack.append(1/tan(value))
+            case "sqrt":
+                let value = stack.removeLast()
+                stack.append(sqrt(value))
             default:
                 stack.append(Double(value)!)
             }

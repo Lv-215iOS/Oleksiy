@@ -18,8 +18,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         calcBrain.result = { (value, error)->() in
             if (value != nil) {
-                self.calcBrain.inputData = "\(value!)"
-                self.outputController?.Label.text =  "\(value!)"
+                self.outputController?.outputInfo(info: "\(value!)")
             }
         }
     }
@@ -35,17 +34,62 @@ class ViewController: UIViewController {
     }
     
     func pressedButton(operation : String) {
-        if operation == "-" {
+        switch operation {
+        case "+":
+            outputController?.appendInfo(info: operation)
+            calcBrain.binary(operation: .Plus)
+        case "-":
+            outputController?.appendInfo(info: operation)
             calcBrain.binary(operation: .Minus)
-            self.outputController?.Label.text =  (self.outputController?.Label.text)! + "\(operation)"
-        } else if operation == "C" {
-            self.outputController?.Label.text = ""
-            calcBrain.inputData = ""
-        } else if operation == "=" {
+        case "*":
+            outputController?.appendInfo(info: operation)
+            calcBrain.binary(operation: .Mul)
+        case "/":
+            outputController?.appendInfo(info: operation)
+            calcBrain.binary(operation: .Div)
+        case "%":
+            outputController?.appendInfo(info: operation)
+            calcBrain.binary(operation: .Mod)
+        case "^":
+            outputController?.appendInfo(info: operation)
+            calcBrain.binary(operation: .Power)
+        case "sin":
+            outputController?.appendInfo(info: operation)
+            calcBrain.unary(operation: .Sin)
+        case "cos":
+            outputController?.appendInfo(info: operation)
+            calcBrain.unary(operation: .Cos)
+        case "tg":
+            outputController?.appendInfo(info: operation)
+            calcBrain.unary(operation: .Tg)
+        case "ctg":
+            outputController?.appendInfo(info: operation)
+            calcBrain.unary(operation: .Ctg)
+        case "sqrt":
+            outputController?.appendInfo(info: operation)
+            calcBrain.unary(operation: .Sqrt)
+        case "C":
+            outputController?.deleteLast()
+            calcBrain.utility(operation: .Clean)
+        case "AC":
+            outputController?.outputInfo(info: "")
+            outputController?.fillSecondLabel(str: "")
+            calcBrain.utility(operation: .AClean)
+        case ".":
+            outputController?.appendInfo(info: operation)
+            calcBrain.utility(operation: .Dot)
+        case "=":
+            outputController?.fillSecondLabel(str: (outputController?.mainLabel())!)
             calcBrain.utility(operation: .Equal)
-        } else {
-            self.outputController?.Label.text =  (self.outputController?.Label.text)! + "\(operation)"
-            calcBrain.inputData += operation
+        case ")":
+            outputController?.appendInfo(info: operation)
+            calcBrain.utility(operation: .RightBracket)
+        case "(":
+            outputController?.appendInfo(info: operation)
+            calcBrain.utility(operation: .LeftBracket)
+        default:
+            outputController?.appendInfo(info: operation)
+            calcBrain.digit(value: Double(operation)!)
         }
     }
 

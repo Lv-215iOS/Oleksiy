@@ -9,12 +9,43 @@
 import UIKit
 
 protocol OutputInterface {
-    func Output()
+    func outputInfo(info: String)
 }
 
-class OutputViewController: UIViewController {
+class OutputViewController: UIViewController, OutputInterface{
     
-    @IBOutlet weak var Label: UILabel!
+    @IBOutlet weak var label: UILabel!
+    
+    @IBOutlet weak var secondLabel: UILabel!
+    
+    func outputInfo(info: String){
+        label.text = info
+    }
+    
+    func appendInfo(info: String){
+        if label.text != nil {
+            label.text = label.text! + info
+        } else {
+            label.text = info
+        }
+    }
+    
+    func fillSecondLabel(str : String) {
+        secondLabel.text = str
+    }
+    
+    func  mainLabel() -> String {
+        if label.text != nil {
+            return label.text!
+        }
+        return ""
+    }
+    
+    func deleteLast() {
+        label.text!.remove(at: label.text!.index(before: label.text!.endIndex))
+    }
+
+    
     var mainViewController : ViewController? = nil
     
     override func viewDidLoad() {
@@ -26,13 +57,6 @@ class OutputViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "OutputControllerEmbedSegue" {
-            mainViewController = segue.source as? ViewController
-        }
-    }
-    
 
     /*
     // MARK: - Navigation

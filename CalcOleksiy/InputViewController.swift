@@ -14,8 +14,8 @@ class InputViewController: UIViewController {
     
     @IBAction func buttonPressed(_ sender: UIButton) {
         mainViewController?.pressedButton(operation: sender.currentTitle!)
+        
     }
-
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,13 +27,6 @@ class InputViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "InputControllerEmbedSegue" {
-            mainViewController = segue.source as? ViewController
-        }
-    }
-    
 
     /*
     // MARK: - Navigation
