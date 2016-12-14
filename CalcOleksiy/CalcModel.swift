@@ -227,7 +227,7 @@ class CalcModel: NSObject, CalcBrainInterface {
             case "/":
                 let rightValue = stack.removeLast()
                 let leftValue = stack.removeLast()
-                stack.append(leftValue / rightValue)
+                stack.append(leftValue / rightValue)//
             case "%":
                 let rightValue = stack.removeLast()
                 let leftValue = stack.removeLast()

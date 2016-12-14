@@ -69,7 +69,7 @@ class ViewController: UIViewController {
             outputController?.appendInfo(info: operation)
             calcBrain.unary(operation: .Sqrt)
         case "C":
-            outputController?.deleteLast()
+            outputController?.deleteLast()//
             calcBrain.utility(operation: .Clean)
         case "AC":
             outputController?.outputInfo(info: "")

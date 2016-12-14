@@ -19,7 +19,7 @@ class OutputViewController: UIViewController, OutputInterface{
     @IBOutlet weak var secondLabel: UILabel!
     
     func outputInfo(info: String){
-        label.text = info
+        label.text = info//
     }
     
     func appendInfo(info: String){
