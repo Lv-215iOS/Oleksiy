@@ -37,6 +37,18 @@ class ViewController: UIViewController {
         switch operation {
         case "+":
             outputController?.appendInfo(info: operation)
+            let animation = CABasicAnimation(keyPath: "position")
+            animation.duration = 0.007
+            animation.repeatCount = 20
+            animation.autoreverses = true
+            var from_point:CGPoint = CGPoint(x:(outputController?.label.center.x)!, y:(outputController?.label.center.y)!-10)
+            var from_value:NSValue = NSValue(cgPoint: from_point)
+            
+            var to_point:CGPoint = CGPoint(x:(outputController?.label.center.x)!, y:(outputController?.label.center.y)!+10)
+            var to_value:NSValue = NSValue(cgPoint: to_point)
+            animation.fromValue = from_value
+            animation.toValue = to_value
+            outputController?.label.layer.add(animation, forKey: "position")
             calcBrain.binary(operation: .Plus)
         case "-":
             outputController?.appendInfo(info: operation)
