@@ -8,12 +8,18 @@
 
 import UIKit
 
-class InputViewController: UIViewController {
+protocol InputInterface {
+    var buttonDidPress: ((String) -> ())? {get set}
+}
+
+class InputViewController: UIViewController, InputInterface {
     
     var mainViewController : ViewController? = nil
+    var buttonDidPress: ((String) -> ())? = nil
     
     @IBAction func buttonPressed(_ sender: UIButton) {
-        mainViewController?.pressedButton(operation: sender.currentTitle!)//
+        buttonDidPress?(sender.currentTitle!)
+        //mainViewController?.pressedButton(operation: sender.currentTitle!)//
         
     }
 

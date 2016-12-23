@@ -21,6 +21,9 @@ class ViewController: UIViewController {
                 self.outputController?.outputInfo(info: "\(value!)")
             }
         }
+        inputController?.buttonDidPress = { [unowned self] (operation)->() in
+            self.pressedButton(operation: operation)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
