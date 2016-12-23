@@ -50,6 +50,8 @@ class CalcModel: NSObject, CalcBrainInterface {
     private var inputDataArray = [String]() //seperate string into math components
     private var outputData = [String]() //reverse polish notation in array
     
+    //MARK - CalcBrainInterface
+    
     func digit(value: Double){
         inputData += String(Int(value
         ))
