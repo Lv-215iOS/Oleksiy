@@ -208,7 +208,7 @@ class CalcModel: NSObject, CalcBrainInterface {
         }
         return false
     }
-    func CalculateRPN() -> Double { //calculate RPN and return result of expression
+    private func CalculateRPN() -> Double { //calculate RPN and return result of expression
         self.seperateInputData()
         self.calculateData()
         var stack =  [Double]()
