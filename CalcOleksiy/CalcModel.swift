@@ -40,7 +40,7 @@ protocol CalcBrainInterface {
     func binary(operation: BinaryOperation)
     func unary(operation: UnaryOperation)
     func utility(operation: UtilityOperation)
-    var result: ((Double?, Error?)->())? {get set}
+    var result: ((String?, Error?)->())? {get set}
 }
 
 
@@ -49,41 +49,101 @@ class CalcModel: NSObject, CalcBrainInterface {
     private var inputData = ""
     private var inputDataArray = [String]() //seperate string into math components
     private var outputData = [String]() //reverse polish notation in array
+    private var openBraces = 0
+    private var closedBraces = 0
     
     //MARK - CalcBrainInterface
-    
     func digit(value: Double){
-        inputData += String(Int(value
-        ))
+        if String(inputData.characters.last ?? " ") == "0" {
+            inputData.remove(at: inputData.index(before: inputData.endIndex))
+        }
+        inputData += String(Int(value))
+        result?(inputData, nil)
     }
     func binary(operation: BinaryOperation){
-        inputData += operation.rawValue
+        if operation == .Minus {
+            if String(inputData.characters.last ?? " ") == "-" {
+                inputData.remove(at: inputData.index(before: inputData.endIndex))
+                inputData += "+"
+                result?(inputData, nil)
+            } else if String(inputData.characters.last ?? " ") == ")" || Int(String(inputData.characters.last ?? " ")) != nil {
+                inputData += operation.rawValue
+                result?(inputData, nil)
+            } else {
+                inputData += "-0"
+                result?(inputData, nil)
+
+            }
+        } else if Int(String(inputData.characters.last ?? " ")) != nil || String(inputData.characters.last ?? " ") == ")" {
+            inputData += operation.rawValue
+            result?(inputData, nil)
+        } else {
+            result?(nil, nil)
+        }
     }
     func unary(operation: UnaryOperation){
-        inputData += operation.rawValue
-
+        if String(inputData.characters.last ?? " ") == "." || String(inputData.characters.last ?? " ") == ")" {
+            result?(nil, nil)
+        } else {
+            inputData += operation.rawValue
+            result?(inputData, nil)
+        }
     }
     func utility(operation: UtilityOperation){
         if operation == .Equal {
-            let temp = CalculateRPN()
-            
-            result?(temp,nil)
-            inputData = "\(temp)"
-            inputDataArray = [String]()
-            outputData = [String]()
+            if (Int(String(inputData.characters.last ?? " ")) != nil || String(inputData.characters.last ?? " ") == ")" ) && openBraces == closedBraces {
+                let result1 : Double = CalculateRPN()
+                if result1.truncatingRemainder(dividingBy:1) == 0 {
+                    inputData = "\(Int(result1))"
+                } else {
+                    inputData = "\(result1)"
+                }
+                inputDataArray = [String]()
+                outputData = [String]()
+                result?(inputData,nil)
+            } else {
+                result?(nil, nil)
+            }
         } else if operation == .AClean {
             inputData = ""
+            openBraces = 0
+            closedBraces = 0
             inputDataArray = [String]()
             outputData = [String]()
+            result?("", nil)
         } else if operation == .Clean {
-            inputData.remove(at: inputData.index(before: inputData.endIndex))
-            inputDataArray = [String]()
-            outputData = [String]()
+            if inputData != "" {
+                let removedSymbol = inputData.remove(at: inputData.index(before: inputData.endIndex))
+                if removedSymbol == "(" { openBraces -= 1 }
+                if removedSymbol == ")" { closedBraces -= 1 }
+                inputDataArray = [String]()
+                outputData = [String]()
+                result?(inputData, nil)
+            }
         } else {
-            inputData += operation.rawValue
+            if operation == .RightBracket {
+                if closedBraces != openBraces && (closedBraces != 0 || Int(String(inputData.characters.last ?? " ")) != nil) {
+                    closedBraces += 1
+                    inputData += operation.rawValue
+                    result?(inputData, nil)
+                } else {
+                    result?(nil,nil)
+                }
+            } else if operation == .LeftBracket {
+                if (isOperationDM(at: String(inputData.characters.last ?? " ")) || isOperation(at: String(inputData.characters.last ?? " "))) && String(inputData.characters.last ?? " ") != ")" {
+                    openBraces += 1
+                    inputData += operation.rawValue
+                    result?(inputData, nil)
+                } else {
+                    result?(nil,nil)
+                }
+            } else {
+                inputData += operation.rawValue
+                result?(inputData, nil)
+            }
         }
     }
-    var result: ((Double?, Error?)->())?
+    var result: ((String?, Error?)->())?
 
     private func seperateInputData(){ //function seperate inputData into math components
         print(inputData)

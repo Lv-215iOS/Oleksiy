@@ -14,58 +14,44 @@ protocol OutputInterface {
 
 class OutputViewController: UIViewController, OutputInterface{
     
-    @IBOutlet weak var label: UILabel!
-    
-    @IBOutlet weak var secondLabel: UILabel!
+    @IBOutlet weak var mainField: UILabel!
+    @IBOutlet weak var additionField: UILabel!
     
     func outputInfo(info: String){
-        label.text = info//
+        mainField.text = info//
+    }
+    
+    func shakeInfo() {
+        let animation = CABasicAnimation(keyPath: "position")
+        animation.duration = 0.05
+        animation.repeatCount = 4
+        animation.autoreverses = true
+        animation.fromValue = CGPoint(x:mainField.center.x, y:mainField.center.y + 5)
+        animation.toValue = CGPoint(x:mainField.center.x, y:mainField.center.y - 5)
+
+        mainField.layer.add(animation, forKey: "position")
     }
     
     func appendInfo(info: String){
-        if label.text != nil {
-            label.text = label.text! + info
+        if mainField.text != nil {
+            mainField.text = mainField.text! + info
         } else {
-            label.text = info
+            mainField.text = info
         }
     }
     
     func fillSecondLabel(str : String) {
-        secondLabel.text = str
+        additionField.text = str
     }
     
     func  mainLabel() -> String {
-        if label.text != nil {
-            return label.text!
+        if mainField.text != nil {
+            return mainField.text!
         }
         return ""
     }
     
     func deleteLast() {
-        label.text!.remove(at: label.text!.index(before: label.text!.endIndex))
+        mainField.text!.remove(at: mainField.text!.index(before: mainField.text!.endIndex))
     }
-
-    
-    var mainViewController : ViewController? = nil
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
