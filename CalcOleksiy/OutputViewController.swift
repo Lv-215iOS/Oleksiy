@@ -17,6 +17,11 @@ class OutputViewController: UIViewController, OutputInterface{
     @IBOutlet weak var mainField: UILabel!
     @IBOutlet weak var additionField: UILabel!
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        additionField.backgroundColor = UIColor(red:1.0, green:0.0, blue:0.0, alpha: 0.3)
+    }
+    
     func outputInfo(info: String){
         mainField.text = info//
     }
@@ -24,7 +29,7 @@ class OutputViewController: UIViewController, OutputInterface{
     func shakeInfo() {
         let animation = CABasicAnimation(keyPath: "position")
         animation.duration = 0.05
-        animation.repeatCount = 4
+        animation.repeatCount = 5
         animation.autoreverses = true
         animation.fromValue = CGPoint(x:mainField.center.x, y:mainField.center.y + 5)
         animation.toValue = CGPoint(x:mainField.center.x, y:mainField.center.y - 5)

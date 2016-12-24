@@ -15,6 +15,8 @@ class ViewController: UIViewController {
     var calcBrain = CalcModel()
     var lastOperation = ""
     
+    @IBOutlet weak var landImage: UIImageView!
+    @IBOutlet weak var image: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
         calcBrain.result = { (value, error)->() in
@@ -27,8 +29,7 @@ class ViewController: UIViewController {
         inputController?.buttonDidPress = { [unowned self] (operation, sender)->() in
             self.pressedButton(operation: operation, sender: sender)
         }
-        
-        }
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "OutputControllerEmbedSegue" {

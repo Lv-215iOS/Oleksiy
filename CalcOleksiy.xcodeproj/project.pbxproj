@@ -16,6 +16,7 @@
 		25ABB7981DF811ED00DE9D0D /* CalcOleksiyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25ABB7971DF811ED00DE9D0D /* CalcOleksiyUITests.swift */; };
 		480578951DFF325F000AE1CF /* InputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480578941DFF325F000AE1CF /* InputViewController.swift */; };
 		488A0CFC1DFCAD0E00916FCC /* OutputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488A0CFB1DFCAD0E00916FCC /* OutputViewController.swift */; };
+		48D2477C1E0F31B2005C5B15 /* Dawn-winter-snow-sun-mountains-trees_1080x1920_iPhone_6_Plus_wallpaper.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 48D2477B1E0F31B2005C5B15 /* Dawn-winter-snow-sun-mountains-trees_1080x1920_iPhone_6_Plus_wallpaper.jpg */; };
 		48DDFE8D1DF8940100571C2D /* CalcModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DDFE8C1DF8940100571C2D /* CalcModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +53,7 @@
 		25ABB7991DF811ED00DE9D0D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		480578941DFF325F000AE1CF /* InputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputViewController.swift; sourceTree = "<group>"; };
 		488A0CFB1DFCAD0E00916FCC /* OutputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutputViewController.swift; sourceTree = "<group>"; };
+		48D2477B1E0F31B2005C5B15 /* Dawn-winter-snow-sun-mountains-trees_1080x1920_iPhone_6_Plus_wallpaper.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Dawn-winter-snow-sun-mountains-trees_1080x1920_iPhone_6_Plus_wallpaper.jpg"; sourceTree = "<group>"; };
 		48DDFE8C1DF8940100571C2D /* CalcModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalcModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -103,6 +105,7 @@
 		25ABB7761DF811EC00DE9D0D /* CalcOleksiy */ = {
 			isa = PBXGroup;
 			children = (
+				48D2477B1E0F31B2005C5B15 /* Dawn-winter-snow-sun-mountains-trees_1080x1920_iPhone_6_Plus_wallpaper.jpg */,
 				25ABB7771DF811EC00DE9D0D /* AppDelegate.swift */,
 				25ABB7791DF811EC00DE9D0D /* ViewController.swift */,
 				48DDFE8C1DF8940100571C2D /* CalcModel.swift */,
@@ -245,6 +248,7 @@
 				25ABB7821DF811ED00DE9D0D /* LaunchScreen.storyboard in Resources */,
 				25ABB77F1DF811EC00DE9D0D /* Assets.xcassets in Resources */,
 				25ABB77D1DF811EC00DE9D0D /* Main.storyboard in Resources */,
+				48D2477C1E0F31B2005C5B15 /* Dawn-winter-snow-sun-mountains-trees_1080x1920_iPhone_6_Plus_wallpaper.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

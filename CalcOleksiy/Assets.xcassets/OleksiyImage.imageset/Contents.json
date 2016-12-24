@@ -2,14 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "Dawn-winter-snow-sun-mountains-trees_1080x1920_iPhone_6_Plus_wallpaper.jpg",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "Dawn-winter-snow-sun-mountains-trees_1080x1920_iPhone_6_Plus_wallpaper-1.jpg",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
+      "filename" : "Dawn-winter-snow-sun-mountains-trees_1080x1920_iPhone_6_Plus_wallpaper-2.jpg",
       "scale" : "3x"
     }
   ],
