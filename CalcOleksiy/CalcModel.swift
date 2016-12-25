@@ -30,8 +30,11 @@ enum UnaryOperation : String{
     case Sin = "sin"
     case Cos = "cos"
     case Tg = "tg"
-    case Ctg = "ctg"
-    case Sqrt = "sqrt"
+    case Sinh = "sinh"
+    case Cosh = "cosh"
+    case Tgh = "tgh"
+    case Ln = "ln"
+    case Sqrt = "√"
 }
 
 
@@ -55,14 +58,21 @@ class CalcModel: NSObject, CalcBrainInterface {
     //MARK - CalcBrainInterface
     func digit(value: Double){
         if String(inputData.characters.last ?? " ") == "0" {
-            inputData.remove(at: inputData.index(before: inputData.endIndex))
+            let temp = inputData.remove(at: inputData.index(before: inputData.endIndex))
+            if (String(inputData.characters.last ?? " ") == "." || isValue(at: String(inputData.characters.last ?? "-"))) && inputData != "0" {
+                inputData += String(temp)
+            }
         }
         inputData += String(Int(value))
         result?(inputData, nil)
     }
     func binary(operation: BinaryOperation){
         if operation == .Minus {
-            if String(inputData.characters.last ?? " ") == "-" {
+            if String(inputData.characters.last ?? " ") == "+" {
+                inputData.remove(at: inputData.index(before: inputData.endIndex))
+                inputData += "-"
+                result?(inputData, nil)
+            } else if String(inputData.characters.last ?? " ") == "-" {
                 inputData.remove(at: inputData.index(before: inputData.endIndex))
                 inputData += "+"
                 result?(inputData, nil)
@@ -105,12 +115,12 @@ class CalcModel: NSObject, CalcBrainInterface {
                 result?(nil, nil)
             }
         } else if operation == .AClean {
-            inputData = ""
+            inputData = "0"
             openBraces = 0
             closedBraces = 0
             inputDataArray = [String]()
             outputData = [String]()
-            result?("", nil)
+            result?(inputData, nil)
         } else if operation == .Clean {
             if inputData != "" {
                 let removedSymbol = inputData.remove(at: inputData.index(before: inputData.endIndex))
@@ -118,6 +128,12 @@ class CalcModel: NSObject, CalcBrainInterface {
                 if removedSymbol == ")" { closedBraces -= 1 }
                 inputDataArray = [String]()
                 outputData = [String]()
+                if String(inputData.characters.last ?? " ") == " " {
+                    inputData = "0"
+                }
+                result?(inputData, nil)
+            } else {
+                inputData = "0"
                 result?(inputData, nil)
             }
         } else {
@@ -160,7 +176,11 @@ class CalcModel: NSObject, CalcBrainInterface {
                 } else if (inputDataArray.count > 1) && (isOperationDM(at: inputDataArray[inputDataArray.count - 2]) || isOperation(at: inputDataArray[inputDataArray.count - 2])) && inputDataArray[inputDataArray.count - 1] == "-" {
                     inputDataArray[inputDataArray.count - 1] += String(charachter)
                 }else {
-                    inputDataArray.append(String(charachter)) //
+                    if charachter == "h" {
+                        inputDataArray[inputDataArray.count - 1] += String(charachter)
+                    } else {
+                        inputDataArray.append(String(charachter))
+                    }
                 }
             } else if charachter == "." {
                 inputDataArray[inputDataArray.count - 1] += String(charachter)
@@ -255,7 +275,7 @@ class CalcModel: NSObject, CalcBrainInterface {
     }
     
     private func isTrigonomenry(at char: String) -> Bool{ //determine if trigonometry func
-        if char=="sin" || char=="cos" || char=="tg" || char=="ctg" || char=="sqrt" {
+        if char=="sin" || char=="cos" || char=="tg" || char=="ctg" || char=="ln" || char=="√" || char=="sinh" || char=="cosh" || char=="tgh" {
             return true
         }
         return false
@@ -263,7 +283,7 @@ class CalcModel: NSObject, CalcBrainInterface {
     
     private func isOperationDM(at char: String) -> Bool{ //determine if math operator
         
-        if char=="+" || char=="/" || char=="*" || char=="-" || char == "^" || char=="%" || char == "sin" || char == "cos" || char == "tg" || char == "ctg" || char=="sqrt" {
+        if char=="+" || char=="/" || char=="*" || char=="-" || char == "^" || char=="%" || char == "sin" || char == "cos" || char == "tg" || char == "ctg" || char=="ln" || char=="√" || char=="sinh" || char=="cosh" || char=="tgh" {
             return true
         }
         return false
@@ -307,10 +327,19 @@ class CalcModel: NSObject, CalcBrainInterface {
             case "tg":
                 let value = stack.removeLast()
                 stack.append(tan(value))
-            case "ctg":
+            case "sinh":
                 let value = stack.removeLast()
-                stack.append(1/tan(value))
-            case "sqrt":
+                stack.append(sinh(value))
+            case "cosh":
+                let value = stack.removeLast()
+                stack.append(cosh(value))
+            case "tgh":
+                let value = stack.removeLast()
+                stack.append(tanh(value))
+            case "ln":
+                let value = stack.removeLast()
+                stack.append(log(value))
+            case "√":
                 let value = stack.removeLast()
                 stack.append(sqrt(value))
             default:

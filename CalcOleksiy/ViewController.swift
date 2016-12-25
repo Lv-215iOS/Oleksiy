@@ -62,9 +62,15 @@ class ViewController: UIViewController {
              calcBrain.unary(operation: .Cos)
         case "tg":
              calcBrain.unary(operation: .Tg)
-        case "ctg":
-            calcBrain.unary(operation: .Ctg)
-        case "sqrt":
+        case "sinh":
+            calcBrain.unary(operation: .Sinh)
+        case "cosh":
+            calcBrain.unary(operation: .Cosh)
+        case "tgh":
+            calcBrain.unary(operation: .Tgh)
+        case "ln":
+            calcBrain.unary(operation: .Ln)	
+        case "√":
              calcBrain.unary(operation: .Sqrt)
             
             //utility operations
