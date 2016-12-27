@@ -14,9 +14,7 @@ class ViewController: UIViewController {
     var inputController : InputViewController? = nil
     var calcBrain = CalcModel()
     var lastOperation = ""
-    
-    @IBOutlet weak var landImage: UIImageView!
-    @IBOutlet weak var image: UIImageView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         calcBrain.result = { (value, error)->() in
@@ -27,7 +25,15 @@ class ViewController: UIViewController {
             }
         }
         inputController?.buttonDidPress = { [unowned self] (operation, sender)->() in
-            self.pressedButton(operation: operation, sender: sender)
+            if sender.currentTitle == "x²" {
+                self.pressedButton(operation: "^", sender: sender)
+                self.pressedButton(operation: "2", sender: sender)
+            } else if sender.currentTitle == "x³"{
+                self.pressedButton(operation: "^", sender: sender)
+                self.pressedButton(operation: "3", sender: sender)
+            } else {
+                self.pressedButton(operation: operation, sender: sender)
+            }
         }
     }
     
@@ -92,11 +98,6 @@ class ViewController: UIViewController {
             calcBrain.digit(value: Double(operation)!)
         }
         lastOperation = operation
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 }
 

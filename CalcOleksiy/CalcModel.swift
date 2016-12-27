@@ -8,54 +8,16 @@
 
 import UIKit
 
-enum BinaryOperation : String{
-    case Plus = "+"
-    case Minus = "-"
-    case Mul = "*"
-    case Div = "/"
-    case Power = "^"
-    case Mod = "%"
-}
-
-enum UtilityOperation : String{
-    case RightBracket = ")"
-    case LeftBracket = "("
-    case Dot = "."
-    case Equal = "="
-    case Clean = "C"
-    case AClean = "AC"
-}
-
-enum UnaryOperation : String{
-    case Sin = "sin"
-    case Cos = "cos"
-    case Tg = "tg"
-    case Sinh = "sinh"
-    case Cosh = "cosh"
-    case Tgh = "tgh"
-    case Ln = "ln"
-    case Sqrt = "√"
-}
-
-
-protocol CalcBrainInterface {
-    func digit(value: Double)
-    func binary(operation: BinaryOperation)
-    func unary(operation: UnaryOperation)
-    func utility(operation: UtilityOperation)
-    var result: ((String?, Error?)->())? {get set}
-}
-
-
 class CalcModel: NSObject, CalcBrainInterface {
     static let sharedCalcModel = CalcModel() //sigleton
-    private var inputData = ""
+    private var inputData = "0"
     private var inputDataArray = [String]() //seperate string into math components
     private var outputData = [String]() //reverse polish notation in array
-    private var openBraces = 0
-    private var closedBraces = 0
+    private var openBracesCount = 0
+    private var closedBracesCount = 0
+    private var dotToken = true
     
-    //MARK - CalcBrainInterface
+    //MARK:- CalcBrainInterface
     func digit(value: Double){
         if String(inputData.characters.last ?? " ") == "0" {
             let temp = inputData.remove(at: inputData.index(before: inputData.endIndex))
@@ -67,6 +29,7 @@ class CalcModel: NSObject, CalcBrainInterface {
         result?(inputData, nil)
     }
     func binary(operation: BinaryOperation){
+        dotToken = true
         if operation == .Minus {
             if String(inputData.characters.last ?? " ") == "+" {
                 inputData.remove(at: inputData.index(before: inputData.endIndex))
@@ -88,20 +51,38 @@ class CalcModel: NSObject, CalcBrainInterface {
             inputData += operation.rawValue
             result?(inputData, nil)
         } else {
-            result?(nil, nil)
+            if isOperationDM(at: String(inputData.characters.last ?? " ")){
+                inputData.remove(at: inputData.index(before: inputData.endIndex))
+                inputData += operation.rawValue
+                result?(inputData, nil)
+            } else {
+                result?(nil, nil)
+            }
         }
     }
     func unary(operation: UnaryOperation){
-        if String(inputData.characters.last ?? " ") == "." || String(inputData.characters.last ?? " ") == ")" {
+        dotToken = true
+        if String(inputData.characters.last ?? " ") == "." || String(inputData.characters.last ?? " ") == ")" || Int(String(inputData.characters.last ?? " ")) != nil && inputData != "0"{
             result?(nil, nil)
         } else {
-            inputData += operation.rawValue
-            result?(inputData, nil)
+            if ["n","s","g","h"].contains(String(inputData.characters.last ?? " ")) {
+                inputData += "("
+                openBracesCount += 1
+                inputData += operation.rawValue
+                result?(inputData, nil)
+            } else if inputData == "0" {
+                inputData = operation.rawValue
+                result?(inputData, nil)
+            } else {
+                inputData += operation.rawValue
+                result?(inputData, nil)
+            }
         }
     }
     func utility(operation: UtilityOperation){
         if operation == .Equal {
-            if (Int(String(inputData.characters.last ?? " ")) != nil || String(inputData.characters.last ?? " ") == ")" ) && openBraces == closedBraces {
+            if (Int(String(inputData.characters.last ?? " ")) != nil || String(inputData.characters.last ?? " ") == ")" ) && openBracesCount == closedBracesCount {
+                dotToken = true
                 let result1 : Double = CalculateRPN()
                 if result1.truncatingRemainder(dividingBy:1) == 0 {
                     inputData = "\(Int(result1))"
@@ -115,17 +96,21 @@ class CalcModel: NSObject, CalcBrainInterface {
                 result?(nil, nil)
             }
         } else if operation == .AClean {
+            dotToken = true
             inputData = "0"
-            openBraces = 0
-            closedBraces = 0
+            openBracesCount = 0
+            closedBracesCount = 0
             inputDataArray = [String]()
             outputData = [String]()
             result?(inputData, nil)
         } else if operation == .Clean {
+            if String(inputData.characters.last ?? " ") == "." {
+                dotToken = true
+            }
             if inputData != "" {
                 let removedSymbol = inputData.remove(at: inputData.index(before: inputData.endIndex))
-                if removedSymbol == "(" { openBraces -= 1 }
-                if removedSymbol == ")" { closedBraces -= 1 }
+                if removedSymbol == "(" { openBracesCount -= 1 }
+                if removedSymbol == ")" { closedBracesCount -= 1 }
                 inputDataArray = [String]()
                 outputData = [String]()
                 if String(inputData.characters.last ?? " ") == " " {
@@ -136,18 +121,30 @@ class CalcModel: NSObject, CalcBrainInterface {
                 inputData = "0"
                 result?(inputData, nil)
             }
+        } else if operation == .Dot {
+            if dotToken {
+                if Int(String(inputData.characters.last ?? " ")) == nil {
+                    inputData += "0"
+                }
+                inputData += operation.rawValue
+                result?(inputData, nil)
+                dotToken = false
+            } else  {
+                result?(nil,nil)
+            }
         } else {
+            dotToken = true
             if operation == .RightBracket {
-                if closedBraces != openBraces && (closedBraces != 0 || Int(String(inputData.characters.last ?? " ")) != nil) {
-                    closedBraces += 1
+                if closedBracesCount != openBracesCount && (closedBracesCount != 0 || Int(String(inputData.characters.last ?? " ")) != nil) {
+                    closedBracesCount += 1
                     inputData += operation.rawValue
                     result?(inputData, nil)
                 } else {
                     result?(nil,nil)
                 }
             } else if operation == .LeftBracket {
-                if (isOperationDM(at: String(inputData.characters.last ?? " ")) || isOperation(at: String(inputData.characters.last ?? " "))) && String(inputData.characters.last ?? " ") != ")" {
-                    openBraces += 1
+                if ( ["n","s","g","h"].contains(String(inputData.characters.last ?? " ")) || isOperation(at: String(inputData.characters.last ?? " "))) && String(inputData.characters.last ?? " ") != ")" {
+                    openBracesCount += 1
                     inputData += operation.rawValue
                     result?(inputData, nil)
                 } else {
@@ -161,6 +158,7 @@ class CalcModel: NSObject, CalcBrainInterface {
     }
     var result: ((String?, Error?)->())?
 
+    //MARK:- CalcModel
     private func seperateInputData(){ //function seperate inputData into math components
         print(inputData)
         for charachter in inputData.characters {

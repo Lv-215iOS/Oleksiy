@@ -8,11 +8,13 @@
 
 import UIKit
 
-protocol OutputInterface {
-    func outputInfo(info: String)
+protocol AdvancedOutputInterface {
+    func shakeInfo()
+    func fillSecondLabel(str: String)
+    func mainLabel () -> String
 }
 
-class OutputViewController: UIViewController, OutputInterface{
+class OutputViewController: UIViewController, OutputInterface, AdvancedOutputInterface {
     
     @IBOutlet weak var mainField: UILabel!
     @IBOutlet weak var additionField: UILabel!
@@ -21,11 +23,11 @@ class OutputViewController: UIViewController, OutputInterface{
         super.viewDidLoad()
         additionField.backgroundColor = UIColor(red:1.0, green:0.0, blue:0.0, alpha: 0.3)
     }
-    
+    //MARK: - OutputProtocol
     func outputInfo(info: String){
-        mainField.text = info//
+        mainField.text = info
     }
-    
+    //MARK: - AdvancedOutputProtocol
     func shakeInfo() {
         let animation = CABasicAnimation(keyPath: "position")
         animation.duration = 0.05
@@ -35,14 +37,6 @@ class OutputViewController: UIViewController, OutputInterface{
         animation.toValue = CGPoint(x:mainField.center.x, y:mainField.center.y - 5)
 
         mainField.layer.add(animation, forKey: "position")
-    }
-    
-    func appendInfo(info: String){
-        if mainField.text != nil {
-            mainField.text = mainField.text! + info
-        } else {
-            mainField.text = info
-        }
     }
     
     func fillSecondLabel(str : String) {
@@ -56,7 +50,4 @@ class OutputViewController: UIViewController, OutputInterface{
         return ""
     }
     
-    func deleteLast() {
-        mainField.text!.remove(at: mainField.text!.index(before: mainField.text!.endIndex))
-    }
 }
