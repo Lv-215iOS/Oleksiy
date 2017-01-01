@@ -15,8 +15,10 @@
 		25ABB78D1DF811ED00DE9D0D /* CalcOleksiyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25ABB78C1DF811ED00DE9D0D /* CalcOleksiyTests.swift */; };
 		25ABB7981DF811ED00DE9D0D /* CalcOleksiyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25ABB7971DF811ED00DE9D0D /* CalcOleksiyUITests.swift */; };
 		480578951DFF325F000AE1CF /* InputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480578941DFF325F000AE1CF /* InputViewController.swift */; };
+		484FE1F11E1681D900947273 /* PlotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484FE1F01E1681D900947273 /* PlotViewController.swift */; };
 		488A0CFC1DFCAD0E00916FCC /* OutputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488A0CFB1DFCAD0E00916FCC /* OutputViewController.swift */; };
 		48D2477C1E0F31B2005C5B15 /* Dawn-winter-snow-sun-mountains-trees_1080x1920_iPhone_6_Plus_wallpaper.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 48D2477B1E0F31B2005C5B15 /* Dawn-winter-snow-sun-mountains-trees_1080x1920_iPhone_6_Plus_wallpaper.jpg */; };
+		48D3B7AF1E17BB05002E6FE0 /* PlotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D3B7AE1E17BB05002E6FE0 /* PlotView.swift */; };
 		48DDFE8D1DF8940100571C2D /* CalcModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DDFE8C1DF8940100571C2D /* CalcModel.swift */; };
 		48E3B8E11E130FFF00234CF9 /* GlobalProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E3B8E01E130FFF00234CF9 /* GlobalProtocols.swift */; };
 /* End PBXBuildFile section */
@@ -53,8 +55,10 @@
 		25ABB7971DF811ED00DE9D0D /* CalcOleksiyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalcOleksiyUITests.swift; sourceTree = "<group>"; };
 		25ABB7991DF811ED00DE9D0D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		480578941DFF325F000AE1CF /* InputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputViewController.swift; sourceTree = "<group>"; };
+		484FE1F01E1681D900947273 /* PlotViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlotViewController.swift; sourceTree = "<group>"; };
 		488A0CFB1DFCAD0E00916FCC /* OutputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutputViewController.swift; sourceTree = "<group>"; };
 		48D2477B1E0F31B2005C5B15 /* Dawn-winter-snow-sun-mountains-trees_1080x1920_iPhone_6_Plus_wallpaper.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Dawn-winter-snow-sun-mountains-trees_1080x1920_iPhone_6_Plus_wallpaper.jpg"; sourceTree = "<group>"; };
+		48D3B7AE1E17BB05002E6FE0 /* PlotView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlotView.swift; sourceTree = "<group>"; };
 		48DDFE8C1DF8940100571C2D /* CalcModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalcModel.swift; sourceTree = "<group>"; };
 		48E3B8E01E130FFF00234CF9 /* GlobalProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalProtocols.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -111,6 +115,8 @@
 				25ABB7771DF811EC00DE9D0D /* AppDelegate.swift */,
 				25ABB7791DF811EC00DE9D0D /* ViewController.swift */,
 				48E3B8E01E130FFF00234CF9 /* GlobalProtocols.swift */,
+				484FE1F01E1681D900947273 /* PlotViewController.swift */,
+				48D3B7AE1E17BB05002E6FE0 /* PlotView.swift */,
 				48DDFE8C1DF8940100571C2D /* CalcModel.swift */,
 				25ABB77B1DF811EC00DE9D0D /* Main.storyboard */,
 				488A0CFB1DFCAD0E00916FCC /* OutputViewController.swift */,
@@ -279,7 +285,9 @@
 				48DDFE8D1DF8940100571C2D /* CalcModel.swift in Sources */,
 				480578951DFF325F000AE1CF /* InputViewController.swift in Sources */,
 				25ABB77A1DF811EC00DE9D0D /* ViewController.swift in Sources */,
+				48D3B7AF1E17BB05002E6FE0 /* PlotView.swift in Sources */,
 				488A0CFC1DFCAD0E00916FCC /* OutputViewController.swift in Sources */,
+				484FE1F11E1681D900947273 /* PlotViewController.swift in Sources */,
 				48E3B8E11E130FFF00234CF9 /* GlobalProtocols.swift in Sources */,
 				25ABB7781DF811EC00DE9D0D /* AppDelegate.swift in Sources */,
 			);

@@ -9,8 +9,9 @@
 import UIKit
 
 class CalcModel: NSObject, CalcBrainInterface {
-    static let sharedCalcModel = CalcModel() //sigleton
-    private var inputData = "0"
+    static let sharedModel = CalcModel()
+    var inputData = "0"
+    private var plotInput = ""
     private var inputDataArray = [String]() //seperate string into math components
     private var outputData = [String]() //reverse polish notation in array
     private var openBracesCount = 0
@@ -25,7 +26,16 @@ class CalcModel: NSObject, CalcBrainInterface {
                 inputData += String(temp)
             }
         }
-        inputData += String(Int(value))
+        if value.truncatingRemainder(dividingBy: 1) != 0 {
+            dotToken = false
+            if isValue(at: String(inputData.characters.last ?? "-")) {
+                result?(nil,nil)
+            } else {
+                inputData += String(format:"%.10f", value)
+            }
+        } else {
+            inputData += String(Int(value))
+        }
         result?(inputData, nil)
     }
     func binary(operation: BinaryOperation){
@@ -40,7 +50,11 @@ class CalcModel: NSObject, CalcBrainInterface {
                 inputData += "+"
                 result?(inputData, nil)
             } else if String(inputData.characters.last ?? " ") == ")" || Int(String(inputData.characters.last ?? " ")) != nil {
-                inputData += operation.rawValue
+                if inputData == "0" {
+                    inputData = operation.rawValue + "0"
+                } else {
+                    inputData += operation.rawValue
+                }
                 result?(inputData, nil)
             } else {
                 inputData += "-0"
@@ -79,13 +93,18 @@ class CalcModel: NSObject, CalcBrainInterface {
             }
         }
     }
+    
     func utility(operation: UtilityOperation){
         if operation == .Equal {
             if (Int(String(inputData.characters.last ?? " ")) != nil || String(inputData.characters.last ?? " ") == ")" ) && openBracesCount == closedBracesCount {
                 dotToken = true
                 let result1 : Double = CalculateRPN()
                 if result1.truncatingRemainder(dividingBy:1) == 0 {
-                    inputData = "\(Int(result1))"
+                    if result1 > Double(Int.max) {
+                        inputData = "\(result1)"
+                    } else {
+                        inputData = "\(Int(result1))"
+                    }
                 } else {
                     inputData = "\(result1)"
                 }
@@ -159,6 +178,32 @@ class CalcModel: NSObject, CalcBrainInterface {
     var result: ((String?, Error?)->())?
 
     //MARK:- CalcModel
+    func XInput() {
+        dotToken = false
+        if Int(String(inputData.characters.last ?? " ")) != nil ||  String(inputData.characters.last ?? " ") == ")" {
+            result?(nil,nil)
+        } else {
+            inputData += "x"
+            result?(inputData, nil)
+        }
+    }
+    
+    func plotFunctionIn(_ x:Double) -> Double {
+        let regex = try! NSRegularExpression(pattern: "x", options: .caseInsensitive)
+        let modInput = regex.stringByReplacingMatches(in: inputData, options: [], range: NSMakeRange(0, inputData.characters.count), withTemplate: String(format:"%.10f", x))
+        print("modinput |")
+        print(modInput)
+        plotInput = inputData
+        inputData = modInput
+        let temp = CalculateRPN()
+        inputDataArray = [String]()
+        outputData = [String]()
+        inputData = plotInput
+        print("input |")
+        print(inputData)
+        return temp
+    }
+    
     private func seperateInputData(){ //function seperate inputData into math components
         print(inputData)
         for charachter in inputData.characters {

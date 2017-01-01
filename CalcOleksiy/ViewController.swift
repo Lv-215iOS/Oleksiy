@@ -12,7 +12,7 @@ class ViewController: UIViewController {
     
     var outputController : OutputViewController? = nil
     var inputController : InputViewController? = nil
-    var calcBrain = CalcModel()
+    var calcBrain = CalcModel.sharedModel
     var lastOperation = ""
 
     override func viewDidLoad() {
@@ -31,10 +31,18 @@ class ViewController: UIViewController {
             } else if sender.currentTitle == "x³"{
                 self.pressedButton(operation: "^", sender: sender)
                 self.pressedButton(operation: "3", sender: sender)
+            } else if sender.currentTitle == "π" {
+                self.pressedButton(operation: String(M_PI), sender: sender)
+            } else if sender.currentTitle == "e" {
+                self.pressedButton(operation: String(M_E), sender: sender)
             } else {
                 self.pressedButton(operation: operation, sender: sender)
             }
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.isNavigationBarHidden = true
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -94,7 +102,13 @@ class ViewController: UIViewController {
             calcBrain.utility(operation: .RightBracket)
         case "(":
             calcBrain.utility(operation: .LeftBracket)
+            
+        case "plot":
+            performSegue(withIdentifier: "segue", sender: self)
+        case "x":
+            calcBrain.XInput()
         default:
+            print(operation)
             calcBrain.digit(value: Double(operation)!)
         }
         lastOperation = operation
