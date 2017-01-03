@@ -44,7 +44,7 @@ class PlotView: UIView {
         path.lineWidth = 1.9
         var x = 0
         var y = CalcModel.sharedModel.plotFunctionIn(-10)
-        var p1 = CGPoint(x:x, y:Int(lround((y+10)*30)))
+        var p1 = CGPoint(x:x, y:Int(lround((-y+10)*30)))
         path.move(to: p1)
         for i in 1 ..< 101 {
             x = i*600/100

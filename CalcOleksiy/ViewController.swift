@@ -11,6 +11,7 @@ import UIKit
 class ViewController: UIViewController {
     
     var outputController : OutputViewController? = nil
+    var plotViewController : PlotViewController? = nil
     var inputController : InputViewController? = nil
     var calcBrain = CalcModel.sharedModel
     var lastOperation = ""
@@ -50,6 +51,8 @@ class ViewController: UIViewController {
             outputController = segue.destination as? OutputViewController
         } else if segue.identifier == "InputControllerEmbedSegue" {
             inputController = segue.destination as? InputViewController
+        } else if segue.identifier == "segue" {
+            plotViewController = segue.destination as? PlotViewController
         }
     }
     
@@ -88,16 +91,27 @@ class ViewController: UIViewController {
              calcBrain.unary(operation: .Sqrt)
             
             //utility operations
-        case "C":
+        case "c":
             calcBrain.utility(operation: .Clean)
-        case "AC":
+        case "ac":
             outputController?.fillSecondLabel(str: "")
             calcBrain.utility(operation: .AClean)
         case ".":
             calcBrain.utility(operation: .Dot)
         case "=":
-            outputController?.fillSecondLabel(str: (outputController?.mainLabel())!)
-            calcBrain.utility(operation: .Equal)
+            var xPersistance = true
+            for i in (outputController?.mainLabel().characters)! {
+                if i == "x" {
+                    xPersistance = false
+                    break
+                }
+            }
+            if xPersistance {
+                outputController?.fillSecondLabel(str: (outputController?.mainLabel())!)
+                calcBrain.utility(operation: .Equal)
+            } else {
+                outputController?.shakeInfo()
+            }
         case ")":
             calcBrain.utility(operation: .RightBracket)
         case "(":

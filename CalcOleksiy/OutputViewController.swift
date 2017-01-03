@@ -21,7 +21,10 @@ class OutputViewController: UIViewController, OutputInterface, AdvancedOutputInt
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        additionField.backgroundColor = UIColor(red:1.0, green:0.0, blue:0.0, alpha: 0.3)
+        additionField.backgroundColor = UIColor(red:0.205, green:0.197, blue:0.10, alpha: 0.3)
+        mainField.adjustsFontSizeToFitWidth = true
+        mainField.minimumScaleFactor = 0.8
+        mainField.lineBreakMode = .byTruncatingHead
     }
     //MARK: - OutputProtocol
     func outputInfo(info: String){

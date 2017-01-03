@@ -34,7 +34,11 @@ class CalcModel: NSObject, CalcBrainInterface {
                 inputData += String(format:"%.10f", value)
             }
         } else {
-            inputData += String(Int(value))
+            if String(inputData.characters.last ?? "-") == "x" {
+                result?(nil,nil)
+            } else {
+                inputData += String(Int(value))
+            }
         }
         result?(inputData, nil)
     }
@@ -70,13 +74,21 @@ class CalcModel: NSObject, CalcBrainInterface {
                 inputData += operation.rawValue
                 result?(inputData, nil)
             } else {
-                result?(nil, nil)
+                if String(inputData.characters.last ?? " ") == "x" {
+                    inputData += operation.rawValue
+                } else {
+                    result?(nil, nil)
+
+                }
             }
         }
     }
     func unary(operation: UnaryOperation){
         dotToken = true
-        if String(inputData.characters.last ?? " ") == "." || String(inputData.characters.last ?? " ") == ")" || Int(String(inputData.characters.last ?? " ")) != nil && inputData != "0"{
+        if String(inputData.characters.last ?? " ") == "." ||
+           String(inputData.characters.last ?? " ") == "x" ||
+           String(inputData.characters.last ?? " ") == ")" ||
+           Int(String(inputData.characters.last ?? " ")) != nil && inputData != "0" {
             result?(nil, nil)
         } else {
             if ["n","s","g","h"].contains(String(inputData.characters.last ?? " ")) {
@@ -96,8 +108,11 @@ class CalcModel: NSObject, CalcBrainInterface {
     
     func utility(operation: UtilityOperation){
         if operation == .Equal {
-            if (Int(String(inputData.characters.last ?? " ")) != nil || String(inputData.characters.last ?? " ") == ")" ) && openBracesCount == closedBracesCount {
-                dotToken = true
+            if (Int(String(inputData.characters.last ?? " ")) != nil ||
+                String(inputData.characters.last ?? " ") == ")" ) && openBracesCount == closedBracesCount {
+                if Double(inputData)?.truncatingRemainder(dividingBy: 1) == 0 {
+                    dotToken = true
+                }
                 let result1 : Double = CalculateRPN()
                 if result1.truncatingRemainder(dividingBy:1) == 0 {
                     if result1 > Double(Int.max) {
@@ -180,10 +195,14 @@ class CalcModel: NSObject, CalcBrainInterface {
     //MARK:- CalcModel
     func XInput() {
         dotToken = false
-        if Int(String(inputData.characters.last ?? " ")) != nil ||  String(inputData.characters.last ?? " ") == ")" {
+        if (Int(String(inputData.characters.last ?? " ")) != nil  && inputData != "0" ) ||  String(inputData.characters.last ?? " ") == ")" || String(inputData.characters.last ?? " ") == "x" || String(inputData.characters.last ?? " ") == "." {
             result?(nil,nil)
         } else {
-            inputData += "x"
+            if inputData == "0" {
+                inputData = "x"
+            } else {
+                inputData += "x"
+            }
             result?(inputData, nil)
         }
     }
