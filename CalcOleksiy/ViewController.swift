@@ -53,6 +53,7 @@ class ViewController: UIViewController {
             inputController = segue.destination as? InputViewController
         } else if segue.identifier == "segue" {
             plotViewController = segue.destination as? PlotViewController
+            plotViewController?.mainViewController = self
         }
     }
     

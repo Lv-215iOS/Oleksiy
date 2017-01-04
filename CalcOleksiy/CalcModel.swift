@@ -42,6 +42,7 @@ class CalcModel: NSObject, CalcBrainInterface {
         }
         result?(inputData, nil)
     }
+    
     func binary(operation: BinaryOperation){
         dotToken = true
         if operation == .Minus {
@@ -295,7 +296,6 @@ class CalcModel: NSObject, CalcBrainInterface {
             }
             print(outputData)
             print(stack)
-                
         }
         for element in stack.reversed() {
             outputData.append(String(element))
@@ -303,6 +303,7 @@ class CalcModel: NSObject, CalcBrainInterface {
         print(outputData)
         
     }
+    
     private func priorityFor(char:String) -> Int{ //determine priority
         if char == "+" || char == "-" {
             return 1
@@ -350,7 +351,8 @@ class CalcModel: NSObject, CalcBrainInterface {
         }
         return false
     }
-    private func CalculateRPN() -> Double { //calculate RPN and return result of expression
+    /// calculate RPN and return result of expression
+    private func CalculateRPN() -> Double {
         self.seperateInputData()
         self.calculateData()
         var stack =  [Double]()
@@ -371,7 +373,7 @@ class CalcModel: NSObject, CalcBrainInterface {
             case "/":
                 let rightValue = stack.removeLast()
                 let leftValue = stack.removeLast()
-                stack.append(leftValue / rightValue)//
+                stack.append(leftValue / rightValue)
             case "%":
                 let rightValue = stack.removeLast()
                 let leftValue = stack.removeLast()

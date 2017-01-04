@@ -13,9 +13,10 @@ class PlotViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var my: UILabel!
     @IBOutlet weak var plotScrollView: UIScrollView!
     @IBOutlet weak var plotView: PlotView!
+    var mainViewController : ViewController? = nil
     
     @IBAction func backButtonPressed(_ sender: Any) {
-        navigationController?.popViewController(animated: true)
+        _ = navigationController?.popViewController(animated: true)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +29,7 @@ class PlotViewController: UIViewController, UIScrollViewDelegate {
         plotScrollView.layer.borderWidth = 1.5
         plotScrollView.layer.borderColor = UIColor.lightGray.cgColor
         plotScrollView.layer.cornerRadius = 15
+        my.text = "y = " + (mainViewController?.outputController?.mainField.text!)!
     }
     
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {

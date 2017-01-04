@@ -52,10 +52,12 @@ class PlotView: UIView {
             print("y - ")
             print(lround((y+10)*30))
             let p2 = CGPoint(x:x, y:Int(lround((-y+10)*30)))
-            path.addLine(to: p2)
-            //path.addQuadCurve(to: midPoint, controlPoint: controlPointsForPoints(p1: midPoint, p2: p1))
-            //path.addQuadCurve(to: p2, controlPoint: controlPointsForPoints(p1: midPoint, p2: p2))
-            p1=p2
+            if abs(p2.y - p1.y) > 15*30 {
+                path.move(to: p2)
+            } else {
+                path.addLine(to: p2)
+            }
+            p1 = p2
         }
         path.stroke()
     }
