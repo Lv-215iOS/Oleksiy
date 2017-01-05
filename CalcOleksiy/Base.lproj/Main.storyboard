@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="CN6-Tn-wSQ">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="CN6-Tn-wSQ">
     <device id="retina4_7" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
@@ -1920,15 +1920,15 @@
                                 <exclude reference="clI-3M-hQY"/>
                                 <exclude reference="lEh-JS-nCT"/>
                                 <exclude reference="XjG-ml-xlU"/>
+                                <exclude reference="5G3-q7-hg3"/>
+                                <exclude reference="BhV-dD-aQY"/>
+                                <exclude reference="Fn1-he-CFt"/>
+                                <exclude reference="NoC-Rl-aab"/>
                                 <exclude reference="5pK-vR-rge"/>
                                 <exclude reference="7SK-i7-QEw"/>
                                 <exclude reference="eRI-Fx-7wD"/>
                                 <exclude reference="hia-so-leh"/>
                                 <exclude reference="kZA-O3-lkP"/>
-                                <exclude reference="5G3-q7-hg3"/>
-                                <exclude reference="BhV-dD-aQY"/>
-                                <exclude reference="Fn1-he-CFt"/>
-                                <exclude reference="NoC-Rl-aab"/>
                                 <exclude reference="7uo-VU-IGz"/>
                                 <exclude reference="LJ0-tJ-gtQ"/>
                                 <exclude reference="UQC-uo-PdV"/>
@@ -1955,11 +1955,11 @@
                                 <exclude reference="DSE-Rn-0ZD"/>
                                 <exclude reference="dEH-OC-giM"/>
                                 <exclude reference="zJv-kM-Y06"/>
-                                <exclude reference="YXw-ji-Ckf"/>
                                 <exclude reference="Bd9-i0-bVF"/>
                                 <exclude reference="GiM-j8-KDH"/>
                                 <exclude reference="Luc-Eb-5Xh"/>
                                 <exclude reference="xWD-FN-TKJ"/>
+                                <exclude reference="YXw-ji-Ckf"/>
                                 <exclude reference="ara-w3-ARi"/>
                                 <exclude reference="jmg-5q-awX"/>
                                 <exclude reference="tbG-Zf-6gc"/>
@@ -2150,15 +2150,15 @@
                                 <include reference="clI-3M-hQY"/>
                                 <include reference="lEh-JS-nCT"/>
                                 <include reference="XjG-ml-xlU"/>
+                                <include reference="5G3-q7-hg3"/>
+                                <include reference="BhV-dD-aQY"/>
+                                <include reference="Fn1-he-CFt"/>
+                                <include reference="NoC-Rl-aab"/>
                                 <include reference="5pK-vR-rge"/>
                                 <include reference="7SK-i7-QEw"/>
                                 <include reference="eRI-Fx-7wD"/>
                                 <include reference="hia-so-leh"/>
                                 <include reference="kZA-O3-lkP"/>
-                                <include reference="5G3-q7-hg3"/>
-                                <include reference="BhV-dD-aQY"/>
-                                <include reference="Fn1-he-CFt"/>
-                                <include reference="NoC-Rl-aab"/>
                                 <include reference="7uo-VU-IGz"/>
                                 <include reference="LJ0-tJ-gtQ"/>
                                 <include reference="UQC-uo-PdV"/>
@@ -2184,11 +2184,11 @@
                                 <include reference="DSE-Rn-0ZD"/>
                                 <include reference="dEH-OC-giM"/>
                                 <include reference="zJv-kM-Y06"/>
-                                <exclude reference="YXw-ji-Ckf"/>
                                 <include reference="Bd9-i0-bVF"/>
                                 <include reference="GiM-j8-KDH"/>
                                 <include reference="Luc-Eb-5Xh"/>
                                 <include reference="xWD-FN-TKJ"/>
+                                <exclude reference="YXw-ji-Ckf"/>
                                 <include reference="ara-w3-ARi"/>
                                 <include reference="jmg-5q-awX"/>
                                 <include reference="tbG-Zf-6gc"/>
@@ -2468,11 +2468,11 @@
                                             <rect key="frame" x="24" y="25" width="325" height="325"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x8E-U7-Zxg" customClass="PlotView" customModule="CalcOleksiy" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="1200" height="1200"/>
                                                     <color key="backgroundColor" red="0.75463392371979698" green="0.72259450035943262" blue="0.042504607736770658" alpha="0.21155286817397248" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="600" id="cTp-56-5uj"/>
-                                                        <constraint firstAttribute="width" constant="600" id="oo6-cE-gPu"/>
+                                                        <constraint firstAttribute="width" constant="1200" id="8id-rV-HeW"/>
+                                                        <constraint firstAttribute="height" constant="1200" id="Jar-S8-d8q"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
@@ -2482,12 +2482,12 @@
                                                 <constraint firstAttribute="width" constant="325" id="5z1-Ya-iuX"/>
                                                 <constraint firstItem="x8E-U7-Zxg" firstAttribute="leading" secondItem="pbQ-RL-URm" secondAttribute="leading" id="6Jd-qZ-7is"/>
                                                 <constraint firstItem="x8E-U7-Zxg" firstAttribute="top" secondItem="pbQ-RL-URm" secondAttribute="top" id="87e-NY-Eyz"/>
+                                                <constraint firstAttribute="bottom" secondItem="x8E-U7-Zxg" secondAttribute="bottom" id="8yg-ob-vac"/>
                                                 <constraint firstAttribute="trailing" secondItem="x8E-U7-Zxg" secondAttribute="trailing" constant="-268" id="9CR-jp-DKN"/>
-                                                <constraint firstAttribute="bottom" secondItem="x8E-U7-Zxg" secondAttribute="bottom" id="Ez2-Qy-dFw"/>
                                                 <constraint firstItem="x8E-U7-Zxg" firstAttribute="top" secondItem="pbQ-RL-URm" secondAttribute="top" id="IQ7-ob-dPh"/>
                                                 <constraint firstAttribute="height" constant="325" id="Ql8-sp-7RE"/>
-                                                <constraint firstAttribute="trailing" secondItem="x8E-U7-Zxg" secondAttribute="trailing" id="RxO-l7-8gV"/>
                                                 <constraint firstAttribute="bottom" secondItem="x8E-U7-Zxg" secondAttribute="bottom" constant="-312" id="dRF-Np-eaB"/>
+                                                <constraint firstAttribute="trailing" secondItem="x8E-U7-Zxg" secondAttribute="trailing" id="hAg-Ue-h26"/>
                                                 <constraint firstItem="x8E-U7-Zxg" firstAttribute="leading" secondItem="pbQ-RL-URm" secondAttribute="leading" id="jPA-0d-OyX"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
