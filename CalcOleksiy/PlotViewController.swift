@@ -23,7 +23,7 @@ class PlotViewController: UIViewController, UIScrollViewDelegate {
         plotScrollView.contentSize = CGSize(width:600, height:600)
         plotScrollView.contentOffset = CGPoint(x: 100, y:100)
         plotScrollView.delegate = self
-        plotScrollView.maximumZoomScale = 0.75
+        plotScrollView.maximumZoomScale = 0.50
         plotScrollView.minimumZoomScale = 0.27
         plotScrollView.zoomScale = 0.27
         plotScrollView.layer.borderWidth = 1.5

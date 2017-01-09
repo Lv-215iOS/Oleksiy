@@ -92,6 +92,7 @@ class CalcModel: NSObject, CalcBrainInterface {
             } else {
                 if String(inputData.characters.last ?? " ") == "x" {
                     inputData += operation.rawValue
+                    result?(inputData, nil)
                 } else {
                     result?(nil, nil)
 
@@ -139,7 +140,7 @@ class CalcModel: NSObject, CalcBrainInterface {
                         inputData = "\(Int(result1))"
                     }
                 } else {
-                    let truncatedResult = String(format: "%.5f", result1)
+                    let truncatedResult = String(format: "%.5g", result1)
                     inputData = "\(truncatedResult)"
                 }
                 inputDataArray = [String]()
