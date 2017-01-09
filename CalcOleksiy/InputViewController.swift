@@ -10,6 +10,7 @@ import UIKit
 
 class InputViewController: UIViewController, InputInterface {
     
+    @IBOutlet weak var cleanButton: UIButton!
     @IBOutlet var portraitModeButtons: [UIButton]!
     var buttonDidPress: ((String, UIButton) -> ())? = nil
     @IBOutlet var buttonArray: [UIButton]!

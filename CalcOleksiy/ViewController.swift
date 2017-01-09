@@ -26,12 +26,17 @@ class ViewController: UIViewController {
             }
         }
         inputController?.buttonDidPress = { [unowned self] (operation, sender)->() in
+            let previousData = self.calcBrain.inputData
             if sender.currentTitle == "x²" {
-                self.pressedButton(operation: "^", sender: sender)
-                self.pressedButton(operation: "2", sender: sender)
+                self.pressedButton(operation: " ̂", sender: sender)
+                if previousData.characters.last != self.calcBrain.inputData.characters.last {
+                    self.pressedButton(operation: "2", sender: sender)
+                }
             } else if sender.currentTitle == "x³"{
-                self.pressedButton(operation: "^", sender: sender)
-                self.pressedButton(operation: "3", sender: sender)
+                self.pressedButton(operation: " ̂", sender: sender)
+                if previousData.characters.last != self.calcBrain.inputData.characters.last {
+                    self.pressedButton(operation: "3", sender: sender)
+                }
             } else if sender.currentTitle == "π" {
                 self.pressedButton(operation: String(M_PI), sender: sender)
             } else if sender.currentTitle == "e" {
@@ -58,6 +63,7 @@ class ViewController: UIViewController {
     }
     
     func pressedButton(operation : String, sender : UIButton) {
+        inputController?.cleanButton.setTitle("c", for: .normal)
         switch operation {
             // binary operations
         case "+":
@@ -70,7 +76,7 @@ class ViewController: UIViewController {
             calcBrain.binary(operation: .Div)
         case "%":
             calcBrain.binary(operation: .Mod)
-        case "^":
+        case " ̂":
             calcBrain.binary(operation: .Power)
             
             // unary operations
@@ -92,10 +98,17 @@ class ViewController: UIViewController {
              calcBrain.unary(operation: .Sqrt)
             
             //utility operations
-        case "c":
+        case "⇐":
             calcBrain.utility(operation: .Clean)
-        case "ac":
+            if outputController?.mainLabel() == "0" {
+                inputController?.cleanButton.setTitle("ac", for: .normal)
+            }
+        case "c":
+            inputController?.cleanButton.setTitle("ac", for: .normal)
             outputController?.fillSecondLabel(str: "")
+            calcBrain.utility(operation: .AClean)
+        case "ac":
+            inputController?.cleanButton.setTitle("ac", for: .normal)
             calcBrain.utility(operation: .AClean)
         case ".":
             calcBrain.utility(operation: .Dot)
@@ -119,7 +132,11 @@ class ViewController: UIViewController {
             calcBrain.utility(operation: .LeftBracket)
             
         case "plot":
-            performSegue(withIdentifier: "segue", sender: self)
+            if calcBrain.functionTest() {
+                performSegue(withIdentifier: "segue", sender: self)
+            } else {
+                outputController?.shakeInfo()
+            }
         case "x":
             calcBrain.XInput()
         default:

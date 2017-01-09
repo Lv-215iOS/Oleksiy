@@ -13,7 +13,7 @@ enum BinaryOperation : String{
     case Minus = "-"
     case Mul = "*"
     case Div = "/"
-    case Power = "^"
+    case Power = " ̂"
     case Mod = "%"
 }
 
