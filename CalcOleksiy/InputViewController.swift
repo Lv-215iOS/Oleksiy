@@ -26,14 +26,14 @@ import AudioToolbox
         for button in buttonArray {
             button.adjustsImageWhenDisabled = false
             button.layer.borderWidth = 1
-            button.layer.cornerRadius = 20
+            button.layer.cornerRadius = 18
             button.layer.borderColor = UIColor(white: 0.667, alpha: 1).cgColor
             button.layer.backgroundColor = UIColor(white: 1, alpha: 0.4).cgColor
             button.setTitleColor(.white, for: .highlighted)
         }
         for button in portraitModeButtons {
              button.adjustsImageWhenDisabled = false
-            button.layer.cornerRadius = 20
+            button.layer.cornerRadius = 18
             button.layer.borderWidth = 1
             button.layer.borderColor = UIColor(white: 0.667, alpha: 1).cgColor
             button.setTitleColor(.white, for: .highlighted)
@@ -41,7 +41,7 @@ import AudioToolbox
     }
     
     @IBAction func touchDragOutsideAction(_ sender: UIButton) {
-        if ["1","2","3","4","5","6","7","8","9","0","."].contains(sender.currentTitle!) {
+        if ["1","2","3","4","5","6","7","8","9","0",".","⇐"].contains(sender.currentTitle!) {
             sender.layer.borderWidth = 1
             sender.layer.borderColor = UIColor(white: 0.667, alpha: 1).cgColor
             sender.layer.backgroundColor = UIColor(white: 1, alpha: 0.4).cgColor
@@ -57,7 +57,7 @@ import AudioToolbox
     }
     //MARK: - InputInterface
     @IBAction func buttonPressed(_ sender: UIButton) {
-        if ["1","2","3","4","5","6","7","8","9","0","."].contains(sender.currentTitle!) {
+        if ["1","2","3","4","5","6","7","8","9","0",".","⇐"].contains(sender.currentTitle!) {
             sender.layer.borderWidth = 1
             sender.layer.borderColor = UIColor(white: 0.667, alpha: 1).cgColor
             sender.layer.backgroundColor = UIColor(white: 1, alpha: 0.4).cgColor

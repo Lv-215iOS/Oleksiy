@@ -11,7 +11,7 @@ import UIKit
 class CalcModel: NSObject, CalcBrainInterface {
     ///singleton
     static let sharedModel = CalcModel()
-    var inputData : String = (UserDefaults.standard.value(forKey: "last_result") ?? "") as! String
+    var inputData : String = (UserDefaults.standard.value(forKey: "last_result") ?? "0") as! String
     private var plotInput = ""
     ///seperated string into math components
     private var inputDataArray = [String]()
