@@ -224,7 +224,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="667" height="275"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="olb-jj-VTg">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="olb-jj-VTg">
                                 <rect key="frame" x="418.5" y="114" width="72" height="47"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="28"/>
@@ -239,9 +239,11 @@
                                 <connections>
                                     <action selector="buttonPressed:" destination="GIe-9v-2Iz" eventType="touchUpInside" id="huW-sG-5xA"/>
                                     <action selector="pressedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Nnz-TV-nkR"/>
+                                    <action selector="touchDownAction:" destination="GIe-9v-2Iz" eventType="touchDown" id="gi4-J3-lC2"/>
+                                    <action selector="touchDragOutsideAction:" destination="GIe-9v-2Iz" eventType="touchDragOutside" id="957-Wi-EfY"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HJX-jF-836">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HJX-jF-836">
                                 <rect key="frame" x="498.5" y="114" width="72" height="47"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="28"/>
@@ -256,11 +258,13 @@
                                 <connections>
                                     <action selector="buttonPressed:" destination="GIe-9v-2Iz" eventType="touchUpInside" id="W4o-HO-mAx"/>
                                     <action selector="pressedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kme-JK-ifs"/>
+                                    <action selector="touchDownAction:" destination="GIe-9v-2Iz" eventType="touchDown" id="hzx-jR-98y"/>
+                                    <action selector="touchDragOutsideAction:" destination="GIe-9v-2Iz" eventType="touchDragOutside" id="MWO-p3-iNI"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="al4-Fc-lop">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="al4-Fc-lop">
                                 <rect key="frame" x="578.5" y="114" width="72.5" height="47"/>
-                                <color key="backgroundColor" red="0.99775391560000004" green="1" blue="0.87075169070000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.99492385786802029" green="0.9745689468356058" blue="0.88476943060917268" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="28"/>
                                 <state key="normal" title="+">
                                     <color key="titleColor" red="0.33841009760000001" green="0.32404225110000001" blue="0.019060882370000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -273,9 +277,11 @@
                                 <connections>
                                     <action selector="buttonPressed:" destination="GIe-9v-2Iz" eventType="touchUpInside" id="Uhx-Wg-dIn"/>
                                     <action selector="pressedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nmD-Eu-XKn"/>
+                                    <action selector="touchDownAction:" destination="GIe-9v-2Iz" eventType="touchDown" id="hhA-qN-s8K"/>
+                                    <action selector="touchDragOutsideAction:" destination="GIe-9v-2Iz" eventType="touchDragOutside" id="Pth-1L-tGe"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lWI-hR-QTK">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lWI-hR-QTK">
                                 <rect key="frame" x="338" y="169" width="72.5" height="46.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="28"/>
@@ -290,9 +296,11 @@
                                 <connections>
                                     <action selector="buttonPressed:" destination="GIe-9v-2Iz" eventType="touchUpInside" id="nvH-FP-6xN"/>
                                     <action selector="pressedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="EMX-dy-dA0"/>
+                                    <action selector="touchDownAction:" destination="GIe-9v-2Iz" eventType="touchDown" id="axP-xx-yE6"/>
+                                    <action selector="touchDragOutsideAction:" destination="GIe-9v-2Iz" eventType="touchDragOutside" id="NqF-cR-6u8"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u62-t0-XXy">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u62-t0-XXy">
                                 <rect key="frame" x="418.5" y="169" width="72" height="46.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="28"/>
@@ -307,9 +315,11 @@
                                 <connections>
                                     <action selector="buttonPressed:" destination="GIe-9v-2Iz" eventType="touchUpInside" id="PMF-Pe-mlM"/>
                                     <action selector="pressedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DbT-gy-cPm"/>
+                                    <action selector="touchDownAction:" destination="GIe-9v-2Iz" eventType="touchDown" id="pmB-AD-CCw"/>
+                                    <action selector="touchDragOutsideAction:" destination="GIe-9v-2Iz" eventType="touchDragOutside" id="3u2-jK-bgA"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bqW-eJ-cmV">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bqW-eJ-cmV">
                                 <rect key="frame" x="498.5" y="169" width="72" height="46.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="28"/>
@@ -324,9 +334,11 @@
                                 <connections>
                                     <action selector="buttonPressed:" destination="GIe-9v-2Iz" eventType="touchUpInside" id="kN0-7O-lA2"/>
                                     <action selector="pressedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nbs-gF-t2h"/>
+                                    <action selector="touchDownAction:" destination="GIe-9v-2Iz" eventType="touchDown" id="cCe-ap-89H"/>
+                                    <action selector="touchDragOutsideAction:" destination="GIe-9v-2Iz" eventType="touchDragOutside" id="9J8-0C-2bm"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BFO-xv-YXY">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BFO-xv-YXY">
                                 <rect key="frame" x="338" y="223.5" width="72.5" height="46.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="28"/>
@@ -341,9 +353,11 @@
                                 <connections>
                                     <action selector="buttonPressed:" destination="GIe-9v-2Iz" eventType="touchUpInside" id="6Xl-56-GV9"/>
                                     <action selector="pressedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PBY-Lv-vlw"/>
+                                    <action selector="touchDownAction:" destination="GIe-9v-2Iz" eventType="touchDown" id="8oB-pO-IQk"/>
+                                    <action selector="touchDragOutsideAction:" destination="GIe-9v-2Iz" eventType="touchDragOutside" id="dqb-k5-Qa2"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bf1-he-wg5">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bf1-he-wg5">
                                 <rect key="frame" x="418.5" y="223.5" width="72" height="46.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="28"/>
@@ -358,11 +372,13 @@
                                 <connections>
                                     <action selector="buttonPressed:" destination="GIe-9v-2Iz" eventType="touchUpInside" id="ZPf-PD-aae"/>
                                     <action selector="pressedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Otj-1Y-m1D"/>
+                                    <action selector="touchDownAction:" destination="GIe-9v-2Iz" eventType="touchDown" id="c3O-u4-nKX"/>
+                                    <action selector="touchDragOutsideAction:" destination="GIe-9v-2Iz" eventType="touchDragOutside" id="wc5-Pg-gFm"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IzW-bp-GgU">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IzW-bp-GgU">
                                 <rect key="frame" x="578.5" y="169" width="72.5" height="101"/>
-                                <color key="backgroundColor" red="0.99775391560000004" green="1" blue="0.87075169070000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.99492385786802029" green="0.9745689468356058" blue="0.88476943060917268" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="28"/>
                                 <state key="normal" title="=">
                                     <color key="titleColor" red="0.33841009760000001" green="0.32404225110000001" blue="0.019060882370000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -375,9 +391,11 @@
                                 <connections>
                                     <action selector="buttonPressed:" destination="GIe-9v-2Iz" eventType="touchUpInside" id="YW1-ty-aVr"/>
                                     <action selector="pressedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="691-0y-7B8"/>
+                                    <action selector="touchDownAction:" destination="GIe-9v-2Iz" eventType="touchDown" id="1qF-fg-9hi"/>
+                                    <action selector="touchDragOutsideAction:" destination="GIe-9v-2Iz" eventType="touchDragOutside" id="uMP-Ra-Ws2"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ys6-rH-adu">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ys6-rH-adu">
                                 <rect key="frame" x="419.5" y="59.5" width="72" height="46.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="28"/>
@@ -392,11 +410,13 @@
                                 <connections>
                                     <action selector="buttonPressed:" destination="GIe-9v-2Iz" eventType="touchUpInside" id="HL0-2q-l5d"/>
                                     <action selector="pressedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZkD-qn-vGW"/>
+                                    <action selector="touchDownAction:" destination="GIe-9v-2Iz" eventType="touchDown" id="Akx-2K-aqR"/>
+                                    <action selector="touchDragOutsideAction:" destination="GIe-9v-2Iz" eventType="touchDragOutside" id="fLt-L2-1cd"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RdQ-Kk-4fx">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RdQ-Kk-4fx">
                                 <rect key="frame" x="418.5" y="5" width="72" height="46.5"/>
-                                <color key="backgroundColor" red="0.99775391560000004" green="1" blue="0.87075169070000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.99492385786802029" green="0.9745689468356058" blue="0.88476943060917268" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="28"/>
                                 <state key="normal" title=" ̂">
                                     <color key="titleColor" red="0.33841009760000001" green="0.32404225110000001" blue="0.019060882370000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -409,9 +429,11 @@
                                 <connections>
                                     <action selector="buttonPressed:" destination="GIe-9v-2Iz" eventType="touchUpInside" id="tvP-TF-NQt"/>
                                     <action selector="pressedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CEt-0u-iwZ"/>
+                                    <action selector="touchDownAction:" destination="GIe-9v-2Iz" eventType="touchDown" id="JkT-bt-0jg"/>
+                                    <action selector="touchDragOutsideAction:" destination="GIe-9v-2Iz" eventType="touchDragOutside" id="al0-Dv-cUP"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mK5-RQ-y4d">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mK5-RQ-y4d">
                                 <rect key="frame" x="499.5" y="59.5" width="72" height="46.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="28"/>
@@ -426,11 +448,13 @@
                                 <connections>
                                     <action selector="buttonPressed:" destination="GIe-9v-2Iz" eventType="touchUpInside" id="cAl-cV-DGw"/>
                                     <action selector="pressedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WPi-S4-wGA"/>
+                                    <action selector="touchDownAction:" destination="GIe-9v-2Iz" eventType="touchDown" id="62s-0c-cgO"/>
+                                    <action selector="touchDragOutsideAction:" destination="GIe-9v-2Iz" eventType="touchDragOutside" id="xe3-yb-Q4l"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="URm-5x-5Xw">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="URm-5x-5Xw">
                                 <rect key="frame" x="498.5" y="5" width="72" height="46.5"/>
-                                <color key="backgroundColor" red="0.99775391560000004" green="1" blue="0.87075169070000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.99492385786802029" green="0.9745689468356058" blue="0.88476943060917268" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="28"/>
                                 <color key="tintColor" red="0.90022449520000003" green="1" blue="0.94512211030000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="/">
@@ -444,11 +468,13 @@
                                 <connections>
                                     <action selector="buttonPressed:" destination="GIe-9v-2Iz" eventType="touchUpInside" id="MYt-0h-vf4"/>
                                     <action selector="pressedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ffw-6i-btP"/>
+                                    <action selector="touchDownAction:" destination="GIe-9v-2Iz" eventType="touchDown" id="2aj-BD-OeD"/>
+                                    <action selector="touchDragOutsideAction:" destination="GIe-9v-2Iz" eventType="touchDragOutside" id="rxk-cr-qQM"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TnN-cz-use">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TnN-cz-use">
                                 <rect key="frame" x="578.5" y="59.5" width="72.5" height="46.5"/>
-                                <color key="backgroundColor" red="0.99775391560000004" green="1" blue="0.87075169070000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.99492385786802029" green="0.9745689468356058" blue="0.88476943060917268" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="28"/>
                                 <state key="normal" title="-">
                                     <color key="titleColor" red="0.33841009760000001" green="0.32404225110000001" blue="0.019060882370000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -461,11 +487,13 @@
                                 <connections>
                                     <action selector="buttonPressed:" destination="GIe-9v-2Iz" eventType="touchUpInside" id="wUG-6A-7bs"/>
                                     <action selector="pressedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="exm-jy-YCL"/>
+                                    <action selector="touchDownAction:" destination="GIe-9v-2Iz" eventType="touchDown" id="Cza-FS-JOT"/>
+                                    <action selector="touchDragOutsideAction:" destination="GIe-9v-2Iz" eventType="touchDragOutside" id="hNd-br-An9"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="acm-WD-GkN">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="acm-WD-GkN">
                                 <rect key="frame" x="578.5" y="5" width="72.5" height="46.5"/>
-                                <color key="backgroundColor" red="0.99775391560000004" green="1" blue="0.87075169070000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.99492385786802029" green="0.9745689468356058" blue="0.88476943060917268" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="28"/>
                                 <state key="normal" title="*">
                                     <color key="titleColor" red="0.33841009760000001" green="0.32404225110000001" blue="0.019060882370000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -478,6 +506,8 @@
                                 <connections>
                                     <action selector="buttonPressed:" destination="GIe-9v-2Iz" eventType="touchUpInside" id="mZB-34-aWy"/>
                                     <action selector="pressedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YCx-lV-THN"/>
+                                    <action selector="touchDownAction:" destination="GIe-9v-2Iz" eventType="touchDown" id="njy-lw-lBK"/>
+                                    <action selector="touchDragOutsideAction:" destination="GIe-9v-2Iz" eventType="touchDragOutside" id="ya3-xh-leJ"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kLE-Oh-whf">
@@ -670,9 +700,9 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jv4-BZ-b6j">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jv4-BZ-b6j">
                                 <rect key="frame" x="258.5" y="5" width="72.5" height="46.5"/>
-                                <color key="backgroundColor" red="0.21144705829999999" green="0.2041855793" blue="0.013021952979999999" alpha="0.65081870720000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.21144705829999999" green="0.2041855793" blue="0.013021952979999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                 <state key="normal" title="sin">
                                     <color key="titleColor" red="0.99775391560000004" green="1" blue="0.87075169070000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -685,6 +715,8 @@
                                 <connections>
                                     <action selector="buttonPressed:" destination="GIe-9v-2Iz" eventType="touchUpInside" id="rV4-wr-EVM"/>
                                     <action selector="pressedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YBC-sn-ztD"/>
+                                    <action selector="touchDownAction:" destination="GIe-9v-2Iz" eventType="touchDown" id="ZsK-P0-5F0"/>
+                                    <action selector="touchDragOutsideAction:" destination="GIe-9v-2Iz" eventType="touchDragOutside" id="jH9-KJ-BnW"/>
                                 </connections>
                             </button>
                             <button opaque="NO" alpha="0.40000000596046448" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S4g-6v-erY">
@@ -874,9 +906,9 @@
                                     <action selector="pressedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8rw-3c-kLE"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="emH-dW-Zd8">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="emH-dW-Zd8">
                                 <rect key="frame" x="179" y="5" width="72.5" height="46.5"/>
-                                <color key="backgroundColor" red="0.21144705829999999" green="0.2041855793" blue="0.013021952979999999" alpha="0.65081870720000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.21144705829999999" green="0.2041855793" blue="0.013021952979999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                 <state key="normal" title=")">
                                     <color key="titleColor" red="0.99775391560000004" green="1" blue="0.87075169070000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -889,11 +921,13 @@
                                 <connections>
                                     <action selector="buttonPressed:" destination="GIe-9v-2Iz" eventType="touchUpInside" id="hfs-d5-yNr"/>
                                     <action selector="pressedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kwQ-QL-0XW"/>
+                                    <action selector="touchDownAction:" destination="GIe-9v-2Iz" eventType="touchDown" id="chZ-KH-EjD"/>
+                                    <action selector="touchDragOutsideAction:" destination="GIe-9v-2Iz" eventType="touchDragOutside" id="JOz-DW-YYS"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AOY-T4-dPJ">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AOY-T4-dPJ">
                                 <rect key="frame" x="99.5" y="5" width="72.5" height="46.5"/>
-                                <color key="backgroundColor" red="0.21144705829999999" green="0.2041855793" blue="0.013021952979999999" alpha="0.65081870720000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.21144705829999999" green="0.2041855793" blue="0.013021952979999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                 <state key="normal" title="(">
                                     <color key="titleColor" red="0.99775391560000004" green="1" blue="0.87075169070000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -906,11 +940,13 @@
                                 <connections>
                                     <action selector="buttonPressed:" destination="GIe-9v-2Iz" eventType="touchUpInside" id="BsL-8Z-LV7"/>
                                     <action selector="pressedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZZZ-kv-0Gc"/>
+                                    <action selector="touchDownAction:" destination="GIe-9v-2Iz" eventType="touchDown" id="FG4-C9-9Gr"/>
+                                    <action selector="touchDragOutsideAction:" destination="GIe-9v-2Iz" eventType="touchDragOutside" id="bbp-97-vae"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jwO-bv-qfQ">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jwO-bv-qfQ">
                                 <rect key="frame" x="259.5" y="59.5" width="72.5" height="46.5"/>
-                                <color key="backgroundColor" red="0.21144705829999999" green="0.2041855793" blue="0.013021952979999999" alpha="0.65081870720000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.21144705829999999" green="0.2041855793" blue="0.013021952979999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                 <state key="normal" title="cos">
                                     <color key="titleColor" red="0.99775391560000004" green="1" blue="0.87075169070000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -923,11 +959,13 @@
                                 <connections>
                                     <action selector="buttonPressed:" destination="GIe-9v-2Iz" eventType="touchUpInside" id="pFJ-Ly-Wru"/>
                                     <action selector="pressedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IQi-LJ-60W"/>
+                                    <action selector="touchDownAction:" destination="GIe-9v-2Iz" eventType="touchDown" id="Ged-6J-cxs"/>
+                                    <action selector="touchDragOutsideAction:" destination="GIe-9v-2Iz" eventType="touchDragOutside" id="BRG-mf-Ukg"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tle-F3-uvd">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tle-F3-uvd">
                                 <rect key="frame" x="258.5" y="114" width="72.5" height="46.5"/>
-                                <color key="backgroundColor" red="0.21144705829999999" green="0.2041855793" blue="0.013021952979999999" alpha="0.65081870720000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.21144705829999999" green="0.2041855793" blue="0.013021952979999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                 <state key="normal" title="tg">
                                     <color key="titleColor" red="0.99775391560000004" green="1" blue="0.87075169070000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -940,11 +978,13 @@
                                 <connections>
                                     <action selector="buttonPressed:" destination="GIe-9v-2Iz" eventType="touchUpInside" id="Lsm-RM-grJ"/>
                                     <action selector="pressedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MV4-Sy-Qqt"/>
+                                    <action selector="touchDownAction:" destination="GIe-9v-2Iz" eventType="touchDown" id="BVd-2o-QJ5"/>
+                                    <action selector="touchDragOutsideAction:" destination="GIe-9v-2Iz" eventType="touchDragOutside" id="rYY-8K-gSs"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pds-cX-FOf">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pds-cX-FOf">
                                 <rect key="frame" x="258.5" y="168.5" width="72.5" height="46.5"/>
-                                <color key="backgroundColor" red="0.21144705829999999" green="0.2041855793" blue="0.013021952979999999" alpha="0.65081870720000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.21144705829999999" green="0.2041855793" blue="0.013021952979999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                 <state key="normal" title="√">
                                     <color key="titleColor" red="0.99775391560000004" green="1" blue="0.87075169070000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -957,11 +997,13 @@
                                 <connections>
                                     <action selector="buttonPressed:" destination="GIe-9v-2Iz" eventType="touchUpInside" id="gw1-8T-Q85"/>
                                     <action selector="pressedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FEV-aG-z3M"/>
+                                    <action selector="touchDownAction:" destination="GIe-9v-2Iz" eventType="touchDown" id="tkd-YC-QAr"/>
+                                    <action selector="touchDragOutsideAction:" destination="GIe-9v-2Iz" eventType="touchDragOutside" id="liv-WQ-1UO"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m3A-MR-1ty">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m3A-MR-1ty">
                                 <rect key="frame" x="258.5" y="223" width="72.5" height="46.5"/>
-                                <color key="backgroundColor" red="0.21144705829999999" green="0.2041855793" blue="0.013021952979999999" alpha="0.65081870720000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.21144705829999999" green="0.2041855793" blue="0.013021952979999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                 <state key="normal" title="tgh">
                                     <color key="titleColor" red="0.99775391560000004" green="1" blue="0.87075169070000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -974,11 +1016,13 @@
                                 <connections>
                                     <action selector="buttonPressed:" destination="GIe-9v-2Iz" eventType="touchUpInside" id="vOA-M3-2Ak"/>
                                     <action selector="pressedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="SQG-3v-7kB"/>
+                                    <action selector="touchDownAction:" destination="GIe-9v-2Iz" eventType="touchDown" id="8Sv-cE-MQH"/>
+                                    <action selector="touchDragOutsideAction:" destination="GIe-9v-2Iz" eventType="touchDragOutside" id="Bu1-5f-idL"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FWc-q0-8WA">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FWc-q0-8WA">
                                 <rect key="frame" x="180" y="59.5" width="72.5" height="46.5"/>
-                                <color key="backgroundColor" red="0.21144705829999999" green="0.2041855793" blue="0.013021952979999999" alpha="0.65081870720000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.21144705829999999" green="0.2041855793" blue="0.013021952979999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                 <state key="normal" title="ln">
                                     <color key="titleColor" red="0.99775391560000004" green="1" blue="0.87075169070000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -991,11 +1035,13 @@
                                 <connections>
                                     <action selector="buttonPressed:" destination="GIe-9v-2Iz" eventType="touchUpInside" id="BWP-rC-SUQ"/>
                                     <action selector="pressedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LO1-Ny-c8y"/>
+                                    <action selector="touchDownAction:" destination="GIe-9v-2Iz" eventType="touchDown" id="WEc-bm-5p6"/>
+                                    <action selector="touchDragOutsideAction:" destination="GIe-9v-2Iz" eventType="touchDragOutside" id="EOC-J8-9xT"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eHh-f0-l5m">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eHh-f0-l5m">
                                 <rect key="frame" x="100.5" y="59.5" width="72.5" height="46.5"/>
-                                <color key="backgroundColor" red="0.21144705829999999" green="0.2041855793" blue="0.013021952979999999" alpha="0.65081870720000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.21144705829999999" green="0.2041855793" blue="0.013021952979999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                 <state key="normal" title="%">
                                     <color key="titleColor" red="0.99775391560000004" green="1" blue="0.87075169070000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1008,11 +1054,13 @@
                                 <connections>
                                     <action selector="buttonPressed:" destination="GIe-9v-2Iz" eventType="touchUpInside" id="CIo-b0-t30"/>
                                     <action selector="pressedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cZt-th-Eeg"/>
+                                    <action selector="touchDownAction:" destination="GIe-9v-2Iz" eventType="touchDown" id="0AO-x7-X5J"/>
+                                    <action selector="touchDragOutsideAction:" destination="GIe-9v-2Iz" eventType="touchDragOutside" id="Znd-FD-avK"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L8I-lS-zY5">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L8I-lS-zY5">
                                 <rect key="frame" x="99.5" y="114" width="72.5" height="46.5"/>
-                                <color key="backgroundColor" red="0.21144705829999999" green="0.2041855793" blue="0.013021952979999999" alpha="0.65081870720000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.21144705829999999" green="0.2041855793" blue="0.013021952979999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                 <state key="normal" title="x²">
                                     <color key="titleColor" red="0.99775391560000004" green="1" blue="0.87075169070000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1025,11 +1073,13 @@
                                 <connections>
                                     <action selector="buttonPressed:" destination="GIe-9v-2Iz" eventType="touchUpInside" id="1By-xQ-X5h"/>
                                     <action selector="pressedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XIf-m1-ZLc"/>
+                                    <action selector="touchDownAction:" destination="GIe-9v-2Iz" eventType="touchDown" id="SGx-51-4IP"/>
+                                    <action selector="touchDragOutsideAction:" destination="GIe-9v-2Iz" eventType="touchDragOutside" id="M6p-kh-i4A"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F93-4K-Fmb">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F93-4K-Fmb">
                                 <rect key="frame" x="179" y="114" width="72.5" height="46.5"/>
-                                <color key="backgroundColor" red="0.21144705829999999" green="0.2041855793" blue="0.013021952979999999" alpha="0.65081870720000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.21144705829999999" green="0.2041855793" blue="0.013021952979999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                 <state key="normal" title="x³">
                                     <color key="titleColor" red="0.99775391560000004" green="1" blue="0.87075169070000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1042,11 +1092,13 @@
                                 <connections>
                                     <action selector="buttonPressed:" destination="GIe-9v-2Iz" eventType="touchUpInside" id="k28-XR-8B1"/>
                                     <action selector="pressedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="iao-Ui-P21"/>
+                                    <action selector="touchDownAction:" destination="GIe-9v-2Iz" eventType="touchDown" id="MlN-0d-054"/>
+                                    <action selector="touchDragOutsideAction:" destination="GIe-9v-2Iz" eventType="touchDragOutside" id="5gK-XS-2bt"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jsg-rD-Wcp">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jsg-rD-Wcp">
                                 <rect key="frame" x="179" y="168.5" width="72.5" height="46.5"/>
-                                <color key="backgroundColor" red="0.21144705829999999" green="0.2041855793" blue="0.013021952979999999" alpha="0.65081870720000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.21144705829999999" green="0.2041855793" blue="0.013021952979999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                 <state key="normal" title="π">
                                     <color key="titleColor" red="0.99775391560000004" green="1" blue="0.87075169070000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1059,6 +1111,8 @@
                                 <connections>
                                     <action selector="buttonPressed:" destination="GIe-9v-2Iz" eventType="touchUpInside" id="72U-D8-HfP"/>
                                     <action selector="pressedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bnm-pW-kc4"/>
+                                    <action selector="touchDownAction:" destination="GIe-9v-2Iz" eventType="touchDown" id="61O-Ch-Zwb"/>
+                                    <action selector="touchDragOutsideAction:" destination="GIe-9v-2Iz" eventType="touchDragOutside" id="Dwl-et-BHW"/>
                                 </connections>
                             </button>
                             <button opaque="NO" alpha="0.40000000596046448" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tsl-v4-X5v">
@@ -1256,9 +1310,9 @@
                                     <action selector="pressedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="C4i-ic-iyn"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="97k-2e-mr1">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="97k-2e-mr1">
                                 <rect key="frame" x="99.5" y="168.5" width="72.5" height="46.5"/>
-                                <color key="backgroundColor" red="0.21144705829999999" green="0.2041855793" blue="0.013021952979999999" alpha="0.65081870720000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.21144705829999999" green="0.2041855793" blue="0.013021952979999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                 <state key="normal" title="e">
                                     <color key="titleColor" red="0.99775391560000004" green="1" blue="0.87075169070000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1271,11 +1325,13 @@
                                 <connections>
                                     <action selector="buttonPressed:" destination="GIe-9v-2Iz" eventType="touchUpInside" id="Kr9-PW-9VR"/>
                                     <action selector="pressedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eRH-A1-rFq"/>
+                                    <action selector="touchDownAction:" destination="GIe-9v-2Iz" eventType="touchDown" id="k16-LX-5vZ"/>
+                                    <action selector="touchDragOutsideAction:" destination="GIe-9v-2Iz" eventType="touchDragOutside" id="SRH-Gj-Rbs"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jhw-aN-HnG">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jhw-aN-HnG">
                                 <rect key="frame" x="179" y="223" width="72.5" height="46.5"/>
-                                <color key="backgroundColor" red="0.21144705829999999" green="0.2041855793" blue="0.013021952979999999" alpha="0.65081870720000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.21144705829999999" green="0.2041855793" blue="0.013021952979999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                 <state key="normal" title="cosh">
                                     <color key="titleColor" red="0.99775391560000004" green="1" blue="0.87075169070000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1288,11 +1344,13 @@
                                 <connections>
                                     <action selector="buttonPressed:" destination="GIe-9v-2Iz" eventType="touchUpInside" id="psf-VX-2HJ"/>
                                     <action selector="pressedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tK2-tR-Ml6"/>
+                                    <action selector="touchDownAction:" destination="GIe-9v-2Iz" eventType="touchDown" id="kjI-UU-A2c"/>
+                                    <action selector="touchDragOutsideAction:" destination="GIe-9v-2Iz" eventType="touchDragOutside" id="XYt-gw-xMA"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Zb-SV-Hz5">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Zb-SV-Hz5">
                                 <rect key="frame" x="99.5" y="223" width="72.5" height="46.5"/>
-                                <color key="backgroundColor" red="0.21144705829999999" green="0.2041855793" blue="0.013021952979999999" alpha="0.65081870720000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.21144705829999999" green="0.2041855793" blue="0.013021952979999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                 <state key="normal" title="sinh">
                                     <color key="titleColor" red="0.99775391560000004" green="1" blue="0.87075169070000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1305,6 +1363,8 @@
                                 <connections>
                                     <action selector="buttonPressed:" destination="GIe-9v-2Iz" eventType="touchUpInside" id="nhr-iu-8G5"/>
                                     <action selector="pressedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="kCB-r1-MZY"/>
+                                    <action selector="touchDownAction:" destination="GIe-9v-2Iz" eventType="touchDown" id="zoe-5I-JLh"/>
+                                    <action selector="touchDragOutsideAction:" destination="GIe-9v-2Iz" eventType="touchDragOutside" id="EpV-HQ-x8H"/>
                                 </connections>
                             </button>
                             <button opaque="NO" alpha="0.40000000596046448" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AJT-Uu-3xA">
@@ -1341,7 +1401,7 @@
                                     <action selector="pressedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0JO-s1-QeV"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4FE-S3-efK">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4FE-S3-efK">
                                 <rect key="frame" x="498.5" y="223.5" width="72" height="46.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="28"/>
@@ -1356,9 +1416,11 @@
                                 <connections>
                                     <action selector="buttonPressed:" destination="GIe-9v-2Iz" eventType="touchUpInside" id="iLC-iU-Omg"/>
                                     <action selector="pressedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eja-rU-Gua"/>
+                                    <action selector="touchDownAction:" destination="GIe-9v-2Iz" eventType="touchDown" id="9FB-rY-hyi"/>
+                                    <action selector="touchDragOutsideAction:" destination="GIe-9v-2Iz" eventType="touchDragOutside" id="tU3-LP-pP0"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PSe-dk-pun">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PSe-dk-pun">
                                 <rect key="frame" x="338" y="114" width="72.5" height="47"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="28"/>
@@ -1373,11 +1435,13 @@
                                 <connections>
                                     <action selector="buttonPressed:" destination="GIe-9v-2Iz" eventType="touchUpInside" id="dKf-oY-DSw"/>
                                     <action selector="pressedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aNl-hs-brr"/>
+                                    <action selector="touchDownAction:" destination="GIe-9v-2Iz" eventType="touchDown" id="SsE-o3-QZ8"/>
+                                    <action selector="touchDragOutsideAction:" destination="GIe-9v-2Iz" eventType="touchDragOutside" id="hmm-J0-6ud"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ReO-VU-FEa">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ReO-VU-FEa">
                                 <rect key="frame" x="20" y="169" width="72.5" height="101"/>
-                                <color key="backgroundColor" red="0.21144705829999999" green="0.2041855793" blue="0.013021952979999999" alpha="0.65081870720000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.21144705829999999" green="0.2041855793" blue="0.013021952979999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                 <state key="normal" title="x">
                                     <color key="titleColor" red="0.99775391560000004" green="1" blue="0.87075169070000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1390,11 +1454,13 @@
                                 <connections>
                                     <action selector="buttonPressed:" destination="GIe-9v-2Iz" eventType="touchUpInside" id="cqS-k8-9jn"/>
                                     <action selector="pressedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Deq-ZU-20Q"/>
+                                    <action selector="touchDownAction:" destination="GIe-9v-2Iz" eventType="touchDown" id="z5L-f9-rmE"/>
+                                    <action selector="touchDragOutsideAction:" destination="GIe-9v-2Iz" eventType="touchDragOutside" id="iGj-on-pnT"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c12-tA-k2U">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c12-tA-k2U">
                                 <rect key="frame" x="20" y="5" width="72.5" height="156"/>
-                                <color key="backgroundColor" red="0.2114470582598984" green="0.20418557930733716" blue="0.013021952983847283" alpha="0.65081870719178081" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.21144705829999999" green="0.2041855793" blue="0.013021952979999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                 <state key="normal" title="plot">
                                     <color key="titleColor" red="0.99775391560000004" green="1" blue="0.87075169070000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1407,9 +1473,11 @@
                                 <connections>
                                     <action selector="buttonPressed:" destination="GIe-9v-2Iz" eventType="touchUpInside" id="yoG-dl-yF6"/>
                                     <action selector="pressedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="T3T-uY-CtA"/>
+                                    <action selector="touchDownAction:" destination="GIe-9v-2Iz" eventType="touchDown" id="uvI-kL-bKG"/>
+                                    <action selector="touchDragOutsideAction:" destination="GIe-9v-2Iz" eventType="touchDragOutside" id="6Uk-Yn-0q2"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5vQ-ng-bHU">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5vQ-ng-bHU">
                                 <rect key="frame" x="339" y="59.5" width="72.5" height="46.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="28"/>
@@ -1424,11 +1492,13 @@
                                 <connections>
                                     <action selector="buttonPressed:" destination="GIe-9v-2Iz" eventType="touchUpInside" id="hm2-rN-lkl"/>
                                     <action selector="pressedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4yD-gj-jHj"/>
+                                    <action selector="touchDownAction:" destination="GIe-9v-2Iz" eventType="touchDown" id="Iga-xC-yeE"/>
+                                    <action selector="touchDragOutsideAction:" destination="GIe-9v-2Iz" eventType="touchDragOutside" id="e6u-bC-LQn"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EgU-55-uwn">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EgU-55-uwn">
                                 <rect key="frame" x="338" y="5" width="72.5" height="46.5"/>
-                                <color key="backgroundColor" red="0.99775391561901228" green="1" blue="0.87075169074893488" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.99492385786802029" green="0.9745689468356058" blue="0.88476943060917268" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="28"/>
                                 <state key="normal" title="ac">
                                     <color key="titleColor" red="0.33841009760000001" green="0.32404225110000001" blue="0.019060882370000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1448,6 +1518,8 @@
                                 <connections>
                                     <action selector="buttonPressed:" destination="GIe-9v-2Iz" eventType="touchUpInside" id="Ed5-0X-JNm"/>
                                     <action selector="pressedButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tBn-7c-oeW"/>
+                                    <action selector="touchDownAction:" destination="GIe-9v-2Iz" eventType="touchDown" id="oYc-Qe-0wH"/>
+                                    <action selector="touchDragOutsideAction:" destination="GIe-9v-2Iz" eventType="touchDragOutside" id="61s-vM-qJC"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -2267,7 +2339,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="y=" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IA0-0p-1Qk">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="y=" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IA0-0p-1Qk">
                                             <rect key="frame" x="394" y="110" width="246" height="35"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="368" id="I7m-8F-rxm"/>

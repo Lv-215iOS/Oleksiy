@@ -56,7 +56,7 @@ class PlotView: UIView {
                 print("y - ", (-y+10)*60)
                 p2 = CGPoint(x:x, y:Int(lround(ceil((-y+10)*60))))
                 if (-y+10)*60 <= 1400 && (-y+10)*60 >= -400 {
-                    if abs(p2.y - p1.y) >= 1000 {
+                    if abs(p2.y - p1.y) >= 300 {
                         path.move(to: p2)
                     } else {
                         path.addLine(to: p2)

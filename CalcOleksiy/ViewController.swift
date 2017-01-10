@@ -62,7 +62,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func pressedButton(operation : String, sender : UIButton) {
+    private func pressedButton(operation : String, sender : UIButton) {
         inputController?.cleanButton.setTitle("c", for: .normal)
         switch operation {
             // binary operations

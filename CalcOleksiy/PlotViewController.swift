@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AudioToolbox
 
 class PlotViewController: UIViewController, UIScrollViewDelegate {
     
@@ -17,6 +18,7 @@ class PlotViewController: UIViewController, UIScrollViewDelegate {
     
     @IBAction func backButtonPressed(_ sender: Any) {
         _ = navigationController?.popViewController(animated: true)
+        AudioServicesPlaySystemSound(1104)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
