@@ -13,49 +13,45 @@ class PlotView: UIView {
     let inputFunc = ""
     
     override func draw(_ rect: CGRect) {
-        //draw grid
+        //Draw grid
         let context = UIGraphicsGetCurrentContext()
-        context!.setLineWidth(1.7)
+        context!.setLineWidth(kGridLineWidth)
         context?.setStrokeColor(UIColor.darkGray.cgColor)
-        let howMany = (1200 - 120) / 120
-        for i in 0 ..< howMany {
-            context?.move(to: CGPoint(x:120+i*120, y: 0))
-            context?.addLine(to: CGPoint(x:120+i*120, y: 1200))
+        let howManyVertical = (1200 - kGridStep) / kGridStep
+        for i in 0 ..< howManyVertical {
+            context?.move(to: CGPoint(x:kGridStep+i*kGridStep, y: 0))
+            context?.addLine(to: CGPoint(x:kGridStep+i*kGridStep, y: 1200))
         }
-        let howManyHorizontal = 1200 / 120;
+        let howManyHorizontal = 1200 / kGridStep;
         for i in 0 ..< howManyHorizontal {
-            context?.move(to: CGPoint(x: 0 ,y: 1200 - i*120))
-            context?.addLine(to: CGPoint(x:1200, y:1200 - i*120))
+            context?.move(to: CGPoint(x: 0 ,y: 1200 - i*kGridStep))
+            context?.addLine(to: CGPoint(x:1200, y:1200 - i*kGridStep))
         }
         context?.strokePath()
-        context!.setLineWidth(3.9)
+        //Draw coordinate system
+        context!.setLineWidth(kCoordinateLineWidth)
         context?.setStrokeColor(UIColor.black.cgColor)
-        
         context?.move(to: CGPoint(x: 0 ,y:600))
         context?.addLine(to: CGPoint(x:1200, y:600))
-        
         context?.move(to: CGPoint(x:600, y: 0))
         context?.addLine(to: CGPoint(x:600, y: 1200))
-
         context?.strokePath()
         
         let queue = DispatchQueue.global(qos: .default)
         queue.async {
-            context?.setStrokeColor(UIColor.white.cgColor)
             let path = UIBezierPath()
-            path.lineWidth = 5.9
             var x = 0
+            var y = CalcModel.sharedModel.plotFunctionIn(kGraphInterpolateFrom)
+            var p1 = CGPoint(x:x, y:Int(lround(ceil((-y-kGraphInterpolateFrom)*60))))
             var p2 : CGPoint
-            var y = CalcModel.sharedModel.plotFunctionIn(-10)
-            var p1 = CGPoint(x:x, y:Int(lround(ceil((-y+10)*60))))
             path.move(to: p1)
-            for i in 1 ..< 421 {
-                x = i*1200/420
-                y = CalcModel.sharedModel.plotFunctionIn(Double(i)*20/420-10)
+            for i in 1 ..< kFunctionStep + 1 {
+                x = i*1200/kFunctionStep
+                y = CalcModel.sharedModel.plotFunctionIn(Double(i)*kGraphLength/Double(kFunctionStep) + kGraphInterpolateFrom)
                 print("x - ", x)
-                print("y - ", (-y+10)*60)
-                p2 = CGPoint(x:x, y:Int(lround(ceil((-y+10)*60))))
-                if (-y+10)*60 <= 1400 && (-y+10)*60 >= -400 {
+                print("y - ", (-y-kGraphInterpolateFrom)*60)
+                p2 = CGPoint(x:x, y:Int(lround(ceil((-y-kGraphInterpolateFrom)*60))))
+                if (-y-kGraphInterpolateFrom)*60 <= 1400 && Int((-y-kGraphInterpolateFrom)*60) >= -kFunctionStep {
                     if abs(p2.y - p1.y) >= 300 {
                         path.move(to: p2)
                     } else {
@@ -71,7 +67,7 @@ class PlotView: UIView {
             pathLayer.strokeColor = UIColor.white.cgColor
             pathLayer.position = CGPoint(x:600, y:600)
             pathLayer.fillColor = nil
-            pathLayer.lineWidth = 6.0
+            pathLayer.lineWidth = kGraphLineWidth
             pathLayer.lineJoin = kCALineJoinBevel
             
             let pathAnimation: CABasicAnimation = CABasicAnimation(keyPath: "strokeEnd")

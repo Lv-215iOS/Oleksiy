@@ -16,6 +16,9 @@
 		25ABB7981DF811ED00DE9D0D /* CalcOleksiyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25ABB7971DF811ED00DE9D0D /* CalcOleksiyUITests.swift */; };
 		480578951DFF325F000AE1CF /* InputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480578941DFF325F000AE1CF /* InputViewController.swift */; };
 		48091EFE1E1BC61F0098CDD2 /* Winter-Screensavers-And-iPhone-6-Wallpapers-1080x1920.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 48091EFD1E1BC61F0098CDD2 /* Winter-Screensavers-And-iPhone-6-Wallpapers-1080x1920.jpg */; };
+		481E2ECE1E25885700CA1086 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 481E2ECD1E25885700CA1086 /* Constants.swift */; };
+		481E2ED21E2590CB00CA1086 /* Icon-App-60x60%402x.png in Resources */ = {isa = PBXBuildFile; fileRef = 481E2ED11E2590CB00CA1086 /* Icon-App-60x60%402x.png */; };
+		481E2ED41E25912800CA1086 /* Icon-App-60x60%403x.png in Resources */ = {isa = PBXBuildFile; fileRef = 481E2ED31E25912800CA1086 /* Icon-App-60x60%403x.png */; };
 		484FE1F11E1681D900947273 /* PlotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 484FE1F01E1681D900947273 /* PlotViewController.swift */; };
 		488A0CFC1DFCAD0E00916FCC /* OutputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488A0CFB1DFCAD0E00916FCC /* OutputViewController.swift */; };
 		48D3B7AF1E17BB05002E6FE0 /* PlotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48D3B7AE1E17BB05002E6FE0 /* PlotView.swift */; };
@@ -56,6 +59,9 @@
 		25ABB7991DF811ED00DE9D0D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		480578941DFF325F000AE1CF /* InputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputViewController.swift; sourceTree = "<group>"; };
 		48091EFD1E1BC61F0098CDD2 /* Winter-Screensavers-And-iPhone-6-Wallpapers-1080x1920.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "Winter-Screensavers-And-iPhone-6-Wallpapers-1080x1920.jpg"; path = "../Winter-Screensavers-And-iPhone-6-Wallpapers-1080x1920.jpg"; sourceTree = "<group>"; };
+		481E2ECD1E25885700CA1086 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = ../Constants.swift; sourceTree = "<group>"; };
+		481E2ED11E2590CB00CA1086 /* Icon-App-60x60%402x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-App-60x60%402x.png"; sourceTree = "<group>"; };
+		481E2ED31E25912800CA1086 /* Icon-App-60x60%403x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-App-60x60%403x.png"; sourceTree = "<group>"; };
 		484FE1F01E1681D900947273 /* PlotViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlotViewController.swift; sourceTree = "<group>"; };
 		488A0CFB1DFCAD0E00916FCC /* OutputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutputViewController.swift; sourceTree = "<group>"; };
 		48D3B7AE1E17BB05002E6FE0 /* PlotView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlotView.swift; sourceTree = "<group>"; };
@@ -111,19 +117,12 @@
 		25ABB7761DF811EC00DE9D0D /* CalcOleksiy */ = {
 			isa = PBXGroup;
 			children = (
-				48091EFD1E1BC61F0098CDD2 /* Winter-Screensavers-And-iPhone-6-Wallpapers-1080x1920.jpg */,
-				25ABB7771DF811EC00DE9D0D /* AppDelegate.swift */,
-				25ABB7791DF811EC00DE9D0D /* ViewController.swift */,
-				48E3B8E01E130FFF00234CF9 /* GlobalProtocols.swift */,
-				484FE1F01E1681D900947273 /* PlotViewController.swift */,
-				48D3B7AE1E17BB05002E6FE0 /* PlotView.swift */,
-				48DDFE8C1DF8940100571C2D /* CalcModel.swift */,
-				25ABB77B1DF811EC00DE9D0D /* Main.storyboard */,
-				488A0CFB1DFCAD0E00916FCC /* OutputViewController.swift */,
-				480578941DFF325F000AE1CF /* InputViewController.swift */,
-				25ABB77E1DF811EC00DE9D0D /* Assets.xcassets */,
-				25ABB7801DF811ED00DE9D0D /* LaunchScreen.storyboard */,
-				25ABB7831DF811ED00DE9D0D /* Info.plist */,
+				481E2ECC1E25801F00CA1086 /* Utilities */,
+				481E2ECB1E25800B00CA1086 /* Graphics */,
+				481E2EC91E257FA100CA1086 /* Views */,
+				481E2EC81E257F7400CA1086 /* Controllers */,
+				481E2EC71E257F4300CA1086 /* Model */,
+				481E2ECA1E257FCC00CA1086 /* Supporting Files */,
 			);
 			path = CalcOleksiy;
 			sourceTree = "<group>";
@@ -144,6 +143,64 @@
 				25ABB7991DF811ED00DE9D0D /* Info.plist */,
 			);
 			path = CalcOleksiyUITests;
+			sourceTree = "<group>";
+		};
+		481E2EC71E257F4300CA1086 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				48DDFE8C1DF8940100571C2D /* CalcModel.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		481E2EC81E257F7400CA1086 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				484FE1F01E1681D900947273 /* PlotViewController.swift */,
+				25ABB7791DF811EC00DE9D0D /* ViewController.swift */,
+				488A0CFB1DFCAD0E00916FCC /* OutputViewController.swift */,
+				480578941DFF325F000AE1CF /* InputViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		481E2EC91E257FA100CA1086 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				48D3B7AE1E17BB05002E6FE0 /* PlotView.swift */,
+				25ABB77B1DF811EC00DE9D0D /* Main.storyboard */,
+				25ABB7801DF811ED00DE9D0D /* LaunchScreen.storyboard */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		481E2ECA1E257FCC00CA1086 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				25ABB7831DF811ED00DE9D0D /* Info.plist */,
+				25ABB7771DF811EC00DE9D0D /* AppDelegate.swift */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		481E2ECB1E25800B00CA1086 /* Graphics */ = {
+			isa = PBXGroup;
+			children = (
+				481E2ED11E2590CB00CA1086 /* Icon-App-60x60%402x.png */,
+				481E2ED31E25912800CA1086 /* Icon-App-60x60%403x.png */,
+				48091EFD1E1BC61F0098CDD2 /* Winter-Screensavers-And-iPhone-6-Wallpapers-1080x1920.jpg */,
+				25ABB77E1DF811EC00DE9D0D /* Assets.xcassets */,
+			);
+			name = Graphics;
+			sourceTree = "<group>";
+		};
+		481E2ECC1E25801F00CA1086 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				481E2ECD1E25885700CA1086 /* Constants.swift */,
+				48E3B8E01E130FFF00234CF9 /* GlobalProtocols.swift */,
+			);
+			name = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -256,6 +313,8 @@
 			files = (
 				48091EFE1E1BC61F0098CDD2 /* Winter-Screensavers-And-iPhone-6-Wallpapers-1080x1920.jpg in Resources */,
 				25ABB7821DF811ED00DE9D0D /* LaunchScreen.storyboard in Resources */,
+				481E2ED41E25912800CA1086 /* Icon-App-60x60%403x.png in Resources */,
+				481E2ED21E2590CB00CA1086 /* Icon-App-60x60%402x.png in Resources */,
 				25ABB77F1DF811EC00DE9D0D /* Assets.xcassets in Resources */,
 				25ABB77D1DF811EC00DE9D0D /* Main.storyboard in Resources */,
 			);
@@ -290,6 +349,7 @@
 				484FE1F11E1681D900947273 /* PlotViewController.swift in Sources */,
 				48E3B8E11E130FFF00234CF9 /* GlobalProtocols.swift in Sources */,
 				25ABB7781DF811EC00DE9D0D /* AppDelegate.swift in Sources */,
+				481E2ECE1E25885700CA1086 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -448,6 +508,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = SoftServe.CalcOleksiy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -462,6 +523,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = SoftServe.CalcOleksiy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

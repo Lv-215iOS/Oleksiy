@@ -48,10 +48,7 @@ class OutputViewController: UIViewController, OutputInterface, AdvancedOutputInt
     }
     
     func  mainLabel() -> String {
-        if mainField.text != nil {
-            return mainField.text!
-        }
-        return ""
+        return mainField.text ?? ""
     }
     
 }

@@ -23,7 +23,7 @@ class CalcModel: NSObject, CalcBrainInterface {
     
     //MARK:- CalcBrainInterface
     func digit(value: Double){
-        if inputData == "NaN" || inputData == "+∞" {
+        if inputData == "NaN" || inputData == "+∞" || inputData.characters.contains("e") {
             result?(nil,nil)
         } else {
             if String(inputData.characters.last ?? " ") == "0" {
@@ -52,7 +52,7 @@ class CalcModel: NSObject, CalcBrainInterface {
     
     func binary(operation: BinaryOperation) {
         dotToken = true
-        if inputData == "NaN" || inputData == "+∞" {
+        if inputData == "NaN" || inputData == "+∞" || inputData.characters.contains("e") {
             result?(nil,nil)
         } else if operation == .Minus {
             if String(inputData.characters.last ?? " ") == "+" {
@@ -109,7 +109,7 @@ class CalcModel: NSObject, CalcBrainInterface {
     
     func unary(operation: UnaryOperation){
         dotToken = true
-        if inputData == "NaN" || inputData == "+∞" {
+        if inputData == "NaN" || inputData == "+∞" || inputData.characters.contains("e") {
             result?(nil,nil)
         } else if String(inputData.characters.last ?? " ") == "." ||
            String(inputData.characters.last ?? " ") == "x" ||
@@ -221,7 +221,7 @@ class CalcModel: NSObject, CalcBrainInterface {
                 }
                 inputDataArray = [String]()
                 outputData = [String]()
-                if String(inputData.characters.last ?? " ") == " " {
+                if String(inputData.characters.last ?? " ") == " " || inputData.characters.contains("e") {
                     inputData = "0"
                 }
                 result?(inputData, nil)
@@ -229,7 +229,7 @@ class CalcModel: NSObject, CalcBrainInterface {
                 inputData = "0"
                 result?(inputData, nil)
             }
-        } else if inputData == "NaN" || inputData == "+∞" {
+        } else if inputData == "NaN" || inputData == "+∞" || inputData.characters.contains("e") {
             result?(nil,nil)
         } else if operation == .Dot {
             if dotToken {
@@ -272,12 +272,19 @@ class CalcModel: NSObject, CalcBrainInterface {
     var result: ((String?, Error?)->())?
 
     //MARK:- CalcModel
-    /// return true if inputdata is validate data for drawing plot, otherwise return false
+    /// returns true if inputdata is validate data for drawing plot, otherwise return false
+    func saveInputData() {
+         UserDefaults.standard.setValue(inputData, forKey: "last_result")
+    }
+    
     func functionTest() -> Bool {
         if (Int(String(inputData.characters.last ?? " ")) != nil ||
             String(inputData.characters.last ?? " ") == "x" ||
             String(inputData.characters.last ?? " ") == ")" ) && openBracesCount == closedBracesCount {
             if Double(inputData)?.truncatingRemainder(dividingBy: 1) == 0 {
+                if inputData.characters.contains("e") {
+                    return false
+                }
                 dotToken = true
             }
             return true
@@ -288,7 +295,7 @@ class CalcModel: NSObject, CalcBrainInterface {
     
     func XInput() {
         dotToken = false
-        if inputData == "NaN" || inputData == "+∞" {
+        if inputData == "NaN" || inputData == "+∞" || inputData.characters.contains("e") {
             result?(nil,nil)
         } else if (Int(String(inputData.characters.last ?? " ")) != nil  && inputData != "0" ) ||  String(inputData.characters.last ?? " ") == ")" || String(inputData.characters.last ?? " ") == "x" || String(inputData.characters.last ?? " ") == "." {
             result?(nil,nil)
@@ -302,7 +309,7 @@ class CalcModel: NSObject, CalcBrainInterface {
         }
     }
     
-    /// return function in current x
+    /// returns function in current x
     func plotFunctionIn(_ x:Double) -> Double {
         let regex = try! NSRegularExpression(pattern: "x", options: .useUnixLineSeparators)
         let modInput = regex.stringByReplacingMatches(in: inputData, options: [], range: NSMakeRange(0, inputData.utf16.count), withTemplate: String(format:"%.10f", x))
@@ -339,7 +346,9 @@ class CalcModel: NSObject, CalcBrainInterface {
                         inputDataArray.removeLast()
                     }
                 } else if inputDataArray.count > 0 && inputDataArray[inputDataArray.count  - 1] == "-" {
-                    inputDataArray[inputDataArray.count  - 1] = "+/-"
+                    if inputDataArray.count == 1 || inputDataArray[inputDataArray.count  - 1] == "(" {
+                        inputDataArray[inputDataArray.count  - 1] = "+/-"
+                    }
                     inputDataArray.append(String(charachter))
                 } else {
                     inputDataArray.append(String(charachter))
@@ -349,7 +358,7 @@ class CalcModel: NSObject, CalcBrainInterface {
                     inputDataArray.append(String(charachter))
                 } else if isValue(inputDataArray[inputDataArray.count - 1]) {
                     inputDataArray[inputDataArray.count - 1] += String(charachter)
-                } else if (inputDataArray.count == 1 && inputDataArray[inputDataArray.count - 1] == "-"){
+                } else if (inputDataArray.count == 1 && inputDataArray[inputDataArray.count - 1] == "-") {
                     if ["s","c","t","l"].contains(charachter) {
                         inputDataArray[inputDataArray.count - 1] = "+/-"
                         inputDataArray.append(String(charachter))
@@ -446,7 +455,7 @@ class CalcModel: NSObject, CalcBrainInterface {
         
     }
     
-    ///return priority of operator
+    ///returns priority of operator
     private func priorityFor(char:String) -> Int{
         if char == "+" || char == "-" {
             return 1
@@ -460,49 +469,33 @@ class CalcModel: NSObject, CalcBrainInterface {
     
     ///return true if first operator precedence is higher or equal than precedence of second operator
     private func precedenceBetweenOperators(first:String, second:String) -> Bool {
-        if priorityFor(char: first) >= priorityFor(char: second) {
-            return true
-        }
-        return false
+        return priorityFor(char: first) >= priorityFor(char: second)
     }
     
     ///return true if string is value
     private func isValue(_ str: String) -> Bool{
-        if !isOperation(str) && !isMathSymbol(str) {
-             return true
-        }
-        return false
+        return !isOperation(str) && !isMathSymbol(str)
     }
     
     ///return true if string is math symbol
     private func isMathSymbol(_ str: String) -> Bool{
-        
-        if isOperation(str) || str == "(" || str == ")" {
-            return true
-        }
-        return false
+        return isOperation(str) || str == "(" || str == ")"
     }
     
     ///return true if string is trigonometry operation
     private func isTrigonomenry(_ str: String) -> Bool{
-        if str=="sin" || str=="cos" || str=="tg" || str=="ln" || str=="√" || str=="sinh" || str=="cosh" || str=="tgh" || str=="+/-" {
-            return true
-        }
-        return false
+        return str=="sin" || str=="cos" || str=="tg" || str=="ln" || str=="√" || str=="sinh" || str=="cosh" || str=="tgh" || str=="+/-"
     }
     
     ///return true if string is operation
     private func isOperation(_ str: String) -> Bool{
-        if str=="+" || str=="/" || str=="*" || str=="-" || str == " ̂" || str=="%" || str == "sin" || str == "cos" || str == "tg" || str=="ln" || str=="√" || str=="sinh" || str=="cosh" || str=="tgh" || str=="+/-" {
-            return true
-        }
-        return false
+        return str=="+" || str=="/" || str=="*" || str=="-" || str == " ̂" || str=="%" || str == "sin" || str == "cos" || str == "tg" || str=="ln" || str=="√" || str=="sinh" || str=="cosh" || str=="tgh" || str=="+/-" 
     }
     
     /// calculate ReversePolishNotation and return result of expression
     private func CalculateRPN() -> Double {
-        self.seperateInputData()
-        self.calculateData()
+        seperateInputData()
+        calculateData()
         var stack =  [Double]()
         for value in outputData {
             switch value {

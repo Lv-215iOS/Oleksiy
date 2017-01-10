@@ -2612,7 +2612,7 @@
                         </variation>
                     </view>
                     <connections>
-                        <outlet property="my" destination="IA0-0p-1Qk" id="kvS-v7-hgk"/>
+                        <outlet property="functionLabel" destination="IA0-0p-1Qk" id="CXI-4T-I8q"/>
                         <outlet property="plotScrollView" destination="pbQ-RL-URm" id="g0k-PW-9pT"/>
                         <outlet property="plotView" destination="x8E-U7-Zxg" id="PB6-ST-7Jg"/>
                     </connections>

@@ -10,8 +10,7 @@ import UIKit
 import AudioToolbox
 
 class PlotViewController: UIViewController, UIScrollViewDelegate {
-    
-    @IBOutlet weak var my: UILabel!
+    @IBOutlet weak var functionLabel: UILabel!
     @IBOutlet weak var plotScrollView: UIScrollView!
     @IBOutlet weak var plotView: PlotView!
     var mainViewController : ViewController? = nil
@@ -31,7 +30,7 @@ class PlotViewController: UIViewController, UIScrollViewDelegate {
         plotScrollView.layer.borderWidth = 1.5
         plotScrollView.layer.borderColor = UIColor.lightGray.cgColor
         plotScrollView.layer.cornerRadius = 15
-        my.text = "y = " + (mainViewController?.outputController?.mainField.text!)!
+        functionLabel.text = "y = " + (mainViewController?.outputController?.mainField.text ?? "" )
     }
     
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
