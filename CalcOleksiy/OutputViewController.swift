@@ -21,6 +21,7 @@ class OutputViewController: UIViewController, OutputInterface, AdvancedOutputInt
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        mainField.text = CalcModel.sharedModel.inputData
         additionField.backgroundColor = UIColor(red:0.205, green:0.197, blue:0.10, alpha: 0.3)
         mainField.adjustsFontSizeToFitWidth = true
         mainField.minimumScaleFactor = 0.8

@@ -145,5 +145,9 @@ class ViewController: UIViewController {
         }
         lastOperation = operation
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        UserDefaults.standard.setValue(calcBrain.inputData, forKey: "last_result")
+    }
 }
 

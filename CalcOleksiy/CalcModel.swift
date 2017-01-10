@@ -11,7 +11,7 @@ import UIKit
 class CalcModel: NSObject, CalcBrainInterface {
     ///singleton
     static let sharedModel = CalcModel()
-    var inputData = "0"
+    var inputData : String = (UserDefaults.standard.value(forKey: "last_result") ?? "") as! String
     private var plotInput = ""
     ///seperated string into math components
     private var inputDataArray = [String]()
@@ -118,8 +118,13 @@ class CalcModel: NSObject, CalcBrainInterface {
                 inputData = operation.rawValue
                 result?(inputData, nil)
             } else {
-                inputData += operation.rawValue
-                result?(inputData, nil)
+                if String(inputData.characters.last ?? " ") == "-" {
+                    inputData += operation.rawValue
+                    result?(inputData, nil)
+                } else {
+                    inputData += operation.rawValue
+                    result?(inputData, nil)
+                }
             }
         }
     }
@@ -140,8 +145,12 @@ class CalcModel: NSObject, CalcBrainInterface {
                         inputData = "\(Int(result1))"
                     }
                 } else {
-                    let truncatedResult = String(format: "%.5g", result1)
-                    inputData = "\(truncatedResult)"
+                    let formatter = NumberFormatter()
+                    formatter.minimumIntegerDigits = 1
+                    formatter.minimumFractionDigits = 0
+                    formatter.maximumFractionDigits = 5
+                    //let truncatedResult = String(format: "%.6g", result1)
+                    inputData = formatter.string(from: NSNumber(value: result1))!
                 }
                 inputDataArray = [String]()
                 outputData = [String]()
@@ -279,7 +288,7 @@ class CalcModel: NSObject, CalcBrainInterface {
         return temp
     }
     ///seperate inputData into math components
-    private func seperateInputData(){
+    private func seperateInputData() {
         for charachter in inputData.characters {
             if isMathSymbol(String(charachter)) {
                 if inputDataArray.count > 0 && inputDataArray[inputDataArray.count  - 1].characters.last == "e" {
@@ -295,18 +304,31 @@ class CalcModel: NSObject, CalcBrainInterface {
                     } else {
                         inputDataArray.removeLast()
                     }
+                } else if inputDataArray.count > 0 && inputDataArray[inputDataArray.count  - 1] == "-" {
+                    inputDataArray[inputDataArray.count  - 1] = "+/-"
+                    inputDataArray.append(String(charachter))
                 } else {
                     inputDataArray.append(String(charachter))
                 }
-            } else if isValue(String(charachter)){//determine if last charachter is number,
+            } else if isValue(String(charachter)) {//determine if last charachter is number,
                 if inputDataArray.count == 0 {// if true add next charachter to the same string
                     inputDataArray.append(String(charachter))
                 } else if isValue(inputDataArray[inputDataArray.count - 1]) {
                     inputDataArray[inputDataArray.count - 1] += String(charachter)
                 } else if (inputDataArray.count == 1 && inputDataArray[inputDataArray.count - 1] == "-"){
-                    inputDataArray[inputDataArray.count - 1] += String(charachter)
+                    if ["s","c","t","l"].contains(charachter) {
+                        inputDataArray[inputDataArray.count - 1] = "+/-"
+                        inputDataArray.append(String(charachter))
+                    } else {
+                        inputDataArray[inputDataArray.count - 1] += String(charachter)
+                    }
                 } else if (inputDataArray.count > 1) && (isOperation(inputDataArray[inputDataArray.count - 2]) || isMathSymbol(inputDataArray[inputDataArray.count - 2])) && inputDataArray[inputDataArray.count - 1] == "-" {
-                    inputDataArray[inputDataArray.count - 1] += String(charachter)
+                    if ["(","/","*","%"," ̂"].contains(inputDataArray[inputDataArray.count - 2]) && ["s","c","t","l"].contains(charachter) {
+                        inputDataArray[inputDataArray.count - 1] = "+/-"
+                        inputDataArray.append(String(charachter))
+                    } else {
+                        inputDataArray[inputDataArray.count - 1] += String(charachter)
+                    }
                 }else {
                     if charachter == "h" {
                         inputDataArray[inputDataArray.count - 1] += String(charachter)
@@ -322,8 +344,15 @@ class CalcModel: NSObject, CalcBrainInterface {
             } else if charachter == "." {
                 inputDataArray[inputDataArray.count - 1] += String(charachter)
             } else if inputDataArray.count != 0 && !isTrigonomenry(inputDataArray[inputDataArray.count - 1]) && !isMathSymbol(inputDataArray[inputDataArray.count - 1]) {
-                    inputDataArray[inputDataArray.count - 1] += String(charachter)
-                    //if element of array is not fully written trigonometry func
+                if inputDataArray[inputDataArray.count - 2] == "-" {
+                    if inputDataArray.count == 2 {
+                        inputDataArray[inputDataArray.count - 2] = "+/-"
+                    } else if ["(","/","*","%"," ̂"].contains(inputDataArray[inputDataArray.count - 3]) && inputDataArray.count > 1 {
+                        inputDataArray[inputDataArray.count - 2] = "+/-"
+                    }
+                }
+                inputDataArray[inputDataArray.count - 1] += String(charachter)
+                //if element of array is not fully written trigonometry func
             } else if charachter == "e" {
                 inputDataArray[inputDataArray.count - 1] += String(charachter)
             } else {
@@ -416,14 +445,14 @@ class CalcModel: NSObject, CalcBrainInterface {
     }
     ///return true if string is trigonometry operation
     private func isTrigonomenry(_ str: String) -> Bool{
-        if str=="sin" || str=="cos" || str=="tg" || str=="ln" || str=="√" || str=="sinh" || str=="cosh" || str=="tgh" {
+        if str=="sin" || str=="cos" || str=="tg" || str=="ln" || str=="√" || str=="sinh" || str=="cosh" || str=="tgh" || str=="+/-" {
             return true
         }
         return false
     }
     ///return true if string is operation
     private func isOperation(_ str: String) -> Bool{
-        if str=="+" || str=="/" || str=="*" || str=="-" || str == " ̂" || str=="%" || str == "sin" || str == "cos" || str == "tg" || str=="ln" || str=="√" || str=="sinh" || str=="cosh" || str=="tgh" {
+        if str=="+" || str=="/" || str=="*" || str=="-" || str == " ̂" || str=="%" || str == "sin" || str == "cos" || str == "tg" || str=="ln" || str=="√" || str=="sinh" || str=="cosh" || str=="tgh" || str=="+/-" {
             return true
         }
         return false
@@ -462,6 +491,9 @@ class CalcModel: NSObject, CalcBrainInterface {
             case "sin":
                 let value = stack.removeLast()
                 stack.append(sin(value))
+            case "+/-":
+                let value = stack.removeLast()
+                stack.append(0-value)
             case "cos":
                 let value = stack.removeLast()
                 stack.append(cos(value))
