@@ -18,7 +18,7 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        calcBrain.result = { (value, error)->() in
+        calcBrain.resultOutput = { (value, error)->() in
             if (value != nil) {
                 self.outputController?.outputInfo(info: "\(value!)")
             } else {

@@ -52,7 +52,7 @@ protocol CalcBrainInterface {
     func binary(operation: BinaryOperation)
     func unary(operation: UnaryOperation)
     func utility(operation: UtilityOperation)
-    var result: ((String?, Error?)->())? {get set}
+    var result: ((Double?, Error?)->())? {get set}
 }
 
 protocol OutputInterface {

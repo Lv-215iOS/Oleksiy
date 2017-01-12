@@ -20,11 +20,12 @@ class CalcModel: NSObject, CalcBrainInterface {
     private var openBracesCount = 0
     private var closedBracesCount = 0
     private var dotToken = true
+    var resultOutput: ((String?, Error?)->())?
     
     //MARK:- CalcBrainInterface
     func digit(value: Double){
-        if inputData == "NaN" || inputData == "+∞" || inputData.characters.contains("e") {
-            result?(nil,nil)
+        if inputData == "nan" || inputData == "+∞" || inputData == "inf" /*|| inputData.characters.contains("e")*/ {
+            resultOutput?(nil,nil)
         } else {
             if String(inputData.characters.last ?? " ") == "0" {
                 let temp = inputData.remove(at: inputData.index(before: inputData.endIndex))
@@ -35,52 +36,56 @@ class CalcModel: NSObject, CalcBrainInterface {
             if value.truncatingRemainder(dividingBy: 1) != 0 {
                 dotToken = false
                 if isValue(String(inputData.characters.last ?? "-")) {
-                    result?(nil,nil)
+                    resultOutput?(nil,nil)
                 } else {
-                    inputData += String(format:"%.5f", value)
+                    inputData += String(value)
                 }
             } else {
                 if String(inputData.characters.last ?? "-") == "x" {
-                    result?(nil,nil)
+                    resultOutput?(nil,nil)
                 } else {
-                    inputData += String(Int(value))
+                    if value >= Double(Int.max) || value <= Double(Int.min) {
+                        inputData += String(value)
+                    } else {
+                        inputData += String(Int(value))
+                    }
                 }
             }
-            result?(inputData, nil)
+            resultOutput?(inputData, nil)
         }
     }
     
     func binary(operation: BinaryOperation) {
         dotToken = true
-        if inputData == "NaN" || inputData == "+∞" || inputData.characters.contains("e") {
-            result?(nil,nil)
+        if inputData == "nan" || inputData == "+∞" || inputData == "inf" /*|| inputData.characters.contains("e")*/ {
+            resultOutput?(nil,nil)
         } else if operation == .Minus {
             if String(inputData.characters.last ?? " ") == "+" {
                 inputData.remove(at: inputData.index(before: inputData.endIndex))
                 inputData += "-"
-                result?(inputData, nil)
+                resultOutput?(inputData, nil)
             } else if ["n","s","g","h","√"].contains(String(inputData.characters.last ?? " ")) {
                 inputData += "("
                 openBracesCount += 1
                 inputData += "-"
-                result?(inputData, nil)
+                resultOutput?(inputData, nil)
             } else if String(inputData.characters.last ?? " ") == ")" || Int(String(inputData.characters.last ?? " ")) != nil {
                 if inputData == "0" {
                     inputData = operation.rawValue + "0"
                 } else {
                     inputData += operation.rawValue
                 }
-                result?(inputData, nil)
+                resultOutput?(inputData, nil)
             } else if String(inputData.characters.last ?? " ") == "-" || String(inputData.characters.last ?? " ") == "." {
-                result?(nil, nil)
+                resultOutput?(nil, nil)
             } else {
                 inputData += "-"
-                result?(inputData, nil)
+                resultOutput?(inputData, nil)
 
             }
         } else if Int(String(inputData.characters.last ?? " ")) != nil || String(inputData.characters.last ?? " ") == ")" {
             inputData += operation.rawValue
-            result?(inputData, nil)
+            resultOutput?(inputData, nil)
         } else {
             if isOperation(String(inputData.characters.last ?? " ")) && !isTrigonomenry(String(inputData.characters.last ?? " ")) {
                 let deletedElement = inputData.remove(at: inputData.index(before: inputData.endIndex))
@@ -90,17 +95,17 @@ class CalcModel: NSObject, CalcBrainInterface {
                    (isOperation(String(inputData.characters.last ?? " ")) &&
                    !isTrigonomenry(String(inputData.characters.last ?? " "))) {
                     inputData += String(deletedElement)
-                    result?(nil, nil)
+                    resultOutput?(nil, nil)
                 } else {
                     inputData += operation.rawValue
-                    result?(inputData, nil)
+                    resultOutput?(inputData, nil)
                 }
             } else {
                 if String(inputData.characters.last ?? " ") == "x" {
                     inputData += operation.rawValue
-                    result?(inputData, nil)
+                    resultOutput?(inputData, nil)
                 } else {
-                    result?(nil, nil)
+                    resultOutput?(nil, nil)
 
                 }
             }
@@ -109,19 +114,19 @@ class CalcModel: NSObject, CalcBrainInterface {
     
     func unary(operation: UnaryOperation){
         dotToken = true
-        if inputData == "NaN" || inputData == "+∞" || inputData.characters.contains("e") {
-            result?(nil,nil)
+        if inputData == "NaN" || inputData == "+∞" /*|| inputData.characters.contains("e")*/ {
+            resultOutput?(nil,nil)
         } else if String(inputData.characters.last ?? " ") == "." ||
            String(inputData.characters.last ?? " ") == "x" ||
            String(inputData.characters.last ?? " ") == ")" ||
            Int(String(inputData.characters.last ?? " ")) != nil && inputData != "0" && inputData != "-0" {
-            result?(nil, nil)
+            resultOutput?(nil, nil)
         } else {
             if ["n","s","g","h","√"].contains(String(inputData.characters.last ?? " ")) {
                 inputData += "("
                 openBracesCount += 1
                 inputData += operation.rawValue
-                result?(inputData, nil)
+                resultOutput?(inputData, nil)
             } else if inputData == "0" || inputData == "-0" {
                 inputData.remove(at: inputData.index(before: inputData.endIndex))
                 if inputData == "-" {
@@ -129,7 +134,7 @@ class CalcModel: NSObject, CalcBrainInterface {
                     openBracesCount += 1
                 }
                 inputData += operation.rawValue
-                result?(inputData, nil)
+                resultOutput?(inputData, nil)
             } else {
                 let removedSymbol = inputData.remove(at: inputData.index(before: inputData.endIndex))
                 if inputData == "" && removedSymbol == "-" {
@@ -137,17 +142,17 @@ class CalcModel: NSObject, CalcBrainInterface {
                     inputData += "("
                     openBracesCount += 1
                     inputData += operation.rawValue
-                    result?(inputData, nil)
+                    resultOutput?(inputData, nil)
                 } else if ["/","*","%","("," ̂"].contains(String(inputData.characters.last ?? " ")) && removedSymbol == "-" {
                     inputData += String(removedSymbol)
                     inputData += "("
                     openBracesCount += 1
                     inputData += operation.rawValue
-                    result?(inputData, nil)
+                    resultOutput?(inputData, nil)
                 } else {
                     inputData += String(removedSymbol)
                     inputData += operation.rawValue
-                    result?(inputData, nil)
+                    resultOutput?(inputData, nil)
                 }
             }
         }
@@ -179,12 +184,23 @@ class CalcModel: NSObject, CalcBrainInterface {
                 inputDataArray = [String]()
                 outputData = [String]()
                 if result1.isNaN || result1.isInfinite {
-                    result?("Error",nil)
+                    //result?("Error",nil)
+                    resultOutput?(inputData,nil)
+                    result?(result1, nil)
                 } else {
-                    result?(inputData,nil)
+                    resultOutput?(inputData,nil)
+                    result?(Double(inputData), nil)
                 }
             } else {
-                result?(nil, nil)
+                if inputData == "nan" {
+                    result?(.nan, nil)
+                } else if inputData == "inf" {
+                    result?(.infinity, nil)
+                } else {
+                    result?(Double(inputData), nil)
+                }
+                result?(Double(inputData), nil)
+                resultOutput?(nil, nil)
             }
         } else if operation == .AClean {
             dotToken = true
@@ -193,7 +209,7 @@ class CalcModel: NSObject, CalcBrainInterface {
             closedBracesCount = 0
             inputDataArray = [String]()
             outputData = [String]()
-            result?(inputData, nil)
+            resultOutput?(inputData, nil)
         } else if operation == .Clean {
             if String(inputData.characters.last ?? " ") == "." {
                 dotToken = true
@@ -224,23 +240,23 @@ class CalcModel: NSObject, CalcBrainInterface {
                 if String(inputData.characters.last ?? " ") == " " || inputData.characters.contains("e") {
                     inputData = "0"
                 }
-                result?(inputData, nil)
+                resultOutput?(inputData, nil)
             } else {
                 inputData = "0"
-                result?(inputData, nil)
+                resultOutput?(inputData, nil)
             }
         } else if inputData == "NaN" || inputData == "+∞" || inputData.characters.contains("e") {
-            result?(nil,nil)
+            resultOutput?(nil,nil)
         } else if operation == .Dot {
             if dotToken {
                 if Int(String(inputData.characters.last ?? " ")) == nil {
                     inputData += "0"
                 }
                 inputData += operation.rawValue
-                result?(inputData, nil)
+                resultOutput?(inputData, nil)
                 dotToken = false
             } else  {
-                result?(nil,nil)
+                resultOutput?(nil,nil)
             }
         } else {
             dotToken = true
@@ -248,9 +264,9 @@ class CalcModel: NSObject, CalcBrainInterface {
                 if closedBracesCount != openBracesCount && (closedBracesCount != 0 || Int(String(inputData.characters.last ?? " ")) != nil || String(inputData.characters.last ?? " ") == "x") {
                     closedBracesCount += 1
                     inputData += operation.rawValue
-                    result?(inputData, nil)
+                    resultOutput?(inputData, nil)
                 } else {
-                    result?(nil,nil)
+                    resultOutput?(nil,nil)
                 }
             } else if operation == .LeftBracket {
                 if ( ["n","s","g","h"].contains(String(inputData.characters.last ?? " ")) || isMathSymbol(String(inputData.characters.last ?? " ")) || inputData == "0" || inputData == "-0") && String(inputData.characters.last ?? " ") != ")" {
@@ -259,17 +275,17 @@ class CalcModel: NSObject, CalcBrainInterface {
                     }
                     openBracesCount += 1
                     inputData += operation.rawValue
-                    result?(inputData, nil)
+                    resultOutput?(inputData, nil)
                 } else {
-                    result?(nil,nil)
+                    resultOutput?(nil,nil)
                 }
             } else {
                 inputData += operation.rawValue
-                result?(inputData, nil)
+                resultOutput?(inputData, nil)
             }
         }
     }
-    var result: ((String?, Error?)->())?
+    var result: ((Double?, Error?)->())?
 
     //MARK:- CalcModel
     /// returns true if inputdata is validate data for drawing plot, otherwise return false
@@ -296,16 +312,16 @@ class CalcModel: NSObject, CalcBrainInterface {
     func XInput() {
         dotToken = false
         if inputData == "NaN" || inputData == "+∞" || inputData.characters.contains("e") {
-            result?(nil,nil)
+            resultOutput?(nil,nil)
         } else if (Int(String(inputData.characters.last ?? " ")) != nil  && inputData != "0" ) ||  String(inputData.characters.last ?? " ") == ")" || String(inputData.characters.last ?? " ") == "x" || String(inputData.characters.last ?? " ") == "." {
-            result?(nil,nil)
+            resultOutput?(nil,nil)
         } else {
             if inputData == "0" {
                 inputData = "x"
             } else {
                 inputData += "x"
             }
-            result?(inputData, nil)
+            resultOutput?(inputData, nil)
         }
     }
     
