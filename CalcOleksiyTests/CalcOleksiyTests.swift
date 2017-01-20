@@ -25,7 +25,7 @@ class CalcOleksiyTests: XCTestCase {
         super.tearDown()
     }
     
-    /// 4 * 2 = 8
+    /// 4 * 2 = 8.0
     func test4Mul2() {
         brain?.digit(value: 4)
         brain?.binary(operation: .Mul)
