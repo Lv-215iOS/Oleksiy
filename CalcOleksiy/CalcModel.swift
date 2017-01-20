@@ -2,7 +2,7 @@
 //  CalcModel.swift
 //  CalcOleksiy
 //
-//  Created by Oleksiy Bilyi on 12/7/16.
+//  Created by Oleksiy Bilyi on 12/7/16./
 //  Copyright © 2016 adminaccount. All rights reserved.
 //
 
