@@ -51,7 +51,7 @@ class PlotView: UIView {
             let path = UIBezierPath()
             var x = 0
             var y = CalcModel.sharedModel.functionIn(kGraphInterpolateFrom)
-            var p1 = CGPoint(x:x, y:Int(lround(ceil((-y-kGraphInterpolateFrom)*60))))
+            var p1 = CGPoint(x:x, y:Int(lround((-y-kGraphInterpolateFrom)*60)))
             var p2 : CGPoint
             path.move(to: p1)
             for i in 1 ..< kFunctionStep + 1 {
@@ -59,8 +59,8 @@ class PlotView: UIView {
                 y = CalcModel.sharedModel.functionIn(Double(i)*kGraphLength/Double(kFunctionStep) + kGraphInterpolateFrom)
                 print("x - ", x)
                 print("y - ", (-y-kGraphInterpolateFrom)*60)
-                p2 = CGPoint(x:x, y:Int(lround(ceil((-y-kGraphInterpolateFrom)*60))))
-                if (-y-kGraphInterpolateFrom)*60 <= 1400 && Int((-y-kGraphInterpolateFrom)*60) >= -kFunctionStep {
+                p2 = CGPoint(x:x, y:Int(lround((-y-kGraphInterpolateFrom)*60)))
+                if lround((-y-kGraphInterpolateFrom)*60) <= 1400 && lround((-y-kGraphInterpolateFrom)*60) >= -kFunctionStep {
                     if abs(p2.y - p1.y) >= 300 {
                         path.move(to: p2)
                     } else {
