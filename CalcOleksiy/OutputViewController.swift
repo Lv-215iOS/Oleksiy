@@ -8,17 +8,13 @@
 
 import UIKit
 
-protocol AdvancedOutputInterface {
-    func shakeInfo()
-    func fillSecondLabel(str: String)
-    func mainLabel () -> String
-}
-
-class OutputViewController: UIViewController, OutputInterface, AdvancedOutputInterface {
+class OutputViewController: UIViewController {
     
+    // MARK: - IBOutlets
     @IBOutlet weak var mainField: UILabel!
     @IBOutlet weak var additionField: UILabel!
     
+    // MARK: - View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         mainField.text = CalcModel.sharedModel.inputData
@@ -27,11 +23,20 @@ class OutputViewController: UIViewController, OutputInterface, AdvancedOutputInt
         mainField.minimumScaleFactor = 0.8
         mainField.lineBreakMode = .byTruncatingHead
     }
-    //MARK: - OutputProtocol
+    
+}
+
+// MARK: - OutputInterface
+extension OutputViewController: OutputInterface {
+    
     func outputInfo(info: String){
         mainField.text = info
     }
-    //MARK: - AdvancedOutputProtocol
+    
+}
+// MARK: - AdvancedOutputInterface
+extension OutputViewController: AdvancedOutputInterface {
+    
     func shakeInfo() {
         let animation = CABasicAnimation(keyPath: "position")
         animation.duration = 0.05
@@ -39,7 +44,7 @@ class OutputViewController: UIViewController, OutputInterface, AdvancedOutputInt
         animation.autoreverses = true
         animation.fromValue = CGPoint(x:mainField.center.x, y:mainField.center.y + 5)
         animation.toValue = CGPoint(x:mainField.center.x, y:mainField.center.y - 5)
-
+        
         mainField.layer.add(animation, forKey: "position")
     }
     

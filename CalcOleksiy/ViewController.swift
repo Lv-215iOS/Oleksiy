@@ -10,22 +10,25 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    // MARK: - Parameters
     var outputController : OutputViewController? = nil
     var plotViewController : PlotViewController? = nil
     var inputController : InputViewController? = nil
     var calcBrain = CalcModel.sharedModel
     var lastOperation = ""
 
+    // MARK: - View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         calcBrain.resultOutput = { (value, error)->() in
             if (value != nil) {
-                self.outputController?.outputInfo(info: "\(value!)")
+                self.outputController!.outputInfo(info: "\(value!)")
             } else {
-                self.outputController?.shakeInfo()
+                self.outputController!.shakeInfo()
             }
         }
-        inputController?.buttonDidPress = { [unowned self] (operation, sender)->() in
+        inputController!.buttonDidPress = { [unowned self] (operation, sender)->() in
             let previousData = self.calcBrain.inputData
             if sender.currentTitle == "x²" {
                 self.pressedButton(operation: " ̂", sender: sender)
@@ -51,6 +54,10 @@ class ViewController: UIViewController {
         navigationController?.isNavigationBarHidden = true
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        calcBrain.saveInputData()
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "OutputControllerEmbedSegue" {
             outputController = segue.destination as? OutputViewController
@@ -58,12 +65,19 @@ class ViewController: UIViewController {
             inputController = segue.destination as? InputViewController
         } else if segue.identifier == "segue" {
             plotViewController = segue.destination as? PlotViewController
-            plotViewController?.mainViewController = self
+            plotViewController!.function = outputController!.mainField.text ?? ""
         }
     }
     
+    // MARK: - Auxiliary functions
     private func pressedButton(operation : String, sender : UIButton) {
-        inputController?.cleanButton.setTitle("c", for: .normal)
+        
+        guard let inputController = inputController,
+              let outputController = outputController else {
+            return
+        }
+        
+        inputController.cleanButton.setTitle("c", for: .normal)
         switch operation {
             // binary operations
         case "+":
@@ -100,31 +114,31 @@ class ViewController: UIViewController {
             //utility operations
         case "⇐":
             calcBrain.utility(operation: .Clean)
-            if outputController?.mainLabel() == "0" {
-                inputController?.cleanButton.setTitle("ac", for: .normal)
+            if outputController.mainLabel() == "0" {
+                inputController.cleanButton.setTitle("ac", for: .normal)
             }
         case "c":
-            inputController?.cleanButton.setTitle("ac", for: .normal)
-            outputController?.fillSecondLabel(str: "")
+            inputController.cleanButton.setTitle("ac", for: .normal)
+            outputController.fillSecondLabel(str: "")
             calcBrain.utility(operation: .AClean)
         case "ac":
-            inputController?.cleanButton.setTitle("ac", for: .normal)
+            inputController.cleanButton.setTitle("ac", for: .normal)
             calcBrain.utility(operation: .AClean)
         case ".":
             calcBrain.utility(operation: .Dot)
         case "=":
             var xPersistance = true
-            for i in (outputController?.mainLabel().characters)! {
+            for i in outputController.mainLabel().characters {
                 if i == "x" {
                     xPersistance = false
                     break
                 }
             }
             if xPersistance {
-                outputController?.fillSecondLabel(str: (outputController?.mainLabel())!)
+                outputController.fillSecondLabel(str: outputController.mainLabel() )
                 calcBrain.utility(operation: .Equal)
             } else {
-                outputController?.shakeInfo()
+                outputController.shakeInfo()
             }
         case ")":
             calcBrain.utility(operation: .RightBracket)
@@ -135,10 +149,10 @@ class ViewController: UIViewController {
             if calcBrain.functionTest() {
                 performSegue(withIdentifier: "segue", sender: self)
             } else {
-                outputController?.shakeInfo()
+                outputController.shakeInfo()
             }
         case "x":
-            calcBrain.XInput()
+            calcBrain.xInput()
         default:
             print(operation)
             calcBrain.digit(value: Double(operation)!)
@@ -146,8 +160,5 @@ class ViewController: UIViewController {
         lastOperation = operation
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        calcBrain.saveInputData()
-    }
 }
 

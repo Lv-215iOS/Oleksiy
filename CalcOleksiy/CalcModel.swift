@@ -9,22 +9,25 @@
 import UIKit
 
 class CalcModel: NSObject, CalcBrainInterface {
+    
+    // MARK:- Properties
     ///singleton
     static let sharedModel = CalcModel()
     var inputData : String = (UserDefaults.standard.value(forKey: "last_result") ?? "0") as! String
-    private var plotInput = ""
     ///seperated string into math components
-    private var inputDataArray = [String]()
+    fileprivate var inputDataArray = [String]()
+    fileprivate var plotInput = ""
     ///reverse polish notation in array
-    private var outputData = [String]()
-    private var openBracesCount = 0
-    private var closedBracesCount = 0
-    private var dotToken = true
-    var resultOutput: ((String?, Error?)->())?
+    fileprivate var outputData = [String]()
+    fileprivate var openBracesCount = 0
+    fileprivate var closedBracesCount = 0
+    fileprivate var dotToken = true
     
     //MARK:- CalcBrainInterface
+    var resultOutput: ((String?, Error?)->())?
+    
     func digit(value: Double){
-        if inputData == "nan" || inputData == "+∞" || inputData == "inf" /*|| inputData.characters.contains("e")*/ {
+        if inputData == "nan" || inputData == "+∞" || inputData == "inf" || inputData.characters.contains("e") {
             resultOutput?(nil,nil)
         } else {
             if String(inputData.characters.last ?? " ") == "0" {
@@ -57,7 +60,7 @@ class CalcModel: NSObject, CalcBrainInterface {
     
     func binary(operation: BinaryOperation) {
         dotToken = true
-        if inputData == "nan" || inputData == "+∞" || inputData == "inf" /*|| inputData.characters.contains("e")*/ {
+        if inputData == "nan" || inputData == "+∞" || inputData == "inf" || inputData.characters.contains("e") {
             resultOutput?(nil,nil)
         } else if operation == .Minus {
             if String(inputData.characters.last ?? " ") == "+" {
@@ -114,7 +117,7 @@ class CalcModel: NSObject, CalcBrainInterface {
     
     func unary(operation: UnaryOperation){
         dotToken = true
-        if inputData == "NaN" || inputData == "+∞" /*|| inputData.characters.contains("e")*/ {
+        if inputData == "NaN" || inputData == "+∞" || inputData.characters.contains("e") {
             resultOutput?(nil,nil)
         } else if String(inputData.characters.last ?? " ") == "." ||
            String(inputData.characters.last ?? " ") == "x" ||
@@ -287,61 +290,11 @@ class CalcModel: NSObject, CalcBrainInterface {
     }
     var result: ((Double?, Error?)->())?
 
-    //MARK:- CalcModel
+    // MARK: - Auxiliary functions
+    
     /// returns true if inputdata is validate data for drawing plot, otherwise return false
     func saveInputData() {
          UserDefaults.standard.setValue(inputData, forKey: "last_result")
-    }
-    
-    func functionTest() -> Bool {
-        if (Int(String(inputData.characters.last ?? " ")) != nil ||
-            String(inputData.characters.last ?? " ") == "x" ||
-            String(inputData.characters.last ?? " ") == ")" ) && openBracesCount == closedBracesCount {
-            if Double(inputData)?.truncatingRemainder(dividingBy: 1) == 0 {
-                if inputData.characters.contains("e") {
-                    return false
-                }
-                dotToken = true
-            }
-            return true
-        } else {
-            return false
-        }
-    }
-    
-    func XInput() {
-        dotToken = false
-        if inputData == "NaN" || inputData == "+∞" || inputData.characters.contains("e") {
-            resultOutput?(nil,nil)
-        } else if (Int(String(inputData.characters.last ?? " ")) != nil  && inputData != "0" ) ||  String(inputData.characters.last ?? " ") == ")" || String(inputData.characters.last ?? " ") == "x" || String(inputData.characters.last ?? " ") == "." {
-            resultOutput?(nil,nil)
-        } else {
-            if inputData == "0" {
-                inputData = "x"
-            } else {
-                inputData += "x"
-            }
-            resultOutput?(inputData, nil)
-        }
-    }
-    
-    /// returns function in current x
-    func plotFunctionIn(_ x:Double) -> Double {
-        let regex = try! NSRegularExpression(pattern: "x", options: .useUnixLineSeparators)
-        let modInput = regex.stringByReplacingMatches(in: inputData, options: [], range: NSMakeRange(0, inputData.utf16.count), withTemplate: String(format:"%.10f", x))
-        print("input |")
-        print(inputData)
-        print("modinput |")
-        print(modInput)
-        plotInput = inputData
-        inputData = modInput
-        let temp = CalculateRPN()
-        inputDataArray = [String]()
-        outputData = [String]()
-        inputData = plotInput
-        print("input |")
-        print(inputData)
-        return temp
     }
     
     ///seperate inputData into math components
@@ -422,7 +375,7 @@ class CalcModel: NSObject, CalcBrainInterface {
     }
     
     ///calculate reverse polish notation
-    private func calculateData(){
+    private func calculateData() {
         ///stack for operators
         var stack = [String]()
         for symbol in inputDataArray{
@@ -471,45 +424,84 @@ class CalcModel: NSObject, CalcBrainInterface {
         
     }
     
-    ///returns priority of operator
-    private func priorityFor(char:String) -> Int{
-        if char == "+" || char == "-" {
+    /**
+     determines priority of operation
+     
+     - Parameter operation: math operation
+     - Returns: priority (From 1 to 4)
+     
+    */
+    private func priorityFor(operation:String) -> Int {
+        if operation == "+" || operation == "-" {
             return 1
-        } else if (char == " ̂") {
+        } else if (operation == " ̂") {
             return 3
-        } else if isTrigonomenry(char) {
+        } else if isTrigonomenry(operation) {
             return 4
         }
         return 2
     }
     
-    ///return true if first operator precedence is higher or equal than precedence of second operator
+    /**
+     Determines precedence between operatons
+     
+     - Parameter first: math operation
+     - Parameter second: math operation
+     - Returns: true if first operation precedence is higher or equal than precedence of second operation
+     
+    */
     private func precedenceBetweenOperators(first:String, second:String) -> Bool {
-        return priorityFor(char: first) >= priorityFor(char: second)
+        return priorityFor(operation: first) >= priorityFor(operation: second)
     }
     
-    ///return true if string is value
-    private func isValue(_ str: String) -> Bool{
-        return !isOperation(str) && !isMathSymbol(str)
+    /**
+     Determines if input string is value
+     
+     - Parameter string: input string
+     - Returns: true if string is value
+     
+     */
+    private func isValue(_ string: String) -> Bool {
+        return !isOperation(string) && !isMathSymbol(string)
     }
     
-    ///return true if string is math symbol
-    private func isMathSymbol(_ str: String) -> Bool{
-        return isOperation(str) || str == "(" || str == ")"
+    /**
+     Determines if input string is math symbol
+     
+     - Parameter string: input string
+     - Returns: true if string is math symbol
+     
+     */
+    private func isMathSymbol(_ string: String) -> Bool {
+        return isOperation(string) || string == "(" || string == ")"
     }
     
-    ///return true if string is trigonometry operation
-    private func isTrigonomenry(_ str: String) -> Bool{
-        return str=="sin" || str=="cos" || str=="tg" || str=="ln" || str=="√" || str=="sinh" || str=="cosh" || str=="tgh" || str=="+/-"
+    /**
+     Determines if input string is trigonometry operation
+     
+     - Parameter string: input string
+     - Returns: true if string is trigonometry operation
+     */
+    private func isTrigonomenry(_ string: String) -> Bool {
+        return string=="sin" || string=="cos" || string=="tg" || string=="ln" || string=="√" || string=="sinh" || string=="cosh" || string=="tgh" || string=="+/-"
     }
     
-    ///return true if string is operation
-    private func isOperation(_ str: String) -> Bool{
-        return str=="+" || str=="/" || str=="*" || str=="-" || str == " ̂" || str=="%" || str == "sin" || str == "cos" || str == "tg" || str=="ln" || str=="√" || str=="sinh" || str=="cosh" || str=="tgh" || str=="+/-" 
+    /**
+     Determines if input string is operation
+     
+     - Parameter string: input string
+     - Returns: true if string is operation
+     */
+    private func isOperation(_ string: String) -> Bool {
+        return string=="+" || string=="/" || string=="*" || string=="-" || string == " ̂" || string=="%" || string == "sin" || string == "cos" || string == "tg" || string=="ln" || string=="√" || string=="sinh" || string=="cosh" || string=="tgh" || string=="+/-" 
     }
     
-    /// calculate ReversePolishNotation and return result of expression
-    private func CalculateRPN() -> Double {
+    /**
+     Calculates ReversePolishNotation 
+     
+     - Returns: result of expression
+     */
+    fileprivate func CalculateRPN() -> Double {
         seperateInputData()
         calculateData()
         var stack =  [Double]()
@@ -575,3 +567,59 @@ class CalcModel: NSObject, CalcBrainInterface {
         return stack[stack.count-1]	
     }
 }
+
+//MARK:- CalcBrainFunctionInterface
+extension CalcModel: CalcBrainFunctionInterface {
+    
+    func functionTest() -> Bool {
+        if (Int(String(inputData.characters.last ?? " ")) != nil ||
+            String(inputData.characters.last ?? " ") == "x" ||
+            String(inputData.characters.last ?? " ") == ")" ) && openBracesCount == closedBracesCount {
+            if Double(inputData)?.truncatingRemainder(dividingBy: 1) == 0 {
+                if inputData.characters.contains("e") {
+                    return false
+                }
+                dotToken = true
+            }
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func xInput() {
+        dotToken = false
+        if inputData == "NaN" || inputData == "+∞" || inputData.characters.contains("e") {
+            resultOutput?(nil,nil)
+        } else if (Int(String(inputData.characters.last ?? " ")) != nil  && inputData != "0" ) ||  String(inputData.characters.last ?? " ") == ")" || String(inputData.characters.last ?? " ") == "x" || String(inputData.characters.last ?? " ") == "." {
+            resultOutput?(nil,nil)
+        } else {
+            if inputData == "0" {
+                inputData = "x"
+            } else {
+                inputData += "x"
+            }
+            resultOutput?(inputData, nil)
+        }
+    }
+    
+    func functionIn(_ x:Double) -> Double {
+        let regex = try! NSRegularExpression(pattern: "x", options: .useUnixLineSeparators)
+        let modInput = regex.stringByReplacingMatches(in: inputData, options: [], range: NSMakeRange(0, inputData.utf16.count), withTemplate: String(format:"%.10f", x))
+        print("input |")
+        print(inputData)
+        print("modinput |")
+        print(modInput)
+        plotInput = inputData
+        inputData = modInput
+        let temp = CalculateRPN()
+        inputDataArray = [String]()
+        outputData = [String]()
+        inputData = plotInput
+        print("input |")
+        print(inputData)
+        return temp
+    }
+    
+}
+

@@ -9,16 +9,26 @@
 import UIKit
 import AudioToolbox
 
-class PlotViewController: UIViewController, UIScrollViewDelegate {
+class PlotViewController: UIViewController {
+    
+    // MARK: - Properties
+    var function : String!
+    
+    // MARK: - IBOutlets
     @IBOutlet weak var functionLabel: UILabel!
     @IBOutlet weak var plotScrollView: UIScrollView!
     @IBOutlet weak var plotView: PlotView!
-    var mainViewController : ViewController? = nil
     
+    // MARK: - IBActios
     @IBAction func backButtonPressed(_ sender: Any) {
-        _ = navigationController?.popViewController(animated: true)
+        guard let navigationController = navigationController else {
+            return
+        }
+        _ = navigationController.popViewController(animated: true)
         AudioServicesPlaySystemSound(1104)
     }
+    
+    // MARK: - View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         plotScrollView.contentSize = CGSize(width:600, height:600)
@@ -30,11 +40,16 @@ class PlotViewController: UIViewController, UIScrollViewDelegate {
         plotScrollView.layer.borderWidth = 1.5
         plotScrollView.layer.borderColor = UIColor.lightGray.cgColor
         plotScrollView.layer.cornerRadius = 15
-        functionLabel.text = "y = " + (mainViewController?.outputController?.mainField.text ?? "" )
+        functionLabel.text = "y = " + function
     }
+    
+}
+
+// MARK: - UIScrollViewDelegate
+extension PlotViewController: UIScrollViewDelegate {
     
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return plotView
     }
-    
+
 }

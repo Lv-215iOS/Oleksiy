@@ -12,7 +12,6 @@
 		25ABB77D1DF811EC00DE9D0D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25ABB77B1DF811EC00DE9D0D /* Main.storyboard */; };
 		25ABB77F1DF811EC00DE9D0D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 25ABB77E1DF811EC00DE9D0D /* Assets.xcassets */; };
 		25ABB7821DF811ED00DE9D0D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25ABB7801DF811ED00DE9D0D /* LaunchScreen.storyboard */; };
-		25ABB78D1DF811ED00DE9D0D /* CalcOleksiyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25ABB78C1DF811ED00DE9D0D /* CalcOleksiyTests.swift */; };
 		25ABB7981DF811ED00DE9D0D /* CalcOleksiyUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25ABB7971DF811ED00DE9D0D /* CalcOleksiyUITests.swift */; };
 		480578951DFF325F000AE1CF /* InputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480578941DFF325F000AE1CF /* InputViewController.swift */; };
 		48091EFE1E1BC61F0098CDD2 /* Winter-Screensavers-And-iPhone-6-Wallpapers-1080x1920.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 48091EFD1E1BC61F0098CDD2 /* Winter-Screensavers-And-iPhone-6-Wallpapers-1080x1920.jpg */; };
@@ -52,7 +51,6 @@
 		25ABB7811DF811ED00DE9D0D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		25ABB7831DF811ED00DE9D0D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		25ABB7881DF811ED00DE9D0D /* CalcOleksiyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CalcOleksiyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		25ABB78C1DF811ED00DE9D0D /* CalcOleksiyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalcOleksiyTests.swift; sourceTree = "<group>"; };
 		25ABB78E1DF811ED00DE9D0D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		25ABB7931DF811ED00DE9D0D /* CalcOleksiyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CalcOleksiyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		25ABB7971DF811ED00DE9D0D /* CalcOleksiyUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalcOleksiyUITests.swift; sourceTree = "<group>"; };
@@ -130,7 +128,6 @@
 		25ABB78B1DF811ED00DE9D0D /* CalcOleksiyTests */ = {
 			isa = PBXGroup;
 			children = (
-				25ABB78C1DF811ED00DE9D0D /* CalcOleksiyTests.swift */,
 				25ABB78E1DF811ED00DE9D0D /* Info.plist */,
 			);
 			path = CalcOleksiyTests;
@@ -357,7 +354,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				25ABB78D1DF811ED00DE9D0D /* CalcOleksiyTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
